@@ -1,0 +1,14 @@
+@import url('variables.css');
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: var(--text-color-dark-primary);
+}
+
+.container {
+  font-size: 5em;
+}
