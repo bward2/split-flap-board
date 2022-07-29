@@ -1,11 +1,3 @@
-:root {
-  --background-color: black;
-
-  --text-color-primary: rgba(255, 255, 255, 1);
-  --text-color-secondary: rgba(255, 255, 255, 0.7);
-  --text-color-disabled: rgba(255, 255, 255, 0.5);
-}
-
 html[data-theme='light'] {
   --background-color: white;
 

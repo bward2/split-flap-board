@@ -1,2 +1,2 @@
-import { sayHowdy } from './test.js';
-sayHowdy();
+import loadTheme from './themeToggle.js';
+loadTheme();
