@@ -1,5 +1,9 @@
 :root {
-  --text-color-dark-primary: rgba(0,0,0,0.87);
-  --text-color-dark-secondary: rgba(0,0,0,0.60);
-  --text-color-dark-disabled: rgba(0,0,0,0.38);
+  --text-color-light-primary: rgba(0,0,0,0.87);
+  --text-color-light-secondary: rgba(0,0,0,0.60);
+  --text-color-light-disabled: rgba(0,0,0,0.38);
+
+  --text-color-dark-primary: rgba(255,255,255,1);
+  --text-color-dark-secondary: rgba(255,255,255,0.7);
+  --text-color-dark-disabled: rgba(255,255,255,0.5);
 }
