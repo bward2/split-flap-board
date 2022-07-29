@@ -1,1 +1,3 @@
-console.log('HOWDY!');
+import { sayHowdy } from './test.js';
+
+sayHowdy();
