@@ -7,16 +7,9 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  color: var(--text-color-dark-primary);
+  color: var(--text-color-primary);
   font-family: 'Roboto', sans-serif;
-  background-color: black;
-}
-
-@media screen and (prefers-color-scheme: light) {
-  body {
-    background-color: white;
-    color: var(--text-color-light-primary);
-  }
+  background-color: var(--background-color);
 }
 
 .container {
