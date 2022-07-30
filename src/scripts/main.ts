@@ -1,3 +1,3 @@
-import { sayHowdy } from './test.js';
+import loadTheme from './themeToggle.js';
 
-sayHowdy();
+loadTheme();

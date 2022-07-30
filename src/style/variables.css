@@ -1,9 +1,15 @@
-:root {
-  --text-color-light-primary: rgba(0,0,0,0.87);
-  --text-color-light-secondary: rgba(0,0,0,0.60);
-  --text-color-light-disabled: rgba(0,0,0,0.38);
+html[data-theme='light'] {
+  --background-color: white;
 
-  --text-color-dark-primary: rgba(255,255,255,1);
-  --text-color-dark-secondary: rgba(255,255,255,0.7);
-  --text-color-dark-disabled: rgba(255,255,255,0.5);
+  --text-color-primary: rgba(0, 0, 0, 0.87);
+  --text-color-secondary: rgba(0, 0, 0, 0.6);
+  --text-color-disabled: rgba(0, 0, 0, 0.38);
+}
+
+html[data-theme='dark'] {
+  --background-color: black;
+
+  --text-color-primary: rgba(255, 255, 255, 1);
+  --text-color-secondary: rgba(255, 255, 255, 0.7);
+  --text-color-disabled: rgba(255, 255, 255, 0.5);
 }
