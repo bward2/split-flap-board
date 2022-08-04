@@ -1,3 +1,7 @@
+:root {
+  --color-theme-transition-duration: 0.4s;
+}
+
 html[data-theme='light'] {
   --background-color: white;
 

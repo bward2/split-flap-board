@@ -10,6 +10,8 @@ body {
   color: var(--text-color-primary);
   font-family: 'Roboto', sans-serif;
   background-color: var(--background-color);
+  transition: background-color var(--color-theme-transition-duration) ease,
+    color var(--color-theme-transition-duration) ease;
 }
 
 .container {
@@ -42,7 +44,7 @@ body {
   position: absolute;
   right: 0;
   top: 0;
-  transition: 0.4s;
+  transition: var(--color-theme-transition-duration);
 }
 
 .slider:before {
@@ -52,7 +54,7 @@ body {
   height: 26px;
   left: 4px;
   position: absolute;
-  transition: 0.4s;
+  transition: var(--color-theme-transition-duration);
   width: 26px;
 }
 
