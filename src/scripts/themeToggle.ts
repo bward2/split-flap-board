@@ -1,3 +1,4 @@
+const body = document.getElementById('body') as HTMLElement;
 const themeSwitch = document.getElementById('theme-switch') as HTMLInputElement;
 const enum themes {
   LIGHT = 'light',
@@ -15,7 +16,15 @@ const loadTheme = () => {
   themeSwitch.checked = storedTheme === themes.DARK;
 };
 
+const addColorTransition = () => {
+  body.classList.add('body-colors-transition');
+};
+
 themeSwitch.onclick = () => {
+  if (!body.classList.contains('body-colors-transition')) {
+    addColorTransition();
+  }
+
   const currentTheme = document.documentElement.getAttribute('data-theme');
   const newTheme = currentTheme === themes.LIGHT ? themes.DARK : themes.LIGHT;
 
