@@ -1,0 +1,8 @@
+@import url('variables.css');
+
+.split-flap-board {
+  background-color: var(--board-color);
+  border-radius: 20px;
+  padding: 50px;
+  transition: background-color var(--color-theme-transition-duration);
+}
