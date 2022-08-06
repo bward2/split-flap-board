@@ -1,0 +1,52 @@
+@import url('variables.css');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: var(--text-color-primary);
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--background-color);
+}
+
+div {
+  perspective: 200px;
+}
+
+.body-colors-transition {
+  transition: background-color var(--color-theme-transition-duration) ease,
+    color var(--color-theme-transition-duration) ease;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.test-button {
+  margin-top: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2em;
+  border: 0;
+  border-radius: 5px;
+  color: var(--text-color-primary);
+  background-color: var(--panel-color);
+  cursor: pointer;
+  box-shadow: 2px 2px gray;
+  transition: background-color var(--color-theme-transition-duration) ease,
+    color var(--color-theme-transition-duration) ease;
+}
+
+.test-button:active {
+  transform: translateX(2px) translateY(2px);
+  box-shadow: none;
+}

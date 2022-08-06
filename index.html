@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="src/style/style.css" />
-    <script type="module" src="./dist/main.js"></script>
+    <link rel="stylesheet" href="src/style/pageLayout.css" />
+    <link rel="stylesheet" href="src/style/splitFlapBoard.css" />
+    <link rel="stylesheet" href="src/style/splitFlapPanel.css" />
+    <link rel="stylesheet" href="src/style/themeSwitch.css" />
+
+    <script type="module" src="./dist/themeToggle.js"></script>
+    <script type="module" src="./dist/testButton.js"></script>
   </head>
-  <body>
-    <div class="container">Hello world!</div>
+  <body id="body">
+    <div class="container">
+      <div class="split-flap-board">
+        <div class="split-flap-panel">
+          <div class="top-full">A</div>
+          <div class="top-half"></div>
+          <div class="bottom-half">A</div>
+          <div class="bottom-full"></div>
+        </div>
+      </div>
+
+      <button class="test-button" id="test-button">FLIP</button>
+    </div>
+
     <div class="theme-switch-wrapper">
       <label class="theme-switch" for="theme-switch">
         <input type="checkbox" id="theme-switch" />

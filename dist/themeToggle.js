@@ -1,3 +1,5 @@
+"use strict";
+var body = document.getElementById('body');
 var themeSwitch = document.getElementById('theme-switch');
 var themes;
 (function (themes) {
@@ -12,10 +14,16 @@ var loadTheme = function () {
     document.documentElement.setAttribute('data-theme', storedTheme);
     themeSwitch.checked = storedTheme === "dark";
 };
+var addColorTransition = function () {
+    body.classList.add('body-colors-transition');
+};
 themeSwitch.onclick = function () {
+    if (!body.classList.contains('body-colors-transition')) {
+        addColorTransition();
+    }
     var currentTheme = document.documentElement.getAttribute('data-theme');
     var newTheme = currentTheme === "light" ? "dark" : "light";
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('data-theme', newTheme);
 };
-export default loadTheme;
+loadTheme();
