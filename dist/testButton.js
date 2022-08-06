@@ -5,6 +5,11 @@ var topHalfFlaps = document.querySelectorAll('.top-half');
 var bottomHalfFlaps = document.querySelectorAll('.bottom-half');
 var bottomFullFlaps = document.querySelectorAll('.bottom-full');
 var panelCharacters = ['', 'A', 'B', 'C', '1', '2', '3'];
+var flipSpeed = 0.25;
+for (var index = 0; index < topFullFlaps.length; index++) {
+    topHalfFlaps[index].style.animationDuration = "".concat(flipSpeed, "s");
+    bottomHalfFlaps[index].style.animationDuration = "".concat(flipSpeed, "s");
+}
 testButton.onclick = function () {
     var _loop_1 = function (index) {
         topHalfFlaps[index].classList.add('top-half-flip');
@@ -19,9 +24,9 @@ testButton.onclick = function () {
             bottomFullFlaps[index].innerHTML = panelCharacters[current];
             topHalfFlaps[index].classList.remove('top-half-flip');
             bottomHalfFlaps[index].classList.remove('bottom-half-flip');
-        }, 1000);
+        }, flipSpeed * 1000);
     };
-    for (var index = 0; index < topHalfFlaps.length; index++) {
+    for (var index = 0; index < topFullFlaps.length; index++) {
         _loop_1(index);
     }
 };
