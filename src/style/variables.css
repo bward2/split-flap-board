@@ -1,5 +1,5 @@
 :root {
-  --color-theme-transition-duration: 0.4s;
+  --color-theme-transition-duration: 0.2s;
 }
 
 html[data-theme='light'] {
