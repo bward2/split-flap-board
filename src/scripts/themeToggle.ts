@@ -32,4 +32,4 @@ themeSwitch.onclick = () => {
   localStorage.setItem('data-theme', newTheme);
 };
 
-export default loadTheme;
+loadTheme();

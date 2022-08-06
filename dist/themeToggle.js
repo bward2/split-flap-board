@@ -1,3 +1,4 @@
+"use strict";
 var body = document.getElementById('body');
 var themeSwitch = document.getElementById('theme-switch');
 var themes;
@@ -25,4 +26,4 @@ themeSwitch.onclick = function () {
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('data-theme', newTheme);
 };
-export default loadTheme;
+loadTheme();
