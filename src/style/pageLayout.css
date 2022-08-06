@@ -22,9 +22,31 @@ div {
 }
 
 .container {
-  font-size: 5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.test-button {
+  margin-top: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2em;
+  border: 0;
+  border-radius: 5px;
+  color: var(--text-color-primary);
+  background-color: var(--panel-color);
+  cursor: pointer;
+  box-shadow: 2px 2px gray;
+  transition: background-color var(--color-theme-transition-duration) ease,
+    color var(--color-theme-transition-duration) ease;
+}
+
+.test-button:active {
+  transform: translateX(2px) translateY(2px);
+  box-shadow: none;
 }

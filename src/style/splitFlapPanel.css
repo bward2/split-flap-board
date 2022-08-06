@@ -50,3 +50,17 @@
   height: 100%;
   z-index: -1;
 }
+
+@keyframes top-half-flip {
+  0% {
+    transform: rotateX(0deg);
+    background-color: var(--panel-color);
+  }
+  50% {
+    transform: rotateX(-90deg);
+    background-color: black;
+  }
+  100% {
+    transform: rotateX(-90deg);
+  }
+}
