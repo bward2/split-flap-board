@@ -43,7 +43,7 @@ var panelCharacters = [
     '8',
     '9',
 ];
-var flipSpeed = 0.1;
+var flipSpeed = 0.075;
 for (var index = 0; index < topFullFlaps.length; index++) {
     var topHalfFlap = topHalfFlaps[index];
     var bottomHalfFlap = bottomHalfFlaps[index];
