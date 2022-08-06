@@ -19,7 +19,7 @@ testButton.onclick = function () {
             bottomFullFlaps[index].innerHTML = panelCharacters[current];
             topHalfFlaps[index].classList.remove('top-half-flip');
             bottomHalfFlaps[index].classList.remove('bottom-half-flip');
-        }, 400);
+        }, 1000);
     };
     for (var index = 0; index < topHalfFlaps.length; index++) {
         _loop_1(index);

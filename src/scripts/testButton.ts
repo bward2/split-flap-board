@@ -25,6 +25,6 @@ testButton.onclick = () => {
 
       topHalfFlaps[index].classList.remove('top-half-flip');
       bottomHalfFlaps[index].classList.remove('bottom-half-flip');
-    }, 400);
+    }, 1000);
   }
 };
