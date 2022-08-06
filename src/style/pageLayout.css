@@ -13,7 +13,7 @@ body {
 }
 
 div {
-  perspective: 500px;
+  perspective: 200px;
 }
 
 .body-colors-transition {

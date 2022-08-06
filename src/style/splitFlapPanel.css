@@ -41,6 +41,7 @@
   transition: background-color var(--color-theme-transition-duration);
   line-height: 0;
   transform-origin: top;
+  transform: rotateX(90deg);
 }
 
 .bottom-full {
@@ -51,6 +52,18 @@
   z-index: -1;
 }
 
+.top-half-flip {
+  animation: top-half-flip ease-in 0.4s;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+.bottom-half-flip {
+  animation: bottom-half-flip ease-in 0.4s;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
 @keyframes top-half-flip {
   0% {
     transform: rotateX(0deg);
@@ -58,9 +71,24 @@
   }
   50% {
     transform: rotateX(-90deg);
-    background-color: black;
+    background-color: var(--background-color);
   }
   100% {
     transform: rotateX(-90deg);
+  }
+}
+
+@keyframes bottom-half-flip {
+  0% {
+    transform: rotateX(90deg);
+    background-color: var(--background-color);
+  }
+  50% {
+    transform: rotateX(90deg);
+    background-color: var(--background-color);
+  }
+  100% {
+    transform: rotateX(0deg);
+    background-color: var(--panel-color);
   }
 }
