@@ -7,8 +7,10 @@ var bottomFullFlaps = document.querySelectorAll('.bottom-full');
 var panelCharacters = ['', 'A', 'B', 'C', '1', '2', '3'];
 var flipSpeed = 0.25;
 for (var index = 0; index < topFullFlaps.length; index++) {
-    topHalfFlaps[index].style.animationDuration = "".concat(flipSpeed, "s");
-    bottomHalfFlaps[index].style.animationDuration = "".concat(flipSpeed, "s");
+    var topHalfFlap = topHalfFlaps[index];
+    var bottomHalfFlap = bottomHalfFlaps[index];
+    topHalfFlap.style.animationDuration = "".concat(flipSpeed, "s");
+    bottomHalfFlap.style.animationDuration = "".concat(flipSpeed, "s");
 }
 testButton.onclick = function () {
     var _loop_1 = function (index) {
@@ -17,7 +19,6 @@ testButton.onclick = function () {
         setTimeout(function () {
             var current = panelCharacters.indexOf(topFullFlaps[index].innerHTML);
             var next = current === panelCharacters.length - 1 ? 0 : current + 1;
-            console.log(current, next);
             topFullFlaps[index].innerHTML = panelCharacters[next];
             topHalfFlaps[index].innerHTML = panelCharacters[current];
             bottomHalfFlaps[index].innerHTML = panelCharacters[next];
