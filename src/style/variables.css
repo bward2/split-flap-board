@@ -1,5 +1,7 @@
 :root {
   --color-theme-transition-duration: 0.2s;
+
+  --split-panel-divider-height: 5%;
 }
 
 html[data-theme='light'] {

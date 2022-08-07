@@ -11,7 +11,17 @@
   transition: background-color var(--color-theme-transition-duration);
 }
 
+.split-flap-divider {
+  background-color: rgba(0, 0, 0, 0.1);
+  top: calc(50% - var(--split-panel-divider-height) / 2);
+  height: var(--split-panel-divider-height);
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
 .top-full {
+  top: calc(var(--split-panel-divider-height) / 2 * -1);
   border-radius: 10px;
   background-color: var(--panel-color);
   position: absolute;
@@ -22,6 +32,7 @@
 }
 
 .top-half {
+  top: calc(var(--split-panel-divider-height) / 2 * -1);
   border-radius: 10px 10px 0 0;
   background-color: var(--panel-color);
   position: absolute;
@@ -47,9 +58,12 @@
 }
 
 .bottom-full {
+  top: calc(var(--split-panel-divider-height) / 2 + 50%);
   position: absolute;
   width: 100%;
   height: 100%;
+  line-height: 0;
+  overflow: hidden;
   z-index: -1;
 }
 
@@ -60,35 +74,42 @@
 }
 
 .bottom-half-flip {
-  animation: bottom-half-flip ease-in 1s;
+  animation: bottom-half-flip ease-out 1s;
   animation-duration: 1s;
   animation-fill-mode: forwards;
 }
 
 @keyframes top-half-flip {
   0% {
+    top: calc(var(--split-panel-divider-height) / 2 * -1);
     transform: rotateX(0deg);
     background-color: var(--panel-color);
   }
   50% {
+    top: 0%;
     transform: rotateX(-90deg);
-    background-color: var(--background-color);
+    background-color: gray;
   }
   100% {
+    top: 0%;
     transform: rotateX(-90deg);
+    background-color: gray;
   }
 }
 
 @keyframes bottom-half-flip {
   0% {
+    top: 50%;
     transform: rotateX(90deg);
-    background-color: var(--background-color);
+    background-color: gray;
   }
   50% {
+    top: 50%;
     transform: rotateX(90deg);
-    background-color: var(--background-color);
+    background-color: gray;
   }
   100% {
+    top: calc(var(--split-panel-divider-height) / 2 + 50%);
     transform: rotateX(0deg);
     background-color: var(--panel-color);
   }

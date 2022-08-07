@@ -44,7 +44,7 @@ const panelCharacters = [
   '8',
   '9',
 ];
-const flipSpeed = 0.075;
+const flipSpeed = 0.15;
 
 for (let index = 0; index < topFullFlaps.length; index++) {
   const topHalfFlap = topHalfFlaps[index] as HTMLElement;
