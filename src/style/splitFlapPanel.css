@@ -11,6 +11,15 @@
   transition: background-color var(--color-theme-transition-duration);
 }
 
+.new-card-overlay {
+  height: calc(var(--split-panel-new-card-slide-distance) * -1);
+  top: var(--split-panel-new-card-slide-distance);
+  width: 100%;
+  background-color: var(--board-color);
+  position: absolute;
+  transition: background-color var(--color-theme-transition-duration);
+}
+
 .split-flap-divider {
   background-color: rgba(0, 0, 0, 0.1);
   top: calc(50% - var(--split-panel-divider-height) / 2);
@@ -21,14 +30,13 @@
 }
 
 .top-full {
-  top: calc(var(--split-panel-divider-height) / 2 * -1);
+  top: var(--split-panel-new-card-slide-distance);
   border-radius: 10px;
-  background-color: var(--panel-color);
+  background-color: transparent;
   position: absolute;
   width: 100%;
   height: 50%;
   overflow: hidden;
-  transition: background-color var(--color-theme-transition-duration);
 }
 
 .top-half {
@@ -67,6 +75,12 @@
   z-index: -1;
 }
 
+.top-full-slide {
+  animation: top-full-slide ease-in 1s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
 .top-half-flip {
   animation: top-half-flip ease-in 1s;
   animation-duration: 1s;
@@ -77,6 +91,18 @@
   animation: bottom-half-flip ease-out 1s;
   animation-duration: 1s;
   animation-fill-mode: forwards;
+}
+
+@keyframes top-full-slide {
+  0% {
+    top: var(--split-panel-new-card-slide-distance);
+  }
+  50% {
+    top: calc(var(--split-panel-divider-height) / 2 * -1);
+  }
+  100% {
+    top: calc(var(--split-panel-divider-height) / 2 * -1);
+  }
 }
 
 @keyframes top-half-flip {

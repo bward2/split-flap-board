@@ -45,19 +45,25 @@ var panelCharacters = [
 ];
 var flipSpeed = 0.15;
 for (var index = 0; index < topFullFlaps.length; index++) {
+    var topFullFlap = topFullFlaps[index];
     var topHalfFlap = topHalfFlaps[index];
     var bottomHalfFlap = bottomHalfFlaps[index];
+    topFullFlap.style.animationDuration = "".concat(flipSpeed, "s");
     topHalfFlap.style.animationDuration = "".concat(flipSpeed, "s");
     bottomHalfFlap.style.animationDuration = "".concat(flipSpeed, "s");
 }
 var flipThem = function () {
     var _loop_1 = function (index) {
+        var topFullFlap = topFullFlaps[index];
         var topHalfFlap = topHalfFlaps[index];
         var bottomHalfFlap = bottomHalfFlaps[index];
+        topFullFlaps[index].classList.remove('top-full-slide');
         topHalfFlaps[index].classList.remove('top-half-flip');
         bottomHalfFlaps[index].classList.remove('bottom-half-flip');
+        void topFullFlap.offsetWidth;
         void topHalfFlap.offsetWidth;
         void bottomHalfFlap.offsetWidth;
+        topFullFlaps[index].classList.add('top-full-slide');
         topHalfFlaps[index].classList.add('top-half-flip');
         bottomHalfFlaps[index].classList.add('bottom-half-flip');
         setTimeout(function () {
