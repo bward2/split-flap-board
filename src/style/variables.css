@@ -2,7 +2,7 @@
   --color-theme-transition-duration: 0.2s;
   --split-panel-divider-height: 5%;
   --split-panel-new-card-slide-distance: calc(
-    var(--split-panel-divider-height) * -3
+    var(--split-panel-divider-height) * -5
   );
 }
 
