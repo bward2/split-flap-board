@@ -83,6 +83,7 @@ const flipThem = () => {
       bottomHalfFlaps[index].innerHTML = panelCharacters[next];
       bottomFullFlaps[index].innerHTML = panelCharacters[current];
 
+      topFullFlaps[index].classList.remove('top-full-slide');
       topHalfFlaps[index].classList.remove('top-half-flip');
       bottomHalfFlaps[index].classList.remove('bottom-half-flip');
 
