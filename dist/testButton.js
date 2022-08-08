@@ -43,21 +43,30 @@ var panelCharacters = [
     '8',
     '9',
 ];
-var flipSpeed = 0.075;
+var flipSpeed = 0.2;
 for (var index = 0; index < topFullFlaps.length; index++) {
+    var topFullFlap = topFullFlaps[index];
     var topHalfFlap = topHalfFlaps[index];
     var bottomHalfFlap = bottomHalfFlaps[index];
+    var bottomFullFlap = bottomFullFlaps[index];
+    topFullFlap.style.animationDuration = "".concat(flipSpeed, "s");
     topHalfFlap.style.animationDuration = "".concat(flipSpeed, "s");
     bottomHalfFlap.style.animationDuration = "".concat(flipSpeed, "s");
+    bottomFullFlap.style.animationDuration = "".concat(flipSpeed, "s");
 }
 var flipThem = function () {
     var _loop_1 = function (index) {
+        var topFullFlap = topFullFlaps[index];
         var topHalfFlap = topHalfFlaps[index];
         var bottomHalfFlap = bottomHalfFlaps[index];
+        var bottomFullFlap = bottomFullFlaps[index];
+        topFullFlaps[index].classList.remove('top-full-slide');
         topHalfFlaps[index].classList.remove('top-half-flip');
         bottomHalfFlaps[index].classList.remove('bottom-half-flip');
+        void topFullFlap.offsetWidth;
         void topHalfFlap.offsetWidth;
         void bottomHalfFlap.offsetWidth;
+        topFullFlaps[index].classList.add('top-full-slide');
         topHalfFlaps[index].classList.add('top-half-flip');
         bottomHalfFlaps[index].classList.add('bottom-half-flip');
         setTimeout(function () {
@@ -67,11 +76,15 @@ var flipThem = function () {
             topHalfFlaps[index].innerHTML = panelCharacters[current];
             bottomHalfFlaps[index].innerHTML = panelCharacters[next];
             bottomFullFlaps[index].innerHTML = panelCharacters[current];
+            topFullFlaps[index].classList.remove('top-full-slide');
             topHalfFlaps[index].classList.remove('top-half-flip');
             bottomHalfFlaps[index].classList.remove('bottom-half-flip');
-            if (current === 0) {
+            if (current === 2) {
                 console.log('Done!');
                 testButton.disabled = false;
+                bottomFullFlaps[index].classList.remove('bottom-full-bounce');
+                void bottomFullFlap.offsetWidth;
+                bottomFullFlaps[index].classList.add('bottom-full-bounce');
             }
             else {
                 flipThem();
