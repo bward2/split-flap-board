@@ -4,6 +4,7 @@
   --split-panel-new-card-slide-distance: calc(
     var(--split-panel-divider-height) * -5
   );
+  --bottom-bounce-angle: 10deg;
 }
 
 html[data-theme='light'] {
