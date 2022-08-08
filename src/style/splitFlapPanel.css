@@ -156,7 +156,7 @@
   }
   50% {
     transform: rotateX(var(--bottom-bounce-angle));
-    background-color: #544b4c;
+    background-color: var(--panel-bounce-color);
   }
   100% {
     transform: rotateX(0deg);
