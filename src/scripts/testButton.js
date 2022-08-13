@@ -1,6 +1,5 @@
-// import { Howl } from './howler.min.js';
-
-const testButton = document.getElementById('test-button');
+const testButtonFlip = document.getElementById('test-button-flip');
+const testButtonReset = document.getElementById('test-button-reset');
 
 const topFullFlaps = document.querySelectorAll('.top-full');
 const topHalfFlaps = document.querySelectorAll('.top-half');
@@ -46,7 +45,7 @@ const panelCharacters = [
   '8',
   '9',
 ];
-const flipSpeed = 0.2;
+const flipSpeed = 0.1;
 
 for (let index = 0; index < topFullFlaps.length; index++) {
   const topFullFlap = topFullFlaps[index];
@@ -60,7 +59,11 @@ for (let index = 0; index < topFullFlaps.length; index++) {
   bottomFullFlap.style.animationDuration = `${flipSpeed}s`;
 }
 
-const flipThem = () => {
+/**
+ *
+ * @param {Boolean} flipOnce
+ */
+const flipThem = (flipOnce) => {
   for (let index = 0; index < topFullFlaps.length; index++) {
     const topFullFlap = topFullFlaps[index];
     const topHalfFlap = topHalfFlaps[index];
@@ -98,21 +101,31 @@ const flipThem = () => {
       topHalfFlaps[index].classList.remove('top-half-flip');
       bottomHalfFlaps[index].classList.remove('bottom-half-flip');
 
-      if (current === 2) {
-        console.log('Done!');
-        testButton.disabled = false;
-
-        bottomFullFlaps[index].classList.remove('bottom-full-bounce');
-        void bottomFullFlap.offsetWidth;
-        bottomFullFlaps[index].classList.add('bottom-full-bounce');
+      if (flipOnce) {
+        testButtonFlip.disabled = false;
       } else {
-        flipThem();
+        if (current === 0) {
+          testButtonFlip.disabled = false;
+          testButtonReset.disabled = false;
+
+          bottomFullFlaps[index].classList.remove('bottom-full-bounce');
+          void bottomFullFlap.offsetWidth;
+          bottomFullFlaps[index].classList.add('bottom-full-bounce');
+        } else {
+          flipThem(false);
+        }
       }
     }, flipSpeed * 1000);
   }
 };
 
-testButton.onclick = () => {
-  testButton.disabled = true;
-  flipThem();
+testButtonFlip.onclick = () => {
+  testButtonFlip.disabled = true;
+  flipThem(true);
+};
+
+testButtonReset.onclick = () => {
+  testButtonFlip.disabled = true;
+  testButtonReset.disabled = true;
+  flipThem(false);
 };
