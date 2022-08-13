@@ -1,4 +1,5 @@
-const testButton = document.getElementById('test-button') as HTMLButtonElement;
+const testButtonFlip = document.getElementById('test-button-flip');
+const testButtonReset = document.getElementById('test-button-reset');
 
 const topFullFlaps = document.querySelectorAll('.top-full');
 const topHalfFlaps = document.querySelectorAll('.top-half');
@@ -44,13 +45,13 @@ const panelCharacters = [
   '8',
   '9',
 ];
-const flipSpeed = 0.2;
+const flipSpeed = 0.1;
 
 for (let index = 0; index < topFullFlaps.length; index++) {
-  const topFullFlap = topFullFlaps[index] as HTMLElement;
-  const topHalfFlap = topHalfFlaps[index] as HTMLElement;
-  const bottomHalfFlap = bottomHalfFlaps[index] as HTMLElement;
-  const bottomFullFlap = bottomFullFlaps[index] as HTMLElement;
+  const topFullFlap = topFullFlaps[index];
+  const topHalfFlap = topHalfFlaps[index];
+  const bottomHalfFlap = bottomHalfFlaps[index];
+  const bottomFullFlap = bottomFullFlaps[index];
 
   topFullFlap.style.animationDuration = `${flipSpeed}s`;
   topHalfFlap.style.animationDuration = `${flipSpeed}s`;
@@ -58,12 +59,16 @@ for (let index = 0; index < topFullFlaps.length; index++) {
   bottomFullFlap.style.animationDuration = `${flipSpeed}s`;
 }
 
-const flipThem = () => {
+/**
+ *
+ * @param {Boolean} flipOnce
+ */
+const flipThem = (flipOnce) => {
   for (let index = 0; index < topFullFlaps.length; index++) {
-    const topFullFlap = topFullFlaps[index] as HTMLElement;
-    const topHalfFlap = topHalfFlaps[index] as HTMLElement;
-    const bottomHalfFlap = bottomHalfFlaps[index] as HTMLElement;
-    const bottomFullFlap = bottomFullFlaps[index] as HTMLElement;
+    const topFullFlap = topFullFlaps[index];
+    const topHalfFlap = topHalfFlaps[index];
+    const bottomHalfFlap = bottomHalfFlaps[index];
+    const bottomFullFlap = bottomFullFlaps[index];
 
     topFullFlaps[index].classList.remove('top-full-slide');
     topHalfFlaps[index].classList.remove('top-half-flip');
@@ -76,6 +81,12 @@ const flipThem = () => {
     topFullFlaps[index].classList.add('top-full-slide');
     topHalfFlaps[index].classList.add('top-half-flip');
     bottomHalfFlaps[index].classList.add('bottom-half-flip');
+
+    var sound = new Howl({
+      src: ['src/assets/audio/flip/flip1.mp3'],
+    });
+
+    sound.play();
 
     setTimeout(() => {
       const current = panelCharacters.indexOf(topFullFlaps[index].innerHTML);
@@ -90,21 +101,31 @@ const flipThem = () => {
       topHalfFlaps[index].classList.remove('top-half-flip');
       bottomHalfFlaps[index].classList.remove('bottom-half-flip');
 
-      if (current === 2) {
-        console.log('Done!');
-        testButton.disabled = false;
-
-        bottomFullFlaps[index].classList.remove('bottom-full-bounce');
-        void bottomFullFlap.offsetWidth;
-        bottomFullFlaps[index].classList.add('bottom-full-bounce');
+      if (flipOnce) {
+        testButtonFlip.disabled = false;
       } else {
-        flipThem();
+        if (current === 0) {
+          testButtonFlip.disabled = false;
+          testButtonReset.disabled = false;
+
+          bottomFullFlaps[index].classList.remove('bottom-full-bounce');
+          void bottomFullFlap.offsetWidth;
+          bottomFullFlaps[index].classList.add('bottom-full-bounce');
+        } else {
+          flipThem(false);
+        }
       }
     }, flipSpeed * 1000);
   }
 };
 
-testButton.onclick = () => {
-  testButton.disabled = true;
-  flipThem();
+testButtonFlip.onclick = () => {
+  testButtonFlip.disabled = true;
+  flipThem(true);
+};
+
+testButtonReset.onclick = () => {
+  testButtonFlip.disabled = true;
+  testButtonReset.disabled = true;
+  flipThem(false);
 };

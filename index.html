@@ -6,23 +6,22 @@
     <link rel="stylesheet" href="src/style/splitFlapPanel.css" />
     <link rel="stylesheet" href="src/style/themeSwitch.css" />
 
-    <script type="module" src="./dist/themeToggle.js"></script>
-    <script type="module" src="./dist/testButton.js"></script>
+    <script type="module" src="./src/scripts/howler.min.js"></script>
+    <script type="module" src="./src/scripts/themeToggle.js"></script>
+    <script type="module" src="./src/scripts/testButton.js"></script>
   </head>
   <body id="body">
     <div class="container">
       <div class="split-flap-board">
         <div class="split-flap-panel">
           <div class="new-card-overlay"></div>
-          <div class="top-full">B</div>
-          <div class="top-half">A</div>
+          <div class="top-full">A</div>
+          <div class="top-half"></div>
           <div class="split-flap-divider"></div>
-          <div class="bottom-half">B</div>
-          <div class="bottom-full">A</div>
+          <div class="bottom-half">A</div>
+          <div class="bottom-full"></div>
         </div>
       </div>
-
-      <button class="test-button" id="test-button">FLIP</button>
     </div>
 
     <div class="theme-switch-wrapper">
@@ -30,6 +29,11 @@
         <input type="checkbox" id="theme-switch" />
         <div class="slider round"></div>
       </label>
+    </div>
+
+    <div class="test-button-container">
+      <button class="test-button" id="test-button-flip">FLIP</button>
+      <button class="test-button" id="test-button-reset">RESET</button>
     </div>
   </body>
 </html>
