@@ -1,4 +1,6 @@
-const testButton = document.getElementById('test-button') as HTMLButtonElement;
+// import { Howl } from './howler.min.js';
+
+const testButton = document.getElementById('test-button');
 
 const topFullFlaps = document.querySelectorAll('.top-full');
 const topHalfFlaps = document.querySelectorAll('.top-half');
@@ -47,10 +49,10 @@ const panelCharacters = [
 const flipSpeed = 0.2;
 
 for (let index = 0; index < topFullFlaps.length; index++) {
-  const topFullFlap = topFullFlaps[index] as HTMLElement;
-  const topHalfFlap = topHalfFlaps[index] as HTMLElement;
-  const bottomHalfFlap = bottomHalfFlaps[index] as HTMLElement;
-  const bottomFullFlap = bottomFullFlaps[index] as HTMLElement;
+  const topFullFlap = topFullFlaps[index];
+  const topHalfFlap = topHalfFlaps[index];
+  const bottomHalfFlap = bottomHalfFlaps[index];
+  const bottomFullFlap = bottomFullFlaps[index];
 
   topFullFlap.style.animationDuration = `${flipSpeed}s`;
   topHalfFlap.style.animationDuration = `${flipSpeed}s`;
@@ -60,10 +62,10 @@ for (let index = 0; index < topFullFlaps.length; index++) {
 
 const flipThem = () => {
   for (let index = 0; index < topFullFlaps.length; index++) {
-    const topFullFlap = topFullFlaps[index] as HTMLElement;
-    const topHalfFlap = topHalfFlaps[index] as HTMLElement;
-    const bottomHalfFlap = bottomHalfFlaps[index] as HTMLElement;
-    const bottomFullFlap = bottomFullFlaps[index] as HTMLElement;
+    const topFullFlap = topFullFlaps[index];
+    const topHalfFlap = topHalfFlaps[index];
+    const bottomHalfFlap = bottomHalfFlaps[index];
+    const bottomFullFlap = bottomFullFlaps[index];
 
     topFullFlaps[index].classList.remove('top-full-slide');
     topHalfFlaps[index].classList.remove('top-half-flip');
@@ -76,6 +78,12 @@ const flipThem = () => {
     topFullFlaps[index].classList.add('top-full-slide');
     topHalfFlaps[index].classList.add('top-half-flip');
     bottomHalfFlaps[index].classList.add('bottom-half-flip');
+
+    var sound = new Howl({
+      src: ['src/assets/audio/flip/flip1.mp3'],
+    });
+
+    sound.play();
 
     setTimeout(() => {
       const current = panelCharacters.indexOf(topFullFlaps[index].innerHTML);

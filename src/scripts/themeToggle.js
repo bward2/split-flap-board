@@ -1,9 +1,9 @@
-const body = document.getElementById('body') as HTMLElement;
-const themeSwitch = document.getElementById('theme-switch') as HTMLInputElement;
-const enum themes {
-  LIGHT = 'light',
-  DARK = 'dark',
-}
+const body = document.getElementById('body');
+const themeSwitch = document.getElementById('theme-switch');
+const themes = {
+  LIGHT: 'light',
+  DARK: 'dark',
+};
 
 const loadTheme = () => {
   const storedTheme =
