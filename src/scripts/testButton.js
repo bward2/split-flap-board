@@ -45,7 +45,7 @@ const panelCharacters = [
   '8',
   '9',
 ];
-const flipSpeed = 0.1;
+const flipSpeed = 0.05;
 
 for (let index = 0; index < topFullFlaps.length; index++) {
   const topFullFlap = topFullFlaps[index];
@@ -100,9 +100,11 @@ const flipThem = (flipOnce) => {
 
     // playSound(1, 1, 'test');
     playSound(1, 11, 'blahStart');
+    // playSound(1, 5, 'flip');
 
     setTimeout(() => {
       playSound(1, 11, 'blahEnd');
+      // playSound(1, 6, 'slap');
 
       const current = panelCharacters.indexOf(topFullFlaps[index].innerHTML);
       const next = current === panelCharacters.length - 1 ? 0 : current + 1;
