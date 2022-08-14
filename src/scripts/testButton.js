@@ -59,6 +59,22 @@ for (let index = 0; index < topFullFlaps.length; index++) {
   bottomFullFlap.style.animationDuration = `${flipSpeed}s`;
 }
 
+const getRandomInt = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+};
+
+const playSound = (min, max, name) => {
+  const random = getRandomInt(min, max);
+
+  var sound = new Howl({
+    src: [`src/assets/audio/${name}/${random}.mp3`],
+  });
+
+  sound.play();
+};
+
 /**
  *
  * @param {Boolean} flipOnce
@@ -82,13 +98,12 @@ const flipThem = (flipOnce) => {
     topHalfFlaps[index].classList.add('top-half-flip');
     bottomHalfFlaps[index].classList.add('bottom-half-flip');
 
-    var sound = new Howl({
-      src: ['src/assets/audio/flip/flip1.mp3'],
-    });
-
-    sound.play();
+    // playSound(1, 1, 'test');
+    playSound(1, 11, 'blahStart');
 
     setTimeout(() => {
+      playSound(1, 11, 'blahEnd');
+
       const current = panelCharacters.indexOf(topFullFlaps[index].innerHTML);
       const next = current === panelCharacters.length - 1 ? 0 : current + 1;
 
@@ -103,6 +118,10 @@ const flipThem = (flipOnce) => {
 
       if (flipOnce) {
         testButtonFlip.disabled = false;
+
+        bottomFullFlaps[index].classList.remove('bottom-full-bounce');
+        void bottomFullFlap.offsetWidth;
+        bottomFullFlaps[index].classList.add('bottom-full-bounce');
       } else {
         if (current === 0) {
           testButtonFlip.disabled = false;
