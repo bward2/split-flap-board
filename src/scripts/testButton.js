@@ -1,4 +1,5 @@
 import { panelCharacters, flipSpeed } from './constants.js';
+import { playSound } from './soundManager.js';
 
 const testButtonFlip = document.getElementById('test-button-flip');
 const testButtonReset = document.getElementById('test-button-reset');
@@ -19,22 +20,6 @@ for (let index = 0; index < topFullFlaps.length; index++) {
   bottomHalfFlap.style.animationDuration = `${flipSpeed}s`;
   bottomFullFlap.style.animationDuration = `${flipSpeed}s`;
 }
-
-const getRandomInt = (min, max) => {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
-};
-
-const playSound = (min, max, name) => {
-  const random = getRandomInt(min, max);
-
-  var sound = new Howl({
-    src: [`src/assets/audio/${name}/${random}.mp3`],
-  });
-
-  sound.play();
-};
 
 /**
  *
@@ -59,10 +44,10 @@ const flipThem = (flipOnce) => {
     topHalfFlaps[index].classList.add('top-half-flip');
     bottomHalfFlaps[index].classList.add('bottom-half-flip');
 
-    playSound(1, 11, 'flip');
+    playSound('flip');
 
     setTimeout(() => {
-      playSound(1, 11, 'flap');
+      playSound('flap');
 
       const current = panelCharacters.indexOf(topFullFlaps[index].innerHTML);
       const next = current === panelCharacters.length - 1 ? 0 : current + 1;
