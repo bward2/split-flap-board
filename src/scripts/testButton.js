@@ -1,3 +1,5 @@
+import { panelCharacters, flipSpeed } from './constants.js';
+
 const testButtonFlip = document.getElementById('test-button-flip');
 const testButtonReset = document.getElementById('test-button-reset');
 
@@ -5,47 +7,6 @@ const topFullFlaps = document.querySelectorAll('.top-full');
 const topHalfFlaps = document.querySelectorAll('.top-half');
 const bottomHalfFlaps = document.querySelectorAll('.bottom-half');
 const bottomFullFlaps = document.querySelectorAll('.bottom-full');
-
-const panelCharacters = [
-  '',
-  'A',
-  'B',
-  'C',
-  'D',
-  'E',
-  'F',
-  'G',
-  'H',
-  'I',
-  'J',
-  'K',
-  'L',
-  'M',
-  'N',
-  'O',
-  'P',
-  'Q',
-  'R',
-  'S',
-  'T',
-  'U',
-  'V',
-  'W',
-  'X',
-  'Y',
-  'Z',
-  '0',
-  '1',
-  '2',
-  '3',
-  '4',
-  '5',
-  '6',
-  '7',
-  '8',
-  '9',
-];
-const flipSpeed = 0.1;
 
 for (let index = 0; index < topFullFlaps.length; index++) {
   const topFullFlap = topFullFlaps[index];
@@ -98,13 +59,10 @@ const flipThem = (flipOnce) => {
     topHalfFlaps[index].classList.add('top-half-flip');
     bottomHalfFlaps[index].classList.add('bottom-half-flip');
 
-    // playSound(1, 1, 'test');
     playSound(1, 11, 'flip');
-    // playSound(1, 5, 'flip');
 
     setTimeout(() => {
       playSound(1, 11, 'flap');
-      // playSound(1, 6, 'slap');
 
       const current = panelCharacters.indexOf(topFullFlaps[index].innerHTML);
       const next = current === panelCharacters.length - 1 ? 0 : current + 1;
