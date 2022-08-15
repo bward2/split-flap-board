@@ -11,7 +11,6 @@ import {
   sounds,
 } from './constants.js';
 import { flipPanel } from './panelManager.js';
-import { playSound } from './soundManager.js';
 
 for (let index = 0; index < topFullFlaps.length; index++) {
   const topFullFlap = topFullFlaps[index];
