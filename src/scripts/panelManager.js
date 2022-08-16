@@ -1,4 +1,4 @@
-import { getBoardTarget } from './boardManager.js';
+import { getBoardTarget, setBoardMotionStatus } from './boardManager.js';
 import {
   topFullFlaps,
   topHalfFlaps,
@@ -55,10 +55,9 @@ export const flipPanel = (index) => {
     removeAnimation(bottomHalfFlap, animations.BOTTOM_HALF_FLIP);
 
     if (topHalfFlap.innerHTML === getBoardTarget()[index]) {
-      testButtonFlip.disabled = false;
-      testButtonReset.disabled = false;
-
       addAnimation(bottomFullFlap, animations.BOTTOM_FULL_BOUNCE);
+      setBoardMotionStatus(index, false);
+
       return;
     } else {
       flipPanel(index);

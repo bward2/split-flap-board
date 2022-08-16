@@ -1,4 +1,9 @@
-import { getBoardTarget, setBoardTarget } from './boardManager.js';
+import {
+  getBoardMotionStatus,
+  getBoardTarget,
+  setBoardMotionStatus,
+  setBoardTarget,
+} from './boardManager.js';
 import {
   topFullFlaps,
   topHalfFlaps,
@@ -26,14 +31,14 @@ for (let index = 0; index < topFullFlaps.length; index++) {
 
 const flipThem = () => {
   for (let index = 0; index < topFullFlaps.length; index++) {
-    flipPanel(index);
+    if (!getBoardMotionStatus()[index]) {
+      setBoardMotionStatus(index, true);
+      flipPanel(index);
+    }
   }
 };
 
 testButtonFlip.onclick = () => {
-  testButtonFlip.disabled = true;
-  testButtonReset.disabled = true;
-
   const currentIndex = panelCharacters.indexOf(getBoardTarget()[0]);
   const targetIndex =
     currentIndex === panelCharacters.length - 1 ? 0 : currentIndex + 1;
@@ -43,9 +48,6 @@ testButtonFlip.onclick = () => {
 };
 
 testButtonReset.onclick = () => {
-  testButtonFlip.disabled = true;
-  testButtonReset.disabled = true;
-
   setBoardTarget(panelCharacters[0]);
   flipThem();
 };
