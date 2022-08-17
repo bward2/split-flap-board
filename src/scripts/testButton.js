@@ -31,7 +31,11 @@ for (let index = 0; index < topFullFlaps.length; index++) {
 
 const flipThem = () => {
   for (let index = 0; index < topFullFlaps.length; index++) {
-    if (!getBoardMotionStatus()[index]) {
+    const panelIsInMotion = getBoardMotionStatus()[index];
+    const panelMatchesTarget =
+      topHalfFlaps[index].innerHTML === getBoardTarget()[index];
+
+    if (!panelIsInMotion && !panelMatchesTarget) {
       setBoardMotionStatus(index, true);
       flipPanel(index);
     }
