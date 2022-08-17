@@ -47,11 +47,11 @@ testButtonFlip.onclick = () => {
   const targetIndex =
     currentIndex === panelCharacters.length - 1 ? 0 : currentIndex + 1;
 
-  setBoardTarget(panelCharacters[targetIndex]);
+  setBoardTarget([panelCharacters[targetIndex]]);
   flipThem();
 };
 
 testButtonReset.onclick = () => {
-  setBoardTarget(panelCharacters[0]);
+  setBoardTarget([panelCharacters[0]]);
   flipThem();
 };
