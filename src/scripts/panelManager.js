@@ -8,8 +8,6 @@ import {
   animations,
   sounds,
   flipSpeed,
-  testButtonFlip,
-  testButtonReset,
 } from './constants.js';
 import { playSound } from './soundManager.js';
 

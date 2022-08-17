@@ -13,7 +13,6 @@ import {
   testButtonReset,
   panelCharacters,
   flipSpeed,
-  sounds,
 } from './constants.js';
 import { flipPanel } from './panelManager.js';
 
