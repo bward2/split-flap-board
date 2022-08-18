@@ -1,4 +1,9 @@
-import { getBoardTarget, setBoardTarget } from './boardManager.js';
+import {
+  getBoardMotionStatus,
+  getBoardTarget,
+  setBoardMotionStatus,
+  setBoardTarget,
+} from './boardManager.js';
 import {
   topFullFlaps,
   topHalfFlaps,
@@ -8,7 +13,6 @@ import {
   testButtonReset,
   panelCharacters,
   flipSpeed,
-  sounds,
 } from './constants.js';
 import { flipPanel } from './panelManager.js';
 
@@ -26,26 +30,27 @@ for (let index = 0; index < topFullFlaps.length; index++) {
 
 const flipThem = () => {
   for (let index = 0; index < topFullFlaps.length; index++) {
-    flipPanel(index);
+    const panelIsInMotion = getBoardMotionStatus()[index];
+    const panelMatchesTarget =
+      topHalfFlaps[index].innerHTML === getBoardTarget()[index];
+
+    if (!panelIsInMotion && !panelMatchesTarget) {
+      setBoardMotionStatus(index, true);
+      flipPanel(index);
+    }
   }
 };
 
 testButtonFlip.onclick = () => {
-  testButtonFlip.disabled = true;
-  testButtonReset.disabled = true;
-
   const currentIndex = panelCharacters.indexOf(getBoardTarget()[0]);
   const targetIndex =
     currentIndex === panelCharacters.length - 1 ? 0 : currentIndex + 1;
 
-  setBoardTarget(panelCharacters[targetIndex]);
+  setBoardTarget([panelCharacters[targetIndex]]);
   flipThem();
 };
 
 testButtonReset.onclick = () => {
-  testButtonFlip.disabled = true;
-  testButtonReset.disabled = true;
-
-  setBoardTarget(panelCharacters[0]);
+  setBoardTarget([panelCharacters[0]]);
   flipThem();
 };
