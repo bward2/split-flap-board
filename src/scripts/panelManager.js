@@ -1,9 +1,9 @@
 import { getBoardTarget, setBoardMotionStatus } from './boardManager.js';
 import {
-  topFullFlaps,
-  topHalfFlaps,
-  bottomHalfFlaps,
-  bottomFullFlaps,
+  topNewFlaps,
+  topCurrentFlaps,
+  bottomNewFlaps,
+  bottomCurrentFlaps,
   panelCharacters,
   animations,
   sounds,
@@ -26,37 +26,40 @@ export const setFlapCharacter = (element, character) => {
 };
 
 export const flipPanel = (index) => {
-  const topFullFlap = topFullFlaps[index];
-  const topHalfFlap = topHalfFlaps[index];
-  const bottomHalfFlap = bottomHalfFlaps[index];
-  const bottomFullFlap = bottomFullFlaps[index];
+  const topNewFlap = topNewFlaps[index];
+  const topCurrentFlap = topCurrentFlaps[index];
+  const bottomNewFlap = bottomNewFlaps[index];
+  const bottomCurrentFlap = bottomCurrentFlaps[index];
 
-  removeAnimation(bottomFullFlap, animations.BOTTOM_FULL_BOUNCE);
-  addAnimation(topFullFlap, animations.TOP_FULL_SLIDE);
-  addAnimation(topHalfFlap, animations.TOP_HALF_FLIP);
-  addAnimation(bottomHalfFlap, animations.BOTTOM_HALF_FLIP);
-  addAnimation(bottomFullFlap, animations.BOTTOM_FULL_SLIDE);
+  removeAnimation(bottomCurrentFlap, animations.BOTTOM_CURRENT_BOUNCE);
+  addAnimation(topNewFlap, animations.TOP_NEW_SLIDE);
+  addAnimation(topCurrentFlap, animations.TOP_CURRENT_FLIP);
+  addAnimation(bottomNewFlap, animations.BOTTOM_NEW_FLIP);
+  addAnimation(bottomCurrentFlap, animations.BOTTOM_CURRENT_SLIDE);
 
   playSound(sounds.FLIP);
 
   setTimeout(() => {
     playSound(sounds.FLAP);
 
-    const current = panelCharacters.indexOf(topFullFlap.innerHTML);
-    const next = current === panelCharacters.length - 1 ? 0 : current + 1;
+    const currentCharacter = panelCharacters.indexOf(topNewFlap.innerHTML);
+    const newCharacter =
+      currentCharacter === panelCharacters.length - 1
+        ? 0
+        : currentCharacter + 1;
 
-    setFlapCharacter(topFullFlap, panelCharacters[next]);
-    setFlapCharacter(topHalfFlap, panelCharacters[current]);
-    setFlapCharacter(bottomHalfFlap, panelCharacters[next]);
-    setFlapCharacter(bottomFullFlap, panelCharacters[current]);
+    setFlapCharacter(topNewFlap, panelCharacters[newCharacter]);
+    setFlapCharacter(topCurrentFlap, panelCharacters[currentCharacter]);
+    setFlapCharacter(bottomNewFlap, panelCharacters[newCharacter]);
+    setFlapCharacter(bottomCurrentFlap, panelCharacters[currentCharacter]);
 
-    removeAnimation(topFullFlap, animations.TOP_FULL_SLIDE);
-    removeAnimation(topHalfFlap, animations.TOP_HALF_FLIP);
-    removeAnimation(bottomHalfFlap, animations.BOTTOM_HALF_FLIP);
-    removeAnimation(bottomFullFlap, animations.BOTTOM_FULL_SLIDE);
+    removeAnimation(topNewFlap, animations.TOP_NEW_SLIDE);
+    removeAnimation(topCurrentFlap, animations.TOP_CURRENT_FLIP);
+    removeAnimation(bottomNewFlap, animations.BOTTOM_NEW_FLIP);
+    removeAnimation(bottomCurrentFlap, animations.BOTTOM_CURRENT_SLIDE);
 
-    if (topHalfFlap.innerHTML === getBoardTarget()[index]) {
-      addAnimation(bottomFullFlap, animations.BOTTOM_FULL_BOUNCE);
+    if (topCurrentFlap.innerHTML === getBoardTarget()[index]) {
+      addAnimation(bottomCurrentFlap, animations.BOTTOM_CURRENT_BOUNCE);
       setBoardMotionStatus(index, false);
 
       return;

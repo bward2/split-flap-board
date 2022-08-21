@@ -36,7 +36,7 @@
   z-index: -1;
 }
 
-.top-full {
+.top-new {
   top: calc(var(--split-panel-new-card-slide-distance) * -1);
   border-radius: 10px 10px 0 0;
   background-color: transparent;
@@ -47,7 +47,7 @@
   z-index: -1;
 }
 
-.top-half {
+.top-current {
   top: calc(var(--split-panel-divider-height) / 2 * -1);
   border-radius: 10px 10px 0 0;
   background-color: var(--panel-color);
@@ -59,7 +59,7 @@
   transform-origin: bottom;
 }
 
-.bottom-half {
+.bottom-new {
   border-radius: 0 0 10px 10px;
   background-color: var(--panel-color);
   position: absolute;
@@ -74,7 +74,7 @@
   z-index: 1;
 }
 
-.bottom-full {
+.bottom-current {
   top: calc(var(--split-panel-divider-height) / 2 + 50%);
   border-radius: 0 0 10px 10px;
   background-color: var(--panel-color);
@@ -88,37 +88,37 @@
   z-index: -1;
 }
 
-.top-full-slide {
-  animation: top-full-slide ease-in 1s;
+.top-new-slide {
+  animation: top-new-slide ease-in 1s;
   animation-duration: 1s;
   animation-fill-mode: forwards;
 }
 
-.top-half-flip {
-  animation: top-half-flip ease-in 1s;
+.top-current-flip {
+  animation: top-current-flip ease-in 1s;
   animation-duration: 1s;
   animation-fill-mode: forwards;
 }
 
-.bottom-half-flip {
-  animation: bottom-half-flip ease-out 1s;
+.bottom-new-flip {
+  animation: bottom-new-flip ease-out 1s;
   animation-duration: 1s;
   animation-fill-mode: forwards;
 }
 
-.bottom-full-slide {
-  animation: bottom-full-slide ease-in 1s;
+.bottom-current-slide {
+  animation: bottom-current-slide ease-in 1s;
   animation-duration: 1s;
   animation-fill-mode: forwards;
 }
 
-.bottom-full-bounce {
-  animation: bottom-full-bounce ease-in-out 1s;
+.bottom-current-bounce {
+  animation: bottom-current-bounce ease-in-out 1s;
   animation-duration: 1s;
   animation-fill-mode: forwards;
 }
 
-@keyframes top-full-slide {
+@keyframes top-new-slide {
   0% {
     top: calc(var(--split-panel-new-card-slide-distance) * -1);
   }
@@ -130,7 +130,7 @@
   }
 }
 
-@keyframes top-half-flip {
+@keyframes top-current-flip {
   0% {
     top: calc(var(--split-panel-divider-height) / 2 * -1);
     transform: rotateX(0deg) translateY(0);
@@ -148,7 +148,7 @@
   }
 }
 
-@keyframes bottom-half-flip {
+@keyframes bottom-new-flip {
   0% {
     top: 50%;
     transform: rotateX(90deg) translateY(5%);
@@ -166,7 +166,7 @@
   }
 }
 
-@keyframes bottom-full-slide {
+@keyframes bottom-current-slide {
   0% {
     top: calc(var(--split-panel-divider-height) / 2 + 50%);
   }
@@ -184,7 +184,7 @@
   }
 }
 
-@keyframes bottom-full-bounce {
+@keyframes bottom-current-bounce {
   0% {
     transform: rotateX(0deg);
     z-index: 1;

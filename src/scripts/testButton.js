@@ -5,10 +5,10 @@ import {
   setBoardTarget,
 } from './boardManager.js';
 import {
-  topFullFlaps,
-  topHalfFlaps,
-  bottomHalfFlaps,
-  bottomFullFlaps,
+  topNewFlaps,
+  topCurrentFlaps,
+  bottomNewFlaps,
+  bottomCurrentFlaps,
   testButtonFlip,
   testButtonReset,
   panelCharacters,
@@ -16,23 +16,23 @@ import {
 } from './constants.js';
 import { flipPanel } from './panelManager.js';
 
-for (let index = 0; index < topFullFlaps.length; index++) {
-  const topFullFlap = topFullFlaps[index];
-  const topHalfFlap = topHalfFlaps[index];
-  const bottomHalfFlap = bottomHalfFlaps[index];
-  const bottomFullFlap = bottomFullFlaps[index];
+for (let index = 0; index < topNewFlaps.length; index++) {
+  const topNewFlap = topNewFlaps[index];
+  const topCurrentFlap = topCurrentFlaps[index];
+  const bottomNewFlap = bottomNewFlaps[index];
+  const bottomCurrentFlap = bottomCurrentFlaps[index];
 
-  topFullFlap.style.animationDuration = `${flipSpeed}s`;
-  topHalfFlap.style.animationDuration = `${flipSpeed}s`;
-  bottomHalfFlap.style.animationDuration = `${flipSpeed}s`;
-  bottomFullFlap.style.animationDuration = `${flipSpeed}s`;
+  topNewFlap.style.animationDuration = `${flipSpeed}s`;
+  topCurrentFlap.style.animationDuration = `${flipSpeed}s`;
+  bottomNewFlap.style.animationDuration = `${flipSpeed}s`;
+  bottomCurrentFlap.style.animationDuration = `${flipSpeed}s`;
 }
 
 const flipThem = () => {
-  for (let index = 0; index < topFullFlaps.length; index++) {
+  for (let index = 0; index < topNewFlaps.length; index++) {
     const panelIsInMotion = getBoardMotionStatus()[index];
     const panelMatchesTarget =
-      topHalfFlaps[index].innerHTML === getBoardTarget()[index];
+      topCurrentFlaps[index].innerHTML === getBoardTarget()[index];
 
     if (!panelIsInMotion && !panelMatchesTarget) {
       setBoardMotionStatus(index, true);
