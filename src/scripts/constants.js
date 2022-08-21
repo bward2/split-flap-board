@@ -1,7 +1,7 @@
-export const topFullFlaps = document.querySelectorAll('.top-full');
-export const topHalfFlaps = document.querySelectorAll('.top-half');
-export const bottomHalfFlaps = document.querySelectorAll('.bottom-half');
-export const bottomFullFlaps = document.querySelectorAll('.bottom-full');
+export const topNewFlaps = document.querySelectorAll('.top-new');
+export const topCurrentFlaps = document.querySelectorAll('.top-current');
+export const bottomNewFlaps = document.querySelectorAll('.bottom-new');
+export const bottomCurrentFlaps = document.querySelectorAll('.bottom-current');
 
 export const testButtonFlip = document.getElementById('test-button-flip');
 export const testButtonReset = document.getElementById('test-button-reset');
@@ -54,9 +54,9 @@ export const sounds = {
 };
 
 export const animations = {
-  TOP_FULL_SLIDE: 'top-full-slide',
-  TOP_HALF_FLIP: 'top-half-flip',
-  BOTTOM_HALF_FLIP: 'bottom-half-flip',
-  BOTTOM_FULL_SLIDE: 'bottom-full-slide',
-  BOTTOM_FULL_BOUNCE: 'bottom-full-bounce',
+  TOP_NEW_SLIDE: 'top-new-slide',
+  TOP_CURRENT_FLIP: 'top-current-flip',
+  BOTTOM_NEW_FLIP: 'bottom-new-flip',
+  BOTTOM_CURRENT_SLIDE: 'bottom-current-slide',
+  BOTTOM_CURRENT_BOUNCE: 'bottom-current-bounce',
 };
