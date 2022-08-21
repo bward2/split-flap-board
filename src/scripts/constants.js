@@ -6,7 +6,7 @@ export const bottomFullFlaps = document.querySelectorAll('.bottom-full');
 export const testButtonFlip = document.getElementById('test-button-flip');
 export const testButtonReset = document.getElementById('test-button-reset');
 
-export const flipSpeed = 0.075;
+export const flipSpeed = 0.75;
 
 export const panelCharacters = [
   ' ',
@@ -57,5 +57,6 @@ export const animations = {
   TOP_FULL_SLIDE: 'top-full-slide',
   TOP_HALF_FLIP: 'top-half-flip',
   BOTTOM_HALF_FLIP: 'bottom-half-flip',
+  BOTTOM_FULL_SLIDE: 'bottom-full-slide',
   BOTTOM_FULL_BOUNCE: 'bottom-full-bounce',
 };

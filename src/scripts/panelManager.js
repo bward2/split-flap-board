@@ -31,9 +31,11 @@ export const flipPanel = (index) => {
   const bottomHalfFlap = bottomHalfFlaps[index];
   const bottomFullFlap = bottomFullFlaps[index];
 
+  removeAnimation(bottomFullFlap, animations.BOTTOM_FULL_BOUNCE);
   addAnimation(topFullFlap, animations.TOP_FULL_SLIDE);
   addAnimation(topHalfFlap, animations.TOP_HALF_FLIP);
   addAnimation(bottomHalfFlap, animations.BOTTOM_HALF_FLIP);
+  addAnimation(bottomFullFlap, animations.BOTTOM_FULL_SLIDE);
 
   playSound(sounds.FLIP);
 
@@ -51,6 +53,7 @@ export const flipPanel = (index) => {
     removeAnimation(topFullFlap, animations.TOP_FULL_SLIDE);
     removeAnimation(topHalfFlap, animations.TOP_HALF_FLIP);
     removeAnimation(bottomHalfFlap, animations.BOTTOM_HALF_FLIP);
+    removeAnimation(bottomFullFlap, animations.BOTTOM_FULL_SLIDE);
 
     if (topHalfFlap.innerHTML === getBoardTarget()[index]) {
       addAnimation(bottomFullFlap, animations.BOTTOM_FULL_BOUNCE);
