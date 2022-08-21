@@ -57,5 +57,6 @@ export const animations = {
   TOP_FULL_SLIDE: 'top-full-slide',
   TOP_HALF_FLIP: 'top-half-flip',
   BOTTOM_HALF_FLIP: 'bottom-half-flip',
+  BOTTOM_FULL_SLIDE: 'bottom-full-slide',
   BOTTOM_FULL_BOUNCE: 'bottom-full-bounce',
 };
