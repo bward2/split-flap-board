@@ -22,15 +22,13 @@ export const setFlapCharacter = (element, character) => {
   element.innerHTML = character;
 };
 
-export const flipPanel = (index) => {
-  const { topNewFlaps, topCurrentFlaps, bottomNewFlaps, bottomCurrentFlaps } =
-    getFlapSelectors();
-
-  const topNewFlap = topNewFlaps[index];
-  const topCurrentFlap = topCurrentFlaps[index];
-  const bottomNewFlap = bottomNewFlaps[index];
-  const bottomCurrentFlap = bottomCurrentFlaps[index];
-
+export const flipPanel = async (
+  index,
+  topNewFlap,
+  topCurrentFlap,
+  bottomNewFlap,
+  bottomCurrentFlap
+) => {
   removeAnimation(bottomCurrentFlap, animations.BOTTOM_CURRENT_BOUNCE);
   addAnimation(topNewFlap, animations.TOP_NEW_SLIDE);
   addAnimation(topCurrentFlap, animations.TOP_CURRENT_FLIP);
@@ -64,7 +62,13 @@ export const flipPanel = (index) => {
 
       return;
     } else {
-      flipPanel(index);
+      flipPanel(
+        index,
+        topNewFlap,
+        topCurrentFlap,
+        bottomNewFlap,
+        bottomCurrentFlap
+      );
     }
   }, flipSpeed * 1000);
 };

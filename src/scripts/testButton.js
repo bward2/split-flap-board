@@ -29,7 +29,8 @@ for (let index = 0; index < getBoardTarget().length; index++) {
 }
 
 const flipThem = () => {
-  const { topCurrentFlaps } = getFlapSelectors();
+  const { topNewFlaps, topCurrentFlaps, bottomNewFlaps, bottomCurrentFlaps } =
+    getFlapSelectors();
 
   for (let index = 0; index < getBoardTarget().length; index++) {
     const panelIsInMotion = getBoardMotionStatus()[index];
@@ -37,8 +38,19 @@ const flipThem = () => {
       topCurrentFlaps[index].innerHTML === getBoardTarget()[index];
 
     if (!panelIsInMotion && !panelMatchesTarget) {
+      const topNewFlap = topNewFlaps[index];
+      const topCurrentFlap = topCurrentFlaps[index];
+      const bottomNewFlap = bottomNewFlaps[index];
+      const bottomCurrentFlap = bottomCurrentFlaps[index];
+
       setBoardMotionStatus(index, true);
-      flipPanel(index);
+      flipPanel(
+        index,
+        topNewFlap,
+        topCurrentFlap,
+        bottomNewFlap,
+        bottomCurrentFlap
+      );
     }
   }
 };
