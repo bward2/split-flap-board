@@ -2,7 +2,7 @@
 
 .split-flap-board {
   background-color: var(--board-color);
-  border-radius: 20px;
-  padding: 50px;
+  padding: 2.5vw;
+  width: 90vw;
   transition: background-color var(--color-theme-transition-duration);
 }

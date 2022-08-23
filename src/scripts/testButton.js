@@ -5,10 +5,7 @@ import {
   setBoardTarget,
 } from './boardManager.js';
 import {
-  topNewFlaps,
-  topCurrentFlaps,
-  bottomNewFlaps,
-  bottomCurrentFlaps,
+  getFlapSelectors,
   testButtonFlip,
   testButtonReset,
   panelCharacters,
@@ -16,7 +13,10 @@ import {
 } from './constants.js';
 import { flipPanel } from './panelManager.js';
 
-for (let index = 0; index < topNewFlaps.length; index++) {
+for (let index = 0; index < getBoardTarget().length; index++) {
+  const { topNewFlaps, topCurrentFlaps, bottomNewFlaps, bottomCurrentFlaps } =
+    getFlapSelectors();
+
   const topNewFlap = topNewFlaps[index];
   const topCurrentFlap = topCurrentFlaps[index];
   const bottomNewFlap = bottomNewFlaps[index];
@@ -29,7 +29,9 @@ for (let index = 0; index < topNewFlaps.length; index++) {
 }
 
 const flipThem = () => {
-  for (let index = 0; index < topNewFlaps.length; index++) {
+  const { topCurrentFlaps } = getFlapSelectors();
+
+  for (let index = 0; index < getBoardTarget().length; index++) {
     const panelIsInMotion = getBoardMotionStatus()[index];
     const panelMatchesTarget =
       topCurrentFlaps[index].innerHTML === getBoardTarget()[index];
@@ -46,11 +48,23 @@ testButtonFlip.onclick = () => {
   const targetIndex =
     currentIndex === panelCharacters.length - 1 ? 0 : currentIndex + 1;
 
-  setBoardTarget([panelCharacters[targetIndex]]);
+  let newBoardTarget = [];
+
+  for (let index = 0; index < getBoardTarget().length; index += 1) {
+    newBoardTarget.push(panelCharacters[targetIndex]);
+  }
+
+  setBoardTarget(newBoardTarget);
   flipThem();
 };
 
 testButtonReset.onclick = () => {
-  setBoardTarget([panelCharacters[0]]);
+  let newBoardTarget = [];
+
+  for (let index = 0; index < getBoardTarget().length; index += 1) {
+    newBoardTarget.push(panelCharacters[0]);
+  }
+
+  setBoardTarget(newBoardTarget);
   flipThem();
 };

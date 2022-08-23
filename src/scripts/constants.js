@@ -1,12 +1,26 @@
-export const topNewFlaps = document.querySelectorAll('.top-new');
-export const topCurrentFlaps = document.querySelectorAll('.top-current');
-export const bottomNewFlaps = document.querySelectorAll('.bottom-new');
-export const bottomCurrentFlaps = document.querySelectorAll('.bottom-current');
+export const splitFlapBoard = document.getElementById('split-flap-board');
+
+export const getFlapSelectors = () => {
+  const topNewFlaps = document.querySelectorAll('.top-new');
+  const topCurrentFlaps = document.querySelectorAll('.top-current');
+  const bottomNewFlaps = document.querySelectorAll('.bottom-new');
+  const bottomCurrentFlaps = document.querySelectorAll('.bottom-current');
+
+  return {
+    topNewFlaps,
+    topCurrentFlaps,
+    bottomNewFlaps,
+    bottomCurrentFlaps,
+  };
+};
 
 export const testButtonFlip = document.getElementById('test-button-flip');
 export const testButtonReset = document.getElementById('test-button-reset');
 
 export const flipSpeed = 0.075;
+
+export const boardRows = 6;
+export const boardColumns = 22;
 
 export const panelCharacters = [
   ' ',
@@ -47,6 +61,18 @@ export const panelCharacters = [
   '8',
   '9',
 ];
+
+export const panelHtml = `
+  <div class="split-flap-panel">
+    <div class="new-card-overlay-top"></div>
+    <div class="top-new">${panelCharacters[1]}</div>
+    <div class="top-current">${panelCharacters[0]}</div>
+    <div class="split-flap-divider"></div>
+    <div class="bottom-new">${panelCharacters[1]}</div>
+    <div class="bottom-current">${panelCharacters[0]}</div>
+    <div class="new-card-overlay-bottom"></div>
+  </div>
+`;
 
 export const sounds = {
   FLIP: 'flip',

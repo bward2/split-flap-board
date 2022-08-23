@@ -1,9 +1,6 @@
 import { getBoardTarget, setBoardMotionStatus } from './boardManager.js';
 import {
-  topNewFlaps,
-  topCurrentFlaps,
-  bottomNewFlaps,
-  bottomCurrentFlaps,
+  getFlapSelectors,
   panelCharacters,
   animations,
   sounds,
@@ -26,6 +23,9 @@ export const setFlapCharacter = (element, character) => {
 };
 
 export const flipPanel = (index) => {
+  const { topNewFlaps, topCurrentFlaps, bottomNewFlaps, bottomCurrentFlaps } =
+    getFlapSelectors();
+
   const topNewFlap = topNewFlaps[index];
   const topCurrentFlap = topCurrentFlaps[index];
   const bottomNewFlap = bottomNewFlaps[index];

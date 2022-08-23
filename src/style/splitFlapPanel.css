@@ -1,12 +1,15 @@
 @import url('variables.css');
 
 .split-flap-panel {
-  border-radius: 10px;
-  height: 100px;
-  width: 100px;
+  height: calc(90vw / 22);
+  width: calc(90vw / 22);
   text-align: center;
-  font-size: 100px;
-  line-height: 100px;
+  font-size: calc(90vw / 22);
+  line-height: calc(90vw / 22);
+}
+
+.split-flap-row {
+  display: flex;
 }
 
 .new-card-overlay-top {
@@ -38,7 +41,6 @@
 
 .top-new {
   top: calc(var(--split-panel-new-card-slide-distance) * -1);
-  border-radius: 10px 10px 0 0;
   background-color: transparent;
   position: absolute;
   width: 100%;
@@ -49,7 +51,6 @@
 
 .top-current {
   top: calc(var(--split-panel-divider-height) / 2 * -1);
-  border-radius: 10px 10px 0 0;
   background-color: var(--panel-color);
   position: absolute;
   width: 100%;
@@ -60,7 +61,6 @@
 }
 
 .bottom-new {
-  border-radius: 0 0 10px 10px;
   background-color: var(--panel-color);
   position: absolute;
   width: 100%;
@@ -76,7 +76,6 @@
 
 .bottom-current {
   top: calc(var(--split-panel-divider-height) / 2 + 50%);
-  border-radius: 0 0 10px 10px;
   background-color: var(--panel-color);
   position: absolute;
   width: 100%;
