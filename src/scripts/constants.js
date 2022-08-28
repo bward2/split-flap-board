@@ -62,18 +62,6 @@ export const panelCharacters = [
   '9',
 ];
 
-export const panelHtml = `
-  <div class="split-flap-panel">
-    <div class="new-card-overlay-top"></div>
-    <div class="top-new">${panelCharacters[1]}</div>
-    <div class="top-current">${panelCharacters[0]}</div>
-    <div class="split-flap-divider"></div>
-    <div class="bottom-new">${panelCharacters[1]}</div>
-    <div class="bottom-current">${panelCharacters[0]}</div>
-    <div class="new-card-overlay-bottom"></div>
-  </div>
-`;
-
 export const sounds = {
   FLIP: 'flip',
   FLAP: 'flap',
