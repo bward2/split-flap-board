@@ -12,10 +12,6 @@ body {
   background-color: var(--background-color);
 }
 
-div {
-  perspective: 200px;
-}
-
 .body-colors-transition {
   transition: background-color var(--color-theme-transition-duration) ease,
     color var(--color-theme-transition-duration) ease;

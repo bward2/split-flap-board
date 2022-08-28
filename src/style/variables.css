@@ -1,6 +1,7 @@
 :root {
   --color-theme-transition-duration: 0.2s;
-  --split-panel-divider-height: 5%;
+  --split-panel-height: calc((90vw / 18) * 0.85);
+  --split-panel-divider-height: calc(var(--split-panel-height) * 0.05);
   --split-panel-new-card-slide-distance: calc(
     var(--split-panel-divider-height) * 5
   );

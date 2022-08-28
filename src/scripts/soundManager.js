@@ -9,7 +9,7 @@ export const playSound = (name) => {
 
   var sound = new Howl({
     src: [`src/assets/audio/${name}/${random}.mp3`],
-    volume: 1, // TODO: Dynamically set volume based on the number of panels in motion.
+    volume: 0.1, // TODO: Dynamically set volume based on the number of panels in motion.
   });
 
   sound.play();
