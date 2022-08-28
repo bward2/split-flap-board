@@ -19,8 +19,8 @@ export const testButtonReset = document.getElementById('test-button-reset');
 
 export const flipSpeed = 0.075;
 
-export const boardRows = 4;
-export const boardColumns = 15;
+export const boardRows = 5;
+export const boardColumns = 18;
 
 export const panelCharacters = [
   ' ',

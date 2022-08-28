@@ -7,33 +7,35 @@ import {
 } from './constants.js';
 
 testButtonFlip.onclick = () => {
-  setInterval(() => {
-    const currentIndex = panelCharacters.indexOf(getBoardStatus()[0]);
-    const targetIndex =
-      currentIndex === panelCharacters.length - 1 ? 0 : currentIndex + 1;
+  let newBoardStatus = getBoardStatus();
 
-    let newBoardStatus = getBoardStatus();
+  for (let index = 0; index < getBoardStatus().length; index += 1) {
+    const newTarget =
+      newBoardStatus[index].target === panelCharacters.length - 1
+        ? 0
+        : newBoardStatus[index].target + 1;
+    newBoardStatus[index].target = newTarget;
+  }
 
-    for (let index = 0; index < getBoardStatus().length; index += 1) {
-      const newTarget =
-        newBoardStatus[index].target === panelCharacters.length - 1
-          ? 0
-          : newBoardStatus[index].target + 1;
-      newBoardStatus[index].target = newTarget;
-    }
-
-    setBoardStatus(newBoardStatus);
-    redrawBoard();
-  }, flipSpeed * 1000);
+  setBoardStatus(newBoardStatus);
+  redrawBoard();
 };
 
 testButtonReset.onclick = () => {
-  let newBoardTarget = [];
+  let redrawInterval;
+  let newBoardStatus = getBoardStatus();
 
   for (let index = 0; index < getBoardStatus().length; index += 1) {
-    newBoardTarget.push(panelCharacters[0]);
+    newBoardStatus[index].target = 0;
   }
 
-  setBoardStatus(newBoardTarget);
-  // flipThem();
+  setBoardStatus(newBoardStatus);
+
+  redrawInterval = setInterval(() => {
+    if (getBoardStatus()[0].actual === getBoardStatus()[0].target) {
+      clearInterval(redrawInterval);
+      return;
+    }
+    redrawBoard();
+  }, flipSpeed * 1000);
 };
