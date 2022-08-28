@@ -3,25 +3,28 @@ import {
   testButtonFlip,
   testButtonReset,
   panelCharacters,
+  flipSpeed,
 } from './constants.js';
 
 testButtonFlip.onclick = () => {
-  const currentIndex = panelCharacters.indexOf(getBoardStatus()[0]);
-  const targetIndex =
-    currentIndex === panelCharacters.length - 1 ? 0 : currentIndex + 1;
+  setInterval(() => {
+    const currentIndex = panelCharacters.indexOf(getBoardStatus()[0]);
+    const targetIndex =
+      currentIndex === panelCharacters.length - 1 ? 0 : currentIndex + 1;
 
-  let newBoardStatus = getBoardStatus();
+    let newBoardStatus = getBoardStatus();
 
-  for (let index = 0; index < getBoardStatus().length; index += 1) {
-    const newTarget =
-      newBoardStatus[index].target === panelCharacters.length - 1
-        ? 0
-        : newBoardStatus[index].target + 1;
-    newBoardStatus[index].target = newTarget;
-  }
+    for (let index = 0; index < getBoardStatus().length; index += 1) {
+      const newTarget =
+        newBoardStatus[index].target === panelCharacters.length - 1
+          ? 0
+          : newBoardStatus[index].target + 1;
+      newBoardStatus[index].target = newTarget;
+    }
 
-  setBoardStatus(newBoardStatus);
-  redrawBoard();
+    setBoardStatus(newBoardStatus);
+    redrawBoard();
+  }, flipSpeed * 1000);
 };
 
 testButtonReset.onclick = () => {

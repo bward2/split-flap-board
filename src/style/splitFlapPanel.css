@@ -1,6 +1,7 @@
 @import url('variables.css');
 
 .split-flap-panel {
+  perspective: 200px;
   aspect-ratio: 1;
   height: var(--split-panel-height);
   text-align: center;
