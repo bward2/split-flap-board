@@ -18,7 +18,7 @@ export const getBoardStatus = () => {
 };
 
 const getPanelHtml = (panelIndex) => {
-  const currentIndex = getBoardStatus()[panelIndex].target;
+  const currentIndex = getBoardStatus()[panelIndex].actual;
   let nextIndex = currentIndex + 1;
 
   if (nextIndex === panelCharacters.length) {
@@ -26,6 +26,13 @@ const getPanelHtml = (panelIndex) => {
   }
 
   let panelHtml;
+
+  console.log(
+    getBoardStatus()[panelIndex].actual,
+    getBoardStatus()[panelIndex].target,
+    panelCharacters[nextIndex],
+    panelCharacters[currentIndex]
+  );
 
   if (
     getBoardStatus()[panelIndex].target !== getBoardStatus()[panelIndex].actual
@@ -41,6 +48,9 @@ const getPanelHtml = (panelIndex) => {
         <div class="new-card-overlay-bottom"></div>
       </div>
     `;
+
+    // TODO: Put this elsewhere
+    boardStatus[panelIndex].actual = nextIndex;
   } else {
     panelHtml = `
       <div class="split-flap-panel">
