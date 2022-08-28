@@ -6,7 +6,12 @@
   text-align: center;
   font-size: var(--split-panel-height);
   line-height: var(--split-panel-height);
-  margin-top: 1vh;
+  margin-top: var(--split-panel-new-card-slide-distance);
+  margin-left: var(--split-panel-new-card-slide-distance);
+}
+
+.split-flap-board:first-child {
+  margin-left: 0;
 }
 
 .split-flap-row {

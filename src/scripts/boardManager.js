@@ -6,6 +6,7 @@ import {
   panelCharacters,
   splitFlapBoard,
 } from './constants.js';
+import { playSound } from './soundManager.js';
 
 let boardStatus = [];
 
@@ -26,13 +27,6 @@ const getPanelHtml = (panelIndex) => {
   }
 
   let panelHtml;
-
-  console.log(
-    getBoardStatus()[panelIndex].actual,
-    getBoardStatus()[panelIndex].target,
-    panelCharacters[nextIndex],
-    panelCharacters[currentIndex]
-  );
 
   if (
     getBoardStatus()[panelIndex].target !== getBoardStatus()[panelIndex].actual
@@ -70,6 +64,8 @@ const getPanelHtml = (panelIndex) => {
 
 export const redrawBoard = () => {
   let newInnerHtml = '';
+
+  playSound('flip');
 
   for (let currentRow = 0; currentRow < boardRows; currentRow += 1) {
     for (let currentCol = 0; currentCol < boardColumns; currentCol += 1) {
