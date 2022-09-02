@@ -21,10 +21,6 @@ const addColorTransition = () => {
 };
 
 themeSwitch.onclick = () => {
-  if (!body.classList.contains('body-colors-transition')) {
-    addColorTransition();
-  }
-
   const currentTheme = document.documentElement.getAttribute('data-theme');
   const newTheme = currentTheme === themes.LIGHT ? themes.DARK : themes.LIGHT;
 
