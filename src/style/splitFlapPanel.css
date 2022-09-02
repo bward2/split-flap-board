@@ -138,13 +138,13 @@
   0% {
     transform: rotateX(0deg)
       translateY(calc(var(--split-panel-divider-height) / 2 * -1));
-    background-color: var(--panel-color);
+    /* background-color: var(--panel-color); */
   }
   50% {
     opacity: 1;
     transform: rotateX(-90deg)
       translateY(calc(var(--split-panel-divider-height) / 2 * -1));
-    background-color: gray;
+    /* background-color: gray; */
   }
   51% {
     opacity: 0;
@@ -153,7 +153,7 @@
     opacity: 0;
     transform: rotateX(-90deg)
       translateY(calc(var(--split-panel-divider-height) / 2 * -1));
-    background-color: gray;
+    /* background-color: gray; */
   }
 }
 
@@ -162,7 +162,7 @@
     opacity: 0;
     transform: rotateX(90deg)
       translateY(calc(var(--split-panel-divider-height) / 2));
-    background-color: gray;
+    /* background-color: gray; */
   }
   45% {
     opacity: 0;
@@ -171,12 +171,12 @@
     opacity: 1;
     transform: rotateX(90deg)
       translateY(calc(var(--split-panel-divider-height) / 2));
-    background-color: gray;
+    /* background-color: gray; */
   }
   100% {
     transform: rotateX(0deg)
       translateY(calc(var(--split-panel-divider-height) / 2));
-    background-color: var(--panel-color);
+    /* background-color: var(--panel-color); */
   }
 }
 
@@ -203,7 +203,7 @@
   }
   50% {
     transform: rotateX(var(--bottom-bounce-angle));
-    background-color: var(--panel-bounce-color);
+    /* background-color: var(--panel-bounce-color); */
   }
   100% {
     transform: rotateX(0deg);
