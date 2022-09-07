@@ -8,19 +8,17 @@ import {
   halfSplitPanelDividerHeight,
 } from './constants.js';
 
-const topFlaps = [];
-const bottomFlaps = [];
-const topAnimations = [];
-const bottomAnimations = [];
+export const topFlaps = [];
+export const bottomFlaps = [];
+export const topAnimations = [];
+export const bottomAnimations = [];
 
 const createTopFlap = () => {
   const newTopFlap = document.createElement('div');
   newTopFlap.innerText = panelCharacters[1];
   newTopFlap.classList.add('top-flap');
 
-  console.log(halfSplitPanelDividerHeight);
-
-  newTopFlap.animate(
+  const newTopAnimation = newTopFlap.animate(
     [
       { transform: 'rotateX(0)' },
       {
@@ -39,8 +37,11 @@ const createTopFlap = () => {
     ],
     {
       duration: flipSpeed * 1000,
+      fill: 'forwards',
     }
   );
+  newTopAnimation.pause();
+  topAnimations.push(newTopAnimation);
 
   topFlaps.push(newTopFlap);
 
@@ -59,7 +60,7 @@ const createBottomFlap = () => {
   newBottomFlap.innerText = panelCharacters[1];
   newBottomFlap.classList.add('bottom-flap');
 
-  newBottomFlap.animate(
+  const newBottomAnimation = newBottomFlap.animate(
     [
       {
         transform: `rotateX(90deg) translateZ(${halfSplitPanelDividerHeight})`,
@@ -78,8 +79,11 @@ const createBottomFlap = () => {
     ],
     {
       duration: flipSpeed * 1000,
+      fill: 'forwards',
     }
   );
+  newBottomAnimation.pause();
+  bottomAnimations.push(newBottomAnimation);
 
   bottomFlaps.push(newBottomFlap);
 

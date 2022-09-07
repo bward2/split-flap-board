@@ -13,6 +13,7 @@
   font-size: var(--split-panel-height);
   line-height: var(--split-panel-height);
   transform-style: preserve-3d;
+  margin-left: 0.5vw;
 }
 
 .top-flap {

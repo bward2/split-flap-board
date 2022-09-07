@@ -17,10 +17,10 @@ export const getFlapSelectors = () => {
 export const testButtonFlip = document.getElementById('test-button-flip');
 export const testButtonReset = document.getElementById('test-button-reset');
 
-export const flipSpeed = 2;
+export const flipSpeed = 0.2;
 
-export const boardRows = 1;
-export const boardColumns = 2;
+export const boardRows = 6;
+export const boardColumns = 22;
 
 export const panelCharacters = [
   ' ',
