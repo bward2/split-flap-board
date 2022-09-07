@@ -2,8 +2,6 @@
 
 .split-flap-board {
   background-color: var(--board-color);
-  padding: var(--split-panel-new-card-slide-distance);
-  padding-top: 0;
   width: 95vw;
   display: flex;
   flex-direction: column;

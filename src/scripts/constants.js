@@ -17,10 +17,10 @@ export const getFlapSelectors = () => {
 export const testButtonFlip = document.getElementById('test-button-flip');
 export const testButtonReset = document.getElementById('test-button-reset');
 
-export const flipSpeed = 0.075;
+export const flipSpeed = 2;
 
 export const boardRows = 1;
-export const boardColumns = 1;
+export const boardColumns = 2;
 
 export const panelCharacters = [
   ' ',
@@ -74,3 +74,8 @@ export const animations = {
   BOTTOM_CURRENT_SLIDE: 'bottom-current-slide',
   BOTTOM_CURRENT_BOUNCE: 'bottom-current-bounce',
 };
+
+export const splitPanelHeight = `calc((90vw / ${boardColumns}) * 0.85)`;
+export const splitPanelDividerHeight = 'calc(var(--split-panel-height) * 0.05)';
+export const halfSplitPanelDividerHeight =
+  'calc(var(--split-panel-divider-height) / 2)';

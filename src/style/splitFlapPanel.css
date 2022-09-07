@@ -1,12 +1,18 @@
 @import url('variables.css');
 
+.split-flap-row {
+  display: flex;
+  perspective: 2000px;
+}
+
 .split-flap-panel {
   position: relative;
-  aspect-ratio: 1;
-  height: var(--split-panel-height);
+  width: var(--split-panel-height);
+  height: calc(var(--split-panel-divider-height) + var(--split-panel-height));
   text-align: center;
   font-size: var(--split-panel-height);
   line-height: var(--split-panel-height);
+  transform-style: preserve-3d;
 }
 
 .top-flap {
@@ -15,7 +21,16 @@
   height: 50%;
   background-color: var(--panel-color);
   overflow: hidden;
+  top: calc(var(--split-panel-divider-height) / 2 * -1);
   transform-origin: bottom;
+}
+
+.split-flap-divider {
+  background-color: rgba(0, 0, 0, 0.1);
+  top: calc(50% - var(--split-panel-divider-height) / 2);
+  height: var(--split-panel-divider-height);
+  width: 100%;
+  position: absolute;
 }
 
 .bottom-flap {
@@ -24,7 +39,7 @@
   height: 50%;
   background-color: var(--panel-color);
   overflow: hidden;
-  top: calc(50% + var(--split-panel-divider-height));
+  top: calc(50% + var(--split-panel-divider-height) / 2);
   transform-origin: top;
   line-height: 0;
 }
@@ -44,10 +59,6 @@
   margin-left: 0;
 }
 
-.split-flap-row {
-  display: flex;
-}
-
 .new-card-overlay-top {
   height: var(--split-panel-new-card-slide-distance);
   top: calc(var(--split-panel-new-card-slide-distance) * -1);
@@ -61,14 +72,6 @@
   top: 100%;
   width: 100%;
   background-color: var(--board-color);
-  position: absolute;
-}
-
-.split-flap-divider {
-  background-color: rgba(0, 0, 0, 0.1);
-  top: 50%;
-  height: var(--split-panel-divider-height);
-  width: 100%;
   position: absolute;
 }
 

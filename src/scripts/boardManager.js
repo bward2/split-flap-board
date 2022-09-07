@@ -1,4 +1,12 @@
-import { boardColumns, boardRows, panelCharacters } from './constants.js';
+import {
+  boardColumns,
+  boardRows,
+  flipSpeed,
+  panelCharacters,
+  splitPanelHeight,
+  splitPanelDividerHeight,
+  halfSplitPanelDividerHeight,
+} from './constants.js';
 
 const topFlaps = [];
 const bottomFlaps = [];
@@ -9,6 +17,30 @@ const createTopFlap = () => {
   const newTopFlap = document.createElement('div');
   newTopFlap.innerText = panelCharacters[1];
   newTopFlap.classList.add('top-flap');
+
+  console.log(halfSplitPanelDividerHeight);
+
+  newTopFlap.animate(
+    [
+      { transform: 'rotateX(0)' },
+      {
+        transform: `rotateX(-90deg) translateZ(${halfSplitPanelDividerHeight})`,
+        opacity: 1,
+        offset: 0.5,
+      },
+      {
+        opacity: 0,
+        offset: 0.51,
+      },
+      {
+        transform: `rotateX(-90deg) translateZ(${halfSplitPanelDividerHeight})`,
+        opacity: 0,
+      },
+    ],
+    {
+      duration: flipSpeed * 1000,
+    }
+  );
 
   topFlaps.push(newTopFlap);
 
@@ -27,12 +59,43 @@ const createBottomFlap = () => {
   newBottomFlap.innerText = panelCharacters[1];
   newBottomFlap.classList.add('bottom-flap');
 
+  newBottomFlap.animate(
+    [
+      {
+        transform: `rotateX(90deg) translateZ(${halfSplitPanelDividerHeight})`,
+        opacity: 0,
+      },
+      {
+        opacity: 0,
+        offset: 0.49,
+      },
+      {
+        transform: `rotateX(90deg) translateZ(${halfSplitPanelDividerHeight})`,
+        opacity: 1,
+        offset: 0.5,
+      },
+      { transform: 'rotateX(0)' },
+    ],
+    {
+      duration: flipSpeed * 1000,
+    }
+  );
+
   bottomFlaps.push(newBottomFlap);
 
   return newBottomFlap;
 };
 
-const setup = () => {
+const setCssVariables = () => {
+  const root = document.querySelector(':root');
+  root.style.setProperty('--split-panel-height', splitPanelHeight);
+  root.style.setProperty(
+    '--split-panel-divider-height',
+    splitPanelDividerHeight
+  );
+};
+
+const populateBoard = () => {
   const splitFlapBoard = document.getElementById('split-flap-board');
 
   for (let row = 0; row < boardRows; row += 1) {
@@ -55,6 +118,11 @@ const setup = () => {
 
     splitFlapBoard.appendChild(newRowDiv);
   }
+};
+
+const setup = () => {
+  setCssVariables();
+  populateBoard();
 };
 
 setup();
