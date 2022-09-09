@@ -24,6 +24,7 @@
   overflow: hidden;
   top: calc(var(--split-panel-divider-height) / 2 * -1);
   transform-origin: bottom;
+  will-change: transform, opacity;
 }
 
 .split-flap-divider {
@@ -43,6 +44,7 @@
   top: calc(50% + var(--split-panel-divider-height) / 2);
   transform-origin: top;
   line-height: 0;
+  will-change: transform, opacity;
 }
 
 /* .split-flap-panel {

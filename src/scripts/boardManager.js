@@ -13,10 +13,11 @@ export const bottomFlaps = [];
 export const topAnimations = [];
 export const bottomAnimations = [];
 
-const createTopFlap = () => {
+const createTopFlap = (characterIndex) => {
   const newTopFlap = document.createElement('div');
-  newTopFlap.innerText = panelCharacters[1];
+  newTopFlap.innerText = panelCharacters[characterIndex];
   newTopFlap.classList.add('top-flap');
+  newTopFlap.style.zIndex = panelCharacters.length - characterIndex;
 
   const newTopAnimation = newTopFlap.animate(
     [
@@ -41,7 +42,7 @@ const createTopFlap = () => {
     }
   );
   newTopAnimation.pause();
-  topAnimations.push(newTopAnimation);
+  topAnimations[topAnimations.length - 1].push(newTopAnimation);
 
   topFlaps.push(newTopFlap);
 
@@ -55,10 +56,11 @@ const createDivider = () => {
   return newDividerDiv;
 };
 
-const createBottomFlap = () => {
+const createBottomFlap = (characterIndex) => {
   const newBottomFlap = document.createElement('div');
-  newBottomFlap.innerText = panelCharacters[1];
+  newBottomFlap.innerText = panelCharacters[characterIndex + 1];
   newBottomFlap.classList.add('bottom-flap');
+  newBottomFlap.style.zIndex = characterIndex;
 
   const newBottomAnimation = newBottomFlap.animate(
     [
@@ -75,7 +77,7 @@ const createBottomFlap = () => {
         opacity: 1,
         offset: 0.5,
       },
-      { transform: 'rotateX(0)' },
+      { transform: `rotateX(0) translateZ(${halfSplitPanelDividerHeight})` },
     ],
     {
       duration: flipSpeed * 1000,
@@ -83,7 +85,7 @@ const createBottomFlap = () => {
     }
   );
   newBottomAnimation.pause();
-  bottomAnimations.push(newBottomAnimation);
+  bottomAnimations[bottomAnimations.length - 1].push(newBottomAnimation);
 
   bottomFlaps.push(newBottomFlap);
 
@@ -110,13 +112,19 @@ const populateBoard = () => {
       const newPanelDiv = document.createElement('div');
       newPanelDiv.classList.add('split-flap-panel');
 
-      const newTopFlap = createTopFlap();
-      const newDividerDiv = createDivider();
-      const newBottomFlap = createBottomFlap();
+      topAnimations.push([]);
+      bottomAnimations.push([]);
 
-      newPanelDiv.appendChild(newTopFlap);
+      for (let characterIndex = 0; characterIndex < 2; characterIndex += 1) {
+        const newTopFlap = createTopFlap(characterIndex);
+        const newBottomFlap = createBottomFlap(characterIndex);
+
+        newPanelDiv.appendChild(newTopFlap);
+        newPanelDiv.appendChild(newBottomFlap);
+      }
+      const newDividerDiv = createDivider();
       newPanelDiv.appendChild(newDividerDiv);
-      newPanelDiv.appendChild(newBottomFlap);
+
       newRowDiv.appendChild(newPanelDiv);
     }
 
