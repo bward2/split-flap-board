@@ -23,6 +23,13 @@ body {
   user-select: none;
 }
 
+.fps-display {
+  color: var(--board-color);
+  position: absolute;
+  top: 60px;
+  right: 10px;
+}
+
 .test-button-container {
   position: absolute;
   bottom: 10vh;
