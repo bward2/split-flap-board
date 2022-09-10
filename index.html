@@ -11,28 +11,6 @@
     <link rel="stylesheet" href="src/style/splitFlapPanel.css" />
     <link rel="stylesheet" href="src/style/themeSwitch.css" />
 
-    <audio preload="auto" src="src/assets/audio/flip/1.mp3"></audio>
-    <audio preload="auto" src="src/assets/audio/flip/2.mp3"></audio>
-    <audio preload="auto" src="src/assets/audio/flip/3.mp3"></audio>
-    <audio preload="auto" src="src/assets/audio/flip/4.mp3"></audio>
-    <audio preload="auto" src="src/assets/audio/flip/5.mp3"></audio>
-    <audio preload="auto" src="src/assets/audio/flip/6.mp3"></audio>
-    <audio preload="auto" src="src/assets/audio/flip/7.mp3"></audio>
-    <audio preload="auto" src="src/assets/audio/flip/8.mp3"></audio>
-    <audio preload="auto" src="src/assets/audio/flip/9.mp3"></audio>
-    <audio preload="auto" src="src/assets/audio/flip/10.mp3"></audio>
-
-    <audio preload="auto" src="src/assets/audio/flap/1.mp3"></audio>
-    <audio preload="auto" src="src/assets/audio/flap/2.mp3"></audio>
-    <audio preload="auto" src="src/assets/audio/flap/3.mp3"></audio>
-    <audio preload="auto" src="src/assets/audio/flap/4.mp3"></audio>
-    <audio preload="auto" src="src/assets/audio/flap/5.mp3"></audio>
-    <audio preload="auto" src="src/assets/audio/flap/6.mp3"></audio>
-    <audio preload="auto" src="src/assets/audio/flap/7.mp3"></audio>
-    <audio preload="auto" src="src/assets/audio/flap/8.mp3"></audio>
-    <audio preload="auto" src="src/assets/audio/flap/9.mp3"></audio>
-    <audio preload="auto" src="src/assets/audio/flap/10.mp3"></audio>
-
     <script type="module" src="./src/scripts/minified/howler.min.js"></script>
     <script type="module" src="./src/scripts/animationEngine.js"></script>
     <script type="module" src="./src/scripts/boardManager.js"></script>
@@ -43,7 +21,14 @@
   </head>
   <body id="body">
     <div class="container">
-      <div id="split-flap-board" class="split-flap-board"></div>
+      <div id="split-flap-board" class="split-flap-board">
+        <div class="split-flap-panel-container">
+          <img
+            id="split-flap-panel"
+            class="split-flap-panel"
+            src="./src/assets/images/superBigTest.png"
+          />
+        </div>
     </div>
 
     <div class="theme-switch-wrapper">

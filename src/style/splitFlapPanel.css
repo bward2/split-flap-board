@@ -1,14 +1,14 @@
 @import url('variables.css');
 
+.split-flap-panel-container {
+  height: 105px;
+  width: 100px;
+  overflow: hidden;
+}
+
 .split-flap-panel {
-  position: relative;
-  width: var(--split-panel-height);
-  height: calc(var(--split-panel-divider-height) + var(--split-panel-height));
-  text-align: center;
-  font-size: var(--split-panel-height);
-  line-height: var(--split-panel-height);
-  transform-style: preserve-3d;
-  margin-left: 0.5vw;
+  will-change: transform;
+  width: 32000px;
 }
 
 .split-flap-board:first-child {
