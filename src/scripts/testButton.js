@@ -3,11 +3,11 @@ import { playSound } from './soundManager.js';
 
 const animatePanel = (panel, index) => {
   const animation = panel.animate(
-    [{ transform: 'translateX(0)' }, { transform: 'translateX(-900px)' }],
+    [{ transform: 'translateX(0)' }, { transform: 'translateX(-1000px)' }],
     {
       fill: 'forwards',
-      easing: 'steps(9)',
-      duration: 1000,
+      easing: 'steps(10)',
+      duration: 75,
     }
   );
 };
