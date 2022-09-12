@@ -1,11 +1,12 @@
 import { flipSpeed, framesPerFlip } from './constants.js';
 
 export class PanelManager {
-  constructor() {
+  constructor(panelSize) {
     this.msBetweenSprites = flipSpeed / framesPerFlip;
     this.msSinceLastSprite = 0;
     this.spriteFrames = framesPerFlip;
-    this.translatedPixels = 0;
+    this.frameIndex = 0;
+    this.panelSize = panelSize;
     this.animating = false;
 
     this.container = document.createElement('div');
@@ -22,12 +23,20 @@ export class PanelManager {
     return this.container;
   }
 
+  setPanelSize(newPanelSize) {
+    this.panelSize = newPanelSize;
+  }
+
   flip() {
-    this.translatedPixels = 0;
+    this.frameIndex = 0;
     this.animating = true;
   }
 
   draw() {
+    this.animationTarget.style.transform = `translateX(-${
+      this.frameIndex * this.panelSize
+    }px)`;
+
     if (!this.animating) {
       return;
     }
@@ -35,9 +44,8 @@ export class PanelManager {
     const readyForNextFrame = this.msSinceLastSprite > this.msBetweenSprites;
 
     if (readyForNextFrame) {
-      this.animationTarget.style.transform = `translateX(-${this.translatedPixels}px)`;
-      if (this.translatedPixels !== 1000) {
-        this.translatedPixels += 100;
+      if (this.frameIndex < 10) {
+        this.frameIndex += 1;
       } else {
         this.animating = false;
       }
