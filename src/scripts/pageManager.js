@@ -1,3 +1,4 @@
+import { testButtonFlip, testButtonReset } from './constants.js';
 import { AnimationEngine } from './animationEngine.js';
 import { PanelManager } from './panelManager.js';
 
@@ -13,6 +14,17 @@ class PageManager {
 
     this.animationEngine = new AnimationEngine(this.maxFps, this.panels);
     this.animationEngine.start();
+
+    testButtonFlip.onclick = () => {
+      this.panels.forEach((panel) => {
+        console.log(panel);
+        panel.flip();
+      });
+    };
+
+    testButtonReset.onclick = () => {
+      console.log('Reset!');
+    };
   }
 }
 

@@ -22,13 +22,25 @@ export class PanelManager {
     return this.container;
   }
 
+  flip() {
+    this.translatedPixels = 0;
+    this.animating = true;
+  }
+
   draw(interp) {
+    if (!this.animating) {
+      return;
+    }
+
     const readyForNextFrame = this.msSinceLastSprite > this.msBetweenSprites;
 
     if (readyForNextFrame) {
       this.animationTarget.style.transform = `translateX(-${this.translatedPixels}px)`;
       if (this.translatedPixels !== 1000) {
         this.translatedPixels += 100;
+      } else {
+        this.animating = false;
+        console.log('Done!');
       }
       this.msSinceLastSprite = 0;
     }
