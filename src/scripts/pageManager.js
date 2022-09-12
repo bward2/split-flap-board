@@ -17,7 +17,6 @@ class PageManager {
 
     testButtonFlip.onclick = () => {
       this.panels.forEach((panel) => {
-        console.log(panel);
         panel.flip();
       });
     };
