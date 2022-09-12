@@ -42,13 +42,12 @@ export class AnimationEngine {
 
   /**
    * Calls the draw function for every member of the entityList
-   * @param {number} interp - The animation accuracy as a percentage
    * @param {Array} entityList - List of entities to be animated
    */
-  draw(interp, entityList) {
+  draw(entityList) {
     entityList.forEach((entity) => {
       if (typeof entity.draw === 'function') {
-        entity.draw(interp);
+        entity.draw();
       }
     });
   }
@@ -83,7 +82,7 @@ export class AnimationEngine {
       this.started = true;
 
       this.frameId = requestAnimationFrame((firstTimestamp) => {
-        this.draw(1, []);
+        this.draw([]);
         this.running = true;
         this.lastFrameTimeMs = firstTimestamp;
         this.lastFpsUpdate = firstTimestamp;
@@ -139,7 +138,7 @@ export class AnimationEngine {
     this.lastFrameTimeMs = timestamp;
     this.updateFpsDisplay(timestamp);
     this.processFrames();
-    this.draw(this.elapsedMs / this.timeStep, this.entityList);
+    this.draw(this.entityList);
 
     this.frameId = requestAnimationFrame((nextTimestamp) => {
       this.mainLoop(nextTimestamp);

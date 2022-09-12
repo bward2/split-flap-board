@@ -27,7 +27,7 @@ export class PanelManager {
     this.animating = true;
   }
 
-  draw(interp) {
+  draw() {
     if (!this.animating) {
       return;
     }
@@ -40,7 +40,6 @@ export class PanelManager {
         this.translatedPixels += 100;
       } else {
         this.animating = false;
-        console.log('Done!');
       }
       this.msSinceLastSprite = 0;
     }
