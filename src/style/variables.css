@@ -1,8 +1,11 @@
 :root {
-  --color-theme-transition-duration: 0.2s;
-  --split-panel-new-card-slide-distance: calc(
-    var(--split-panel-divider-height) * 5
+  --split-flap-panel-container-width: 100px;
+  --split-flap-panel-container-height: calc(
+    var(--split-flap-panel-container-width) * 1.05
   );
+  /* TODO: Change split-flap-panel-width to match the total number of frames in the huge Split Flap file */
+  --split-flap-panel-width: calc(var(--split-flap-panel-container-width) * 11);
+  --color-theme-transition-duration: 0.2s;
   --bottom-bounce-angle: 10deg;
 }
 
