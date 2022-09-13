@@ -14,7 +14,7 @@ export class PanelManager {
 
     this.animationTarget = document.createElement('img');
     this.animationTarget.classList.add('split-flap-panel');
-    this.animationTarget.src = './src/assets/images/frameTest.png';
+    this.animationTarget.src = './src/assets/images/paintDotNetTest.png';
 
     this.container.appendChild(this.animationTarget);
   }
