@@ -5,7 +5,8 @@ export class PanelManager {
     this.msBetweenSprites = flipSpeed / framesPerFlip;
     this.msSinceLastSprite = 0;
     this.spriteFrames = framesPerFlip;
-    this.frameIndex = 0;
+    this.framesThisFlip = 0;
+    this.characterIndex = 0;
     this.panelSize = panelSize;
     this.animating = false;
 
@@ -28,14 +29,14 @@ export class PanelManager {
   }
 
   flip() {
-    this.frameIndex = 0;
+    this.framesThisFlip = 0;
     this.animating = true;
   }
 
   draw() {
-    this.animationTarget.style.transform = `translateX(-${
-      this.frameIndex * this.panelSize
-    }px)`;
+    this.animationTarget.style.transform = `translate(-${
+      this.framesThisFlip * this.panelSize
+    }px, -${this.characterIndex * this.panelSize * 1.05}px)`;
 
     if (!this.animating) {
       return;
@@ -44,9 +45,11 @@ export class PanelManager {
     const readyForNextFrame = this.msSinceLastSprite > this.msBetweenSprites;
 
     if (readyForNextFrame) {
-      if (this.frameIndex < 10) {
-        this.frameIndex += 1;
+      if (this.framesThisFlip < framesPerFlip - 1) {
+        this.framesThisFlip += 1;
       } else {
+        this.framesThisFlip = 0;
+        this.characterIndex += 1;
         this.animating = false;
       }
       this.msSinceLastSprite = 0;

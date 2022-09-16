@@ -3,7 +3,7 @@
   --split-flap-panel-container-height: calc(
     var(--split-flap-panel-container-width) * 1.05
   );
-  --split-flap-panel-width: calc(var(--split-flap-panel-container-width) * 640);
+  --split-flap-panel-width: calc(var(--split-flap-panel-container-width) * 20);
   --color-theme-transition-duration: 0.2s;
   --bottom-bounce-angle: 10deg;
 }
