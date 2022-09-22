@@ -1,10 +1,10 @@
 :root {
-  --color-theme-transition-duration: 0.2s;
-  --split-panel-height: calc((90vw / 18) * 0.85);
-  --split-panel-divider-height: calc(var(--split-panel-height) * 0.05);
-  --split-panel-new-card-slide-distance: calc(
-    var(--split-panel-divider-height) * 5
+  --split-flap-panel-container-width: 100px;
+  --split-flap-panel-container-height: calc(
+    var(--split-flap-panel-container-width) * 1.05
   );
+  --split-flap-panel-width: calc(var(--split-flap-panel-container-width) * 20);
+  --color-theme-transition-duration: 0.2s;
   --bottom-bounce-angle: 10deg;
 }
 

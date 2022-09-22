@@ -12,11 +12,6 @@ body {
   background-color: var(--background-color);
 }
 
-.body-colors-transition {
-  transition: background-color var(--color-theme-transition-duration) ease,
-    color var(--color-theme-transition-duration) ease;
-}
-
 .container {
   display: flex;
   flex-direction: column;
@@ -26,6 +21,13 @@ body {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.fps-display {
+  color: var(--board-color);
+  position: absolute;
+  top: 60px;
+  right: 10px;
 }
 
 .test-button-container {
@@ -47,8 +49,6 @@ body {
   background-color: var(--panel-color);
   cursor: pointer;
   box-shadow: 2px 2px gray;
-  transition: background-color var(--color-theme-transition-duration) ease,
-    color var(--color-theme-transition-duration) ease;
 }
 
 .test-button:active {

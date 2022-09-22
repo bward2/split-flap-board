@@ -1,26 +1,13 @@
 export const splitFlapBoard = document.getElementById('split-flap-board');
 
-export const getFlapSelectors = () => {
-  const topNewFlaps = document.querySelectorAll('.top-new');
-  const topCurrentFlaps = document.querySelectorAll('.top-current');
-  const bottomNewFlaps = document.querySelectorAll('.bottom-new');
-  const bottomCurrentFlaps = document.querySelectorAll('.bottom-current');
-
-  return {
-    topNewFlaps,
-    topCurrentFlaps,
-    bottomNewFlaps,
-    bottomCurrentFlaps,
-  };
-};
-
 export const testButtonFlip = document.getElementById('test-button-flip');
 export const testButtonReset = document.getElementById('test-button-reset');
 
-export const flipSpeed = 0.075;
+export const flipAnimationDurationInMilliseconds = 75;
+export const framesPerFlipAnimation = 20;
 
-export const boardRows = 5;
-export const boardColumns = 18;
+export const boardRows = 6;
+export const boardColumns = 22;
 
 export const panelCharacters = [
   ' ',
@@ -50,7 +37,26 @@ export const panelCharacters = [
   'X',
   'Y',
   'Z',
-  '0',
+  '!',
+  '@',
+  '#',
+  '$',
+  '&',
+  '(',
+  ')',
+  '-',
+  '+',
+  '=',
+  ';',
+  ':',
+  "'",
+  '"',
+  '%',
+  ',',
+  '.',
+  '?',
+  '°',
+  '/',
   '1',
   '2',
   '3',
@@ -60,17 +66,18 @@ export const panelCharacters = [
   '7',
   '8',
   '9',
+  '0',
+  '⬛',
+  '⬜',
+  '🟥',
+  '🟧',
+  '🟨',
+  '🟩',
+  '🟦',
+  '🟪',
 ];
 
 export const sounds = {
   FLIP: 'flip',
   FLAP: 'flap',
-};
-
-export const animations = {
-  TOP_NEW_SLIDE: 'top-new-slide',
-  TOP_CURRENT_FLIP: 'top-current-flip',
-  BOTTOM_NEW_FLIP: 'bottom-new-flip',
-  BOTTOM_CURRENT_SLIDE: 'bottom-current-slide',
-  BOTTOM_CURRENT_BOUNCE: 'bottom-current-bounce',
 };
