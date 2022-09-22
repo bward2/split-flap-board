@@ -1,6 +1,7 @@
 import {
   flipAnimationDurationInMilliseconds,
   framesPerFlipAnimation,
+  panelCharacters,
 } from './constants.js';
 
 export class PanelManager {
@@ -8,6 +9,7 @@ export class PanelManager {
     this.msBetweenSprites =
       flipAnimationDurationInMilliseconds / framesPerFlipAnimation;
     this.msSinceFlipAnimationBegan = 0;
+    this.targetCharacterIndex = 0;
     this.characterIndex = 0;
     this.panelSize = panelSize;
     this.animating = false;
@@ -39,8 +41,6 @@ export class PanelManager {
   }
 
   determineFrameToDisplay() {
-    console.log(framesPerFlipAnimation);
-
     return Math.min(
       Math.floor(this.msSinceFlipAnimationBegan / this.msBetweenSprites),
       framesPerFlipAnimation - 1
@@ -55,7 +55,12 @@ export class PanelManager {
     if (this.msSinceFlipAnimationBegan > flipAnimationDurationInMilliseconds) {
       this.animating = false;
       this.msSinceFlipAnimationBegan = 0;
-      this.characterIndex += 1;
+
+      if (this.characterIndex === panelCharacters.length - 1) {
+        this.characterIndex = 0;
+      } else {
+        this.characterIndex += 1;
+      }
     }
   }
 
