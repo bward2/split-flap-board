@@ -1,4 +1,9 @@
-import { testButtonFlip, testButtonReset } from './constants.js';
+import {
+  boardColumns,
+  boardRows,
+  testButtonFlip,
+  testButtonReset,
+} from './constants.js';
 import { AnimationEngine } from './animationEngine.js';
 import { PanelManager } from './panelManager.js';
 
@@ -10,10 +15,17 @@ class PageManager {
     this.setPanelSize();
 
     const board = document.getElementById('split-flap-board');
-    for (let i = 0; i < 132; i += 1) {
-      const panel = new PanelManager(this.panelSize);
-      this.panels.push(panel);
-      board.appendChild(panel.getContainer());
+    for (let rowIndex = 0; rowIndex < boardRows; rowIndex += 1) {
+      let newBoardRow = document.createElement('div');
+      newBoardRow.classList.add('split-flap-row');
+
+      for (let columnIndex = 0; columnIndex < boardColumns; columnIndex += 1) {
+        const panel = new PanelManager(this.panelSize);
+        this.panels.push(panel);
+        newBoardRow.appendChild(panel.getContainer());
+      }
+
+      board.appendChild(newBoardRow);
     }
 
     this.animationEngine = new AnimationEngine(this.maxFps, this.panels);

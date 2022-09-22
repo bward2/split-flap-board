@@ -7,7 +7,6 @@
 }
 
 .split-flap-panel {
-  will-change: transform;
   width: var(--split-flap-panel-width);
 }
 

@@ -12,9 +12,12 @@ export class PanelManager {
 
     this.container = document.createElement('div');
     this.container.classList.add('split-flap-panel-container');
+    this.container.style.backgroundImage =
+      'url(./src/assets/images/darkThemeSpritesheet.png)';
 
     this.animationTarget = document.createElement('img');
     this.animationTarget.classList.add('split-flap-panel');
+    this.animationTarget.loading = 'lazy';
     this.animationTarget.src = './src/assets/images/darkThemeSpritesheet.png';
 
     this.container.appendChild(this.animationTarget);
