@@ -1,23 +1,22 @@
-import { flipSpeed, framesPerFlip } from './constants.js';
+import {
+  flipAnimationDurationInMilliseconds,
+  framesPerFlipAnimation,
+} from './constants.js';
 
 export class PanelManager {
   constructor(panelSize) {
-    this.msBetweenSprites = flipSpeed / framesPerFlip;
-    this.msSinceLastSprite = 0;
-    this.spriteFrames = framesPerFlip;
-    this.framesThisFlip = 0;
+    this.msBetweenSprites =
+      flipAnimationDurationInMilliseconds / framesPerFlipAnimation;
+    this.msSinceFlipAnimationBegan = 0;
     this.characterIndex = 0;
     this.panelSize = panelSize;
     this.animating = false;
 
     this.container = document.createElement('div');
     this.container.classList.add('split-flap-panel-container');
-    this.container.style.backgroundImage =
-      'url(./src/assets/images/darkThemeSpritesheet.png)';
 
     this.animationTarget = document.createElement('img');
     this.animationTarget.classList.add('split-flap-panel');
-    this.animationTarget.loading = 'lazy';
     this.animationTarget.src = './src/assets/images/darkThemeSpritesheet.png';
 
     this.container.appendChild(this.animationTarget);
@@ -32,34 +31,37 @@ export class PanelManager {
   }
 
   flip() {
-    this.framesThisFlip = 0;
+    if (this.animating) {
+      return;
+    }
+
     this.animating = true;
+  }
+
+  determineFrameToDisplay() {
+    console.log(framesPerFlipAnimation);
+
+    return Math.min(
+      Math.floor(this.msSinceFlipAnimationBegan / this.msBetweenSprites),
+      framesPerFlipAnimation - 1
+    );
   }
 
   draw() {
     this.animationTarget.style.transform = `translate(-${
-      this.framesThisFlip * this.panelSize
+      this.determineFrameToDisplay() * this.panelSize
     }px, -${this.characterIndex * this.panelSize * 1.05}px)`;
 
-    if (!this.animating) {
-      return;
-    }
-
-    const readyForNextFrame = this.msSinceLastSprite > this.msBetweenSprites;
-
-    if (readyForNextFrame) {
-      if (this.framesThisFlip < framesPerFlip - 1) {
-        this.framesThisFlip += 1;
-      } else {
-        this.framesThisFlip = 0;
-        this.characterIndex += 1;
-        this.animating = false;
-      }
-      this.msSinceLastSprite = 0;
+    if (this.msSinceFlipAnimationBegan > flipAnimationDurationInMilliseconds) {
+      this.animating = false;
+      this.msSinceFlipAnimationBegan = 0;
+      this.characterIndex += 1;
     }
   }
 
   update(elapsedMs) {
-    this.msSinceLastSprite += elapsedMs;
+    if (this.animating) {
+      this.msSinceFlipAnimationBegan += elapsedMs;
+    }
   }
 }

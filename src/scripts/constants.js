@@ -3,8 +3,8 @@ export const splitFlapBoard = document.getElementById('split-flap-board');
 export const testButtonFlip = document.getElementById('test-button-flip');
 export const testButtonReset = document.getElementById('test-button-reset');
 
-export const flipSpeed = 75;
-export const framesPerFlip = 20;
+export const flipAnimationDurationInMilliseconds = 75;
+export const framesPerFlipAnimation = 20;
 
 export const boardRows = 6;
 export const boardColumns = 22;
