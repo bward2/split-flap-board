@@ -42,7 +42,9 @@ class PageManager {
     };
 
     testButtonReset.onclick = () => {
-      console.log('Reset!');
+      this.panels.forEach((panel) => {
+        panel.reset();
+      });
     };
   }
 

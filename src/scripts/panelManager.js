@@ -33,10 +33,12 @@ export class PanelManager {
   }
 
   flip() {
-    if (this.animating) {
-      return;
-    }
+    this.targetCharacterIndex = this.advanceIndex(this.targetCharacterIndex);
+    this.animating = true;
+  }
 
+  reset() {
+    this.targetCharacterIndex = 0;
     this.animating = true;
   }
 
@@ -47,19 +49,25 @@ export class PanelManager {
     );
   }
 
+  advanceIndex(index) {
+    if (index === panelCharacters.length - 1) {
+      return 0;
+    } else {
+      return index + 1;
+    }
+  }
+
   draw() {
     this.animationTarget.style.transform = `translate(-${
       this.determineFrameToDisplay() * this.panelSize
     }px, -${this.characterIndex * this.panelSize * 1.05}px)`;
 
     if (this.msSinceFlipAnimationBegan > flipAnimationDurationInMilliseconds) {
-      this.animating = false;
+      this.characterIndex = this.advanceIndex(this.characterIndex);
       this.msSinceFlipAnimationBegan = 0;
 
-      if (this.characterIndex === panelCharacters.length - 1) {
-        this.characterIndex = 0;
-      } else {
-        this.characterIndex += 1;
+      if (this.characterIndex === this.targetCharacterIndex) {
+        this.animating = false;
       }
     }
   }
