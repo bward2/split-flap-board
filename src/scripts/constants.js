@@ -1,5 +1,6 @@
 export const splitFlapBoard = document.getElementById('split-flap-board');
 
+export const themeSwitch = document.getElementById('theme-switch');
 export const testButtonFlip = document.getElementById('test-button-flip');
 export const testButtonReset = document.getElementById('test-button-reset');
 
