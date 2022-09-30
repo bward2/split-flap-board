@@ -81,3 +81,8 @@ export const sounds = {
   FLIP: 'flip',
   FLAP: 'flap',
 };
+
+export const themes = {
+  LIGHT: 'light',
+  DARK: 'dark',
+};

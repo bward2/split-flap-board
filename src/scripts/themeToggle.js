@@ -1,9 +1,7 @@
+import { themes } from './constants.js';
+
 const body = document.getElementById('body');
 const themeSwitch = document.getElementById('theme-switch');
-const themes = {
-  LIGHT: 'light',
-  DARK: 'dark',
-};
 
 const loadTheme = () => {
   const storedTheme =
@@ -14,10 +12,6 @@ const loadTheme = () => {
 
   document.documentElement.setAttribute('data-theme', storedTheme);
   themeSwitch.checked = storedTheme === themes.DARK;
-};
-
-const addColorTransition = () => {
-  body.classList.add('body-colors-transition');
 };
 
 themeSwitch.onclick = () => {
