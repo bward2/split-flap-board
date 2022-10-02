@@ -3,9 +3,11 @@ import {
   boardRows,
   testButtonFlip,
   testButtonReset,
+  themeSwitch,
 } from './constants.js';
 import { AnimationEngine } from './animationEngine.js';
 import { PanelManager } from './panelManager.js';
+import { ThemeManager } from './themeManager.js';
 
 class PageManager {
   constructor() {
@@ -14,13 +16,16 @@ class PageManager {
 
     this.setPanelSize();
 
+    this.themeManager = new ThemeManager();
+    this.theme = this.themeManager.loadTheme();
+
     const board = document.getElementById('split-flap-board');
     for (let rowIndex = 0; rowIndex < boardRows; rowIndex += 1) {
       let newBoardRow = document.createElement('div');
       newBoardRow.classList.add('split-flap-row');
 
       for (let columnIndex = 0; columnIndex < boardColumns; columnIndex += 1) {
-        const panel = new PanelManager(this.panelSize);
+        const panel = new PanelManager(this.panelSize, this.theme);
         this.panels.push(panel);
         newBoardRow.appendChild(panel.getContainer());
       }
@@ -34,6 +39,14 @@ class PageManager {
     addEventListener('resize', () => {
       this.setPanelSize();
     });
+
+    themeSwitch.onclick = () => {
+      this.theme = this.themeManager.toggleTheme();
+
+      this.panels.forEach((panel) => {
+        panel.setTheme(this.theme);
+      });
+    };
 
     testButtonFlip.onclick = () => {
       this.panels.forEach((panel) => {

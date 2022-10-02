@@ -8,7 +8,7 @@
   --bottom-bounce-angle: 10deg;
 }
 
-html[data-theme='light'] {
+html[data-theme='dark'] {
   --background-color: white;
 
   --board-color: #3f3433;
@@ -20,7 +20,7 @@ html[data-theme='light'] {
   --text-color-disabled: rgba(255, 255, 255, 0.5);
 }
 
-html[data-theme='dark'] {
+html[data-theme='light'] {
   --background-color: black;
 
   --board-color: #e9e9e9;

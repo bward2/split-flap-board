@@ -5,7 +5,7 @@ import {
 } from './constants.js';
 
 export class PanelManager {
-  constructor(panelSize) {
+  constructor(panelSize, theme) {
     this.msBetweenSprites =
       flipAnimationDurationInMilliseconds / framesPerFlipAnimation;
     this.msSinceFlipAnimationBegan = 0;
@@ -19,7 +19,7 @@ export class PanelManager {
 
     this.animationTarget = document.createElement('img');
     this.animationTarget.classList.add('split-flap-panel');
-    this.animationTarget.src = './src/assets/images/darkThemeSpritesheet.png';
+    this.animationTarget.src = `./src/assets/images/${theme}ThemeSpritesheet.png`;
 
     this.container.appendChild(this.animationTarget);
   }
@@ -30,6 +30,10 @@ export class PanelManager {
 
   setPanelSize(newPanelSize) {
     this.panelSize = newPanelSize;
+  }
+
+  setTheme(newTheme) {
+    this.animationTarget.src = `./src/assets/images/${newTheme}ThemeSpritesheet.png`;
   }
 
   flip() {
