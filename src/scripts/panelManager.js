@@ -2,7 +2,9 @@ import {
   flipAnimationDurationInMilliseconds,
   framesPerFlipAnimation,
   panelCharacters,
+  sounds,
 } from './constants.js';
+import { playSound } from './soundManager.js';
 
 export class PanelManager {
   constructor(panelSize, theme) {
@@ -65,20 +67,27 @@ export class PanelManager {
     this.animationTarget.style.transform = `translate(-${
       this.determineFrameToDisplay() * this.panelSize
     }px, -${this.characterIndex * this.panelSize * 1.05}px)`;
-
-    if (this.msSinceFlipAnimationBegan > flipAnimationDurationInMilliseconds) {
-      this.characterIndex = this.advanceIndex(this.characterIndex);
-      this.msSinceFlipAnimationBegan = 0;
-
-      if (this.characterIndex === this.targetCharacterIndex) {
-        this.animating = false;
-      }
-    }
   }
 
   update(elapsedMs) {
     if (this.animating) {
+      if (this.msSinceFlipAnimationBegan === 0) {
+        playSound(sounds.FLIP);
+      }
+
       this.msSinceFlipAnimationBegan += elapsedMs;
+
+      if (
+        this.msSinceFlipAnimationBegan > flipAnimationDurationInMilliseconds
+      ) {
+        playSound(sounds.FLAP);
+        this.characterIndex = this.advanceIndex(this.characterIndex);
+        this.msSinceFlipAnimationBegan = 0;
+
+        if (this.characterIndex === this.targetCharacterIndex) {
+          this.animating = false;
+        }
+      }
     }
   }
 }
