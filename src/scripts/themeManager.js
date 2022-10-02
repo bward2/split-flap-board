@@ -8,12 +8,14 @@ export class ThemeManager {
   loadTheme() {
     const storedTheme =
       localStorage.getItem('data-theme') ||
-      (window.matchMedia('(prefers-color-scheme: light)').matches
+      (window.matchMedia(`(prefers-color-scheme: ${themes.LIGHT})`).matches
         ? themes.LIGHT
         : themes.DARK);
 
     document.documentElement.setAttribute('data-theme', storedTheme);
     this.themeSwitch.checked = storedTheme === themes.DARK;
+
+    return storedTheme;
   }
 
   toggleTheme() {
@@ -22,5 +24,7 @@ export class ThemeManager {
 
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('data-theme', newTheme);
+
+    return newTheme;
   }
 }

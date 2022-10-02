@@ -17,7 +17,7 @@ class PageManager {
     this.setPanelSize();
 
     this.themeManager = new ThemeManager();
-    this.themeManager.loadTheme();
+    this.theme = this.themeManager.loadTheme();
 
     const board = document.getElementById('split-flap-board');
     for (let rowIndex = 0; rowIndex < boardRows; rowIndex += 1) {
@@ -25,7 +25,7 @@ class PageManager {
       newBoardRow.classList.add('split-flap-row');
 
       for (let columnIndex = 0; columnIndex < boardColumns; columnIndex += 1) {
-        const panel = new PanelManager(this.panelSize);
+        const panel = new PanelManager(this.panelSize, this.theme);
         this.panels.push(panel);
         newBoardRow.appendChild(panel.getContainer());
       }
@@ -41,7 +41,11 @@ class PageManager {
     });
 
     themeSwitch.onclick = () => {
-      this.themeManager.toggleTheme();
+      this.theme = this.themeManager.toggleTheme();
+
+      this.panels.forEach((panel) => {
+        panel.setTheme(this.theme);
+      });
     };
 
     testButtonFlip.onclick = () => {
