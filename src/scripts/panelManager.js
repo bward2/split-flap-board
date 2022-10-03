@@ -1,4 +1,5 @@
 import {
+  events,
   flipAnimationDurationInMilliseconds,
   framesPerFlipAnimation,
   panelCharacters,
@@ -7,7 +8,7 @@ import {
 import { playSound } from './soundManager.js';
 
 export class PanelManager {
-  constructor(panelSize, theme) {
+  constructor(panelSize, theme, panelIndex) {
     this.msBetweenSprites =
       flipAnimationDurationInMilliseconds / framesPerFlipAnimation;
     this.msSinceFlipAnimationBegan = 0;
@@ -15,6 +16,7 @@ export class PanelManager {
     this.characterIndex = 0;
     this.panelSize = panelSize;
     this.animating = false;
+    this.panelIndex = panelIndex;
 
     this.container = document.createElement('div');
     this.container.classList.add('split-flap-panel-container');
@@ -72,7 +74,12 @@ export class PanelManager {
   update(elapsedMs) {
     if (this.animating) {
       if (this.msSinceFlipAnimationBegan === 0) {
-        playSound(sounds.FLIP);
+        // playSound(sounds.FLIP);
+        window.dispatchEvent(
+          new CustomEvent(events.REQUEST_PLAY_SOUND, {
+            detail: { sound: sounds.FLIP, panelIndex: this.panelIndex },
+          })
+        );
       }
 
       this.msSinceFlipAnimationBegan += elapsedMs;
@@ -80,7 +87,7 @@ export class PanelManager {
       if (
         this.msSinceFlipAnimationBegan > flipAnimationDurationInMilliseconds
       ) {
-        playSound(sounds.FLAP);
+        // playSound(sounds.FLAP);
         this.characterIndex = this.advanceIndex(this.characterIndex);
         this.msSinceFlipAnimationBegan = 0;
 

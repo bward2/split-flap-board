@@ -1,4 +1,9 @@
-import { testButtonFlip, testButtonReset, themeSwitch } from './constants.js';
+import {
+  events,
+  testButtonFlip,
+  testButtonReset,
+  themeSwitch,
+} from './constants.js';
 import { AnimationEngine } from './animationEngine.js';
 import { ThemeManager } from './themeManager.js';
 import { BoardManager } from './boardManager.js';
@@ -25,10 +30,11 @@ class PageManager {
   }
 
   registerEventListeners() {
-    addEventListener('resize', () => {
-      this.setPanelSize(this.calculatePanelSize());
-      this.boardManager.setPanelSize(this.panelSize);
-    });
+    addEventListener('resize', this.handleResize.bind(this));
+    addEventListener(
+      events.REQUEST_PLAY_SOUND,
+      this.handleRequestToPlaySound.bind(this)
+    );
   }
 
   registerOnClickHandlers() {
@@ -44,6 +50,15 @@ class PageManager {
     testButtonReset.onclick = () => {
       this.boardManager.resetAllPanels();
     };
+  }
+
+  handleResize() {
+    this.setPanelSize(this.calculatePanelSize());
+    this.boardManager.setPanelSize(this.panelSize);
+  }
+
+  handleRequestToPlaySound(event) {
+    this.boardManager.handleRequestToPlaySound(event);
   }
 
   calculatePanelSize() {
