@@ -87,3 +87,7 @@ export const themes = {
   LIGHT: 'light',
   DARK: 'dark',
 };
+
+export const events = {
+  REQUEST_PLAY_SOUND: 'REQUEST_PLAY_SOUND',
+};

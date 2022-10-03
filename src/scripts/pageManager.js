@@ -1,76 +1,76 @@
 import {
-  boardColumns,
-  boardRows,
+  events,
   testButtonFlip,
   testButtonReset,
   themeSwitch,
 } from './constants.js';
 import { AnimationEngine } from './animationEngine.js';
-import { PanelManager } from './panelManager.js';
 import { ThemeManager } from './themeManager.js';
+import { BoardManager } from './boardManager.js';
 
 class PageManager {
   constructor() {
     this.maxFps = 360;
-    this.panels = [];
-
-    this.setPanelSize();
 
     this.themeManager = new ThemeManager();
     this.theme = this.themeManager.loadTheme();
 
-    const board = document.getElementById('split-flap-board');
-    for (let rowIndex = 0; rowIndex < boardRows; rowIndex += 1) {
-      let newBoardRow = document.createElement('div');
-      newBoardRow.classList.add('split-flap-row');
+    this.setPanelSize(this.calculatePanelSize());
 
-      for (let columnIndex = 0; columnIndex < boardColumns; columnIndex += 1) {
-        const panel = new PanelManager(this.panelSize, this.theme);
-        this.panels.push(panel);
-        newBoardRow.appendChild(panel.getContainer());
-      }
+    this.boardManager = new BoardManager(this.panelSize, this.theme);
 
-      board.appendChild(newBoardRow);
-    }
-
-    this.animationEngine = new AnimationEngine(this.maxFps, this.panels);
+    this.animationEngine = new AnimationEngine(
+      this.maxFps,
+      this.boardManager.getPanels()
+    );
     this.animationEngine.start();
 
-    addEventListener('resize', () => {
-      this.setPanelSize();
-    });
+    this.registerEventListeners();
+    this.registerOnClickHandlers();
+  }
 
+  registerEventListeners() {
+    addEventListener('resize', this.handleResize.bind(this));
+    addEventListener(
+      events.REQUEST_PLAY_SOUND,
+      this.handleRequestToPlaySound.bind(this)
+    );
+  }
+
+  registerOnClickHandlers() {
     themeSwitch.onclick = () => {
       this.theme = this.themeManager.toggleTheme();
-
-      this.panels.forEach((panel) => {
-        panel.setTheme(this.theme);
-      });
+      this.boardManager.setTheme(this.theme);
     };
 
     testButtonFlip.onclick = () => {
-      this.panels.forEach((panel) => {
-        panel.flip();
-      });
+      this.boardManager.flipAllPanels();
     };
 
     testButtonReset.onclick = () => {
-      this.panels.forEach((panel) => {
-        panel.reset();
-      });
+      this.boardManager.resetAllPanels();
     };
   }
 
-  setPanelSize() {
-    this.panelSize = ((window.innerWidth * 0.9) / 22) * 0.85;
+  handleResize() {
+    this.setPanelSize(this.calculatePanelSize());
+    this.boardManager.setPanelSize(this.panelSize);
+  }
+
+  handleRequestToPlaySound(event) {
+    this.boardManager.handleRequestToPlaySound(event);
+  }
+
+  calculatePanelSize() {
+    return ((window.innerWidth * 0.9) / 22) * 0.85;
+  }
+
+  setPanelSize(newPanelSize) {
+    this.panelSize = newPanelSize;
     document.documentElement.style.setProperty(
       '--split-flap-panel-container-width',
       `${this.panelSize}px`
     );
-
-    this.panels.forEach((panel) => {
-      panel.setPanelSize(this.panelSize);
-    });
   }
 }
 
