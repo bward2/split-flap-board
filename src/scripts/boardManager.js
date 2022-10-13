@@ -57,15 +57,16 @@ export class BoardManager {
 
   handleRequestToPlaySound(event) {
     const { sound, panelIndex } = event.detail;
+    playSound(sound);
 
     // TODO: Update this to add and remove panels as needed
-    if (this.panelsRequestingSound.length < this.maxSoundEffects) {
-      this.panelsRequestingSound.push(panelIndex);
-    }
+    // if (this.panelsRequestingSound.length < this.maxSoundEffects) {
+    //   this.panelsRequestingSound.push(panelIndex);
+    // }
 
-    if (this.panelsRequestingSound.includes(panelIndex)) {
-      playSound(sound);
-    }
+    // if (this.panelsRequestingSound.includes(panelIndex)) {
+    //   playSound(sound);
+    // }
   }
 
   //TODO: Remove these test methods once they are no longer needed
