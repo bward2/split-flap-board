@@ -1,6 +1,5 @@
 import { boardColumns, boardRows } from './constants.js';
 import { PanelManager } from './panelManager.js';
-import { playSound } from './soundManager.js';
 
 export class BoardManager {
   constructor(panelSize, theme) {

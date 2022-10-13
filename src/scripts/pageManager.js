@@ -7,10 +7,13 @@ import {
 import { AnimationEngine } from './animationEngine.js';
 import { ThemeManager } from './themeManager.js';
 import { BoardManager } from './boardManager.js';
+import { SoundManager } from './soundManager.js';
 
 class PageManager {
   constructor() {
     this.maxFps = 360;
+
+    this.soundManager = new SoundManager();
 
     this.themeManager = new ThemeManager();
     this.theme = this.themeManager.loadTheme();
@@ -58,7 +61,9 @@ class PageManager {
   }
 
   handleRequestToPlaySound(event) {
-    this.boardManager.handleRequestToPlaySound(event);
+    const { sound } = event.detail;
+    // this.boardManager.handleRequestToPlaySound(event);
+    this.soundManager.playSound(sound);
   }
 
   calculatePanelSize() {

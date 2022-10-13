@@ -5,7 +5,6 @@ import {
   panelCharacters,
   sounds,
 } from './constants.js';
-import { playSound } from './soundManager.js';
 
 export class PanelManager {
   constructor(panelSize, theme, panelIndex) {
