@@ -62,8 +62,10 @@ class PageManager {
 
   handleRequestToPlaySound(event) {
     const { sound } = event.detail;
-    // this.boardManager.handleRequestToPlaySound(event);
-    this.soundManager.playSound(sound);
+    this.soundManager.playSound(
+      sound,
+      this.boardManager.getNumberOfPanelsRequestingSound()
+    );
   }
 
   calculatePanelSize() {
