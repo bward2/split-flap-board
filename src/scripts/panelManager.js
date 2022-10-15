@@ -11,8 +11,8 @@ export class PanelManager {
     panelSize,
     theme,
     panelIndex,
-    startRequestingSound,
-    stopRequestingSound
+    startRequestingToPlaySound,
+    stopRequestingToPlaySound
   ) {
     this.msBetweenSprites =
       flipAnimationDurationInMilliseconds / framesPerFlipAnimation;
@@ -22,8 +22,8 @@ export class PanelManager {
     this.panelSize = panelSize;
     this.animating = false;
     this.panelIndex = panelIndex;
-    this.startRequestingSound = startRequestingSound;
-    this.stopRequestingSound = stopRequestingSound;
+    this.startRequestingToPlaySound = startRequestingToPlaySound;
+    this.stopRequestingToPlaySound = stopRequestingToPlaySound;
 
     this.container = document.createElement('div');
     this.container.classList.add('split-flap-panel-container');
@@ -78,7 +78,7 @@ export class PanelManager {
 
   update(elapsedMs) {
     if (this.characterIndex !== this.targetCharacterIndex && !this.animating) {
-      this.startRequestingSound(this.panelIndex);
+      this.startRequestingToPlaySound(this.panelIndex);
       this.animating = true;
     }
 
@@ -105,7 +105,7 @@ export class PanelManager {
         this.msSinceFlipAnimationBegan = 0;
 
         if (this.characterIndex === this.targetCharacterIndex) {
-          this.stopRequestingSound(this.panelIndex);
+          this.stopRequestingToPlaySound(this.panelIndex);
           this.animating = false;
         }
       }

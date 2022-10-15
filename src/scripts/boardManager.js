@@ -12,7 +12,7 @@ export class BoardManager {
     this.populateBoard();
   }
 
-  addToPanelsRequestingSound(panelIndex) {
+  handleRequestToStartPlayingSound(panelIndex) {
     if (
       this.panelsAllowedToPlaySound.length < this.maxPanelsAllowedToPlaySound
     ) {
@@ -20,7 +20,7 @@ export class BoardManager {
     }
   }
 
-  removeFromPanelsRequestingSound(panelIndex) {
+  handleRequestToStopPlayingSound(panelIndex) {
     const indexToRemove = this.panelsAllowedToPlaySound.indexOf(panelIndex);
     if (indexToRemove !== -1) {
       this.panelsAllowedToPlaySound.splice(indexToRemove, 1);
@@ -43,8 +43,8 @@ export class BoardManager {
           this.panelSize,
           this.theme,
           currentPanelIndex,
-          this.addToPanelsRequestingSound.bind(this),
-          this.removeFromPanelsRequestingSound.bind(this)
+          this.handleRequestToStartPlayingSound.bind(this),
+          this.handleRequestToStopPlayingSound.bind(this)
         );
         this.panels.push(panel);
         newBoardRow.appendChild(panel.getContainer());
