@@ -5,10 +5,15 @@ import {
   panelCharacters,
   sounds,
 } from './constants.js';
-import { playSound } from './soundManager.js';
 
 export class PanelManager {
-  constructor(panelSize, theme, panelIndex) {
+  constructor(
+    panelSize,
+    theme,
+    panelIndex,
+    startRequestingToPlaySound,
+    stopRequestingToPlaySound
+  ) {
     this.msBetweenSprites =
       flipAnimationDurationInMilliseconds / framesPerFlipAnimation;
     this.msSinceFlipAnimationBegan = 0;
@@ -17,6 +22,8 @@ export class PanelManager {
     this.panelSize = panelSize;
     this.animating = false;
     this.panelIndex = panelIndex;
+    this.startRequestingToPlaySound = startRequestingToPlaySound;
+    this.stopRequestingToPlaySound = stopRequestingToPlaySound;
 
     this.container = document.createElement('div');
     this.container.classList.add('split-flap-panel-container');
@@ -42,11 +49,12 @@ export class PanelManager {
 
   flip() {
     this.targetCharacterIndex = this.advanceIndex(this.targetCharacterIndex);
-    this.animating = true;
   }
 
   reset() {
     this.targetCharacterIndex = 0;
+
+    this.startRequestingToPlaySound(this.panelIndex);
     this.animating = true;
   }
 
@@ -72,9 +80,13 @@ export class PanelManager {
   }
 
   update(elapsedMs) {
+    if (this.characterIndex !== this.targetCharacterIndex && !this.animating) {
+      this.startRequestingToPlaySound(this.panelIndex);
+      this.animating = true;
+    }
+
     if (this.animating) {
       if (this.msSinceFlipAnimationBegan === 0) {
-        // playSound(sounds.FLIP);
         window.dispatchEvent(
           new CustomEvent(events.REQUEST_PLAY_SOUND, {
             detail: { sound: sounds.FLIP, panelIndex: this.panelIndex },
@@ -87,11 +99,16 @@ export class PanelManager {
       if (
         this.msSinceFlipAnimationBegan > flipAnimationDurationInMilliseconds
       ) {
-        // playSound(sounds.FLAP);
+        window.dispatchEvent(
+          new CustomEvent(events.REQUEST_PLAY_SOUND, {
+            detail: { sound: sounds.FLAP, panelIndex: this.panelIndex },
+          })
+        );
         this.characterIndex = this.advanceIndex(this.characterIndex);
         this.msSinceFlipAnimationBegan = 0;
 
         if (this.characterIndex === this.targetCharacterIndex) {
+          this.stopRequestingToPlaySound(this.panelIndex);
           this.animating = false;
         }
       }

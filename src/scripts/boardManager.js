@@ -1,16 +1,34 @@
 import { boardColumns, boardRows } from './constants.js';
 import { PanelManager } from './panelManager.js';
-import { playSound } from './soundManager.js';
 
 export class BoardManager {
   constructor(panelSize, theme) {
     this.panels = [];
     this.panelSize = panelSize;
     this.theme = theme;
-    this.panelsRequestingSound = [];
-    this.maxSoundEffects = 10;
+    this.panelsAllowedToPlaySound = [];
+    this.maxPanelsAllowedToPlaySound = 10;
 
     this.populateBoard();
+  }
+
+  handleRequestToStartPlayingSound(panelIndex) {
+    if (
+      this.panelsAllowedToPlaySound.length < this.maxPanelsAllowedToPlaySound
+    ) {
+      this.panelsAllowedToPlaySound.push(panelIndex);
+    }
+  }
+
+  handleRequestToStopPlayingSound(panelIndex) {
+    const indexToRemove = this.panelsAllowedToPlaySound.indexOf(panelIndex);
+    if (indexToRemove !== -1) {
+      this.panelsAllowedToPlaySound.splice(indexToRemove, 1);
+    }
+  }
+
+  getPanelsAllowedToPlaySound() {
+    return this.panelsAllowedToPlaySound;
   }
 
   populateBoard() {
@@ -24,7 +42,9 @@ export class BoardManager {
         const panel = new PanelManager(
           this.panelSize,
           this.theme,
-          currentPanelIndex
+          currentPanelIndex,
+          this.handleRequestToStartPlayingSound.bind(this),
+          this.handleRequestToStopPlayingSound.bind(this)
         );
         this.panels.push(panel);
         newBoardRow.appendChild(panel.getContainer());
@@ -53,19 +73,6 @@ export class BoardManager {
     this.panels.forEach((panel) => {
       panel.setPanelSize(this.panelSize);
     });
-  }
-
-  handleRequestToPlaySound(event) {
-    const { sound, panelIndex } = event.detail;
-
-    // TODO: Update this to add and remove panels as needed
-    if (this.panelsRequestingSound.length < this.maxSoundEffects) {
-      this.panelsRequestingSound.push(panelIndex);
-    }
-
-    if (this.panelsRequestingSound.includes(panelIndex)) {
-      playSound(sound);
-    }
   }
 
   //TODO: Remove these test methods once they are no longer needed
