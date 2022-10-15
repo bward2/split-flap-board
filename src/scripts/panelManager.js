@@ -53,6 +53,9 @@ export class PanelManager {
 
   reset() {
     this.targetCharacterIndex = 0;
+
+    this.startRequestingToPlaySound(this.panelIndex);
+    this.animating = true;
   }
 
   determineFrameToDisplay() {
