@@ -10,6 +10,7 @@ export class SoundManager {
   }
 
   init() {
+    Howler.volume(0.05);
     for (let index = 1; index <= this.variationsPerSound; index += 1) {
       var flipSound = new Howl({
         src: [`src/assets/audio/flip/${index}.mp3`],

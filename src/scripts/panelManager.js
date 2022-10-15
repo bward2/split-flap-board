@@ -49,12 +49,10 @@ export class PanelManager {
 
   flip() {
     this.targetCharacterIndex = this.advanceIndex(this.targetCharacterIndex);
-    // this.animating = true;
   }
 
   reset() {
     this.targetCharacterIndex = 0;
-    // this.animating = true;
   }
 
   determineFrameToDisplay() {

@@ -61,11 +61,12 @@ class PageManager {
   }
 
   handleRequestToPlaySound(event) {
-    const { sound } = event.detail;
-    this.soundManager.playSound(
-      sound,
-      this.boardManager.getNumberOfPanelsRequestingSound()
-    );
+    const { sound, panelIndex } = event.detail;
+    if (!this.boardManager.getPanelsAllowedToPlaySound().includes(panelIndex)) {
+      return;
+    }
+
+    this.soundManager.playSound(sound);
   }
 
   calculatePanelSize() {

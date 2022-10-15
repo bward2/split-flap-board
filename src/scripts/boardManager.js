@@ -6,22 +6,29 @@ export class BoardManager {
     this.panels = [];
     this.panelSize = panelSize;
     this.theme = theme;
-    this.panelsRequestingSound = [];
+    this.panelsAllowedToPlaySound = [];
+    this.maxPanelsAllowedToPlaySound = 10;
 
     this.populateBoard();
   }
 
   addToPanelsRequestingSound(panelIndex) {
-    this.panelsRequestingSound.push(panelIndex);
+    if (
+      this.panelsAllowedToPlaySound.length < this.maxPanelsAllowedToPlaySound
+    ) {
+      this.panelsAllowedToPlaySound.push(panelIndex);
+    }
   }
 
   removeFromPanelsRequestingSound(panelIndex) {
-    const indexToRemove = this.panelsRequestingSound.indexOf(panelIndex);
-    this.panelsRequestingSound.splice(indexToRemove, 1);
+    const indexToRemove = this.panelsAllowedToPlaySound.indexOf(panelIndex);
+    if (indexToRemove !== -1) {
+      this.panelsAllowedToPlaySound.splice(indexToRemove, 1);
+    }
   }
 
-  getNumberOfPanelsRequestingSound() {
-    return this.panelsRequestingSound.length;
+  getPanelsAllowedToPlaySound() {
+    return this.panelsAllowedToPlaySound;
   }
 
   populateBoard() {
