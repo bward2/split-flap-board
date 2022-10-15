@@ -11,7 +11,9 @@ export const boardRows = 6;
 export const boardColumns = 22;
 
 export const panelCharacters = [
+  // Blank Space
   ' ',
+  // Alphabet
   'A',
   'B',
   'C',
@@ -38,6 +40,7 @@ export const panelCharacters = [
   'X',
   'Y',
   'Z',
+  // Symbols
   '!',
   '@',
   '#',
@@ -58,6 +61,7 @@ export const panelCharacters = [
   '?',
   '°',
   '/',
+  // Numbers
   '1',
   '2',
   '3',
@@ -68,6 +72,7 @@ export const panelCharacters = [
   '8',
   '9',
   '0',
+  // Colors
   '⬛',
   '⬜',
   '🟥',
