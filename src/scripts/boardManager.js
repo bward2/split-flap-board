@@ -78,7 +78,7 @@ export class BoardManager {
 
   //TODO: Remove these test methods once they are no longer needed
   flipAllPanels() {
-    testPattern1.forEach((character, currentPanelIndex) => {
+    testPattern2.forEach((character, currentPanelIndex) => {
       const targetIndex = panelCharacters.indexOf(character);
       this.panels[currentPanelIndex].flip(targetIndex);
     });
