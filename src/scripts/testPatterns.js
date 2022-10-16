@@ -17,3 +17,13 @@ export const testPattern2 = Array.from(
     `     OCTOBER 15       ` +
     `                      `
 );
+
+export const testPattern3 = Array.from(
+  `` +
+    ` ABCDEFGHIJKLMNOPQRSTU` +
+    `VWXYZ!@#$&()-+=;:'"%,.` +
+    `?°/1234567890⬛⬜🟥🟧🟨🟩🟦🟪 ` +
+    `                      ` +
+    `                      ` +
+    `                      `
+);
