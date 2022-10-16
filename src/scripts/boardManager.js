@@ -1,5 +1,6 @@
-import { boardColumns, boardRows } from './constants.js';
+import { boardColumns, boardRows, panelCharacters } from './constants.js';
 import { PanelManager } from './panelManager.js';
+import { testPattern1, testPattern2, testPattern3 } from './testPatterns.js';
 
 export class BoardManager {
   constructor(panelSize, theme) {
@@ -7,7 +8,10 @@ export class BoardManager {
     this.panelSize = panelSize;
     this.theme = theme;
     this.panelsAllowedToPlaySound = [];
+    this.panelsWaitingForSound = [];
     this.maxPanelsAllowedToPlaySound = 10;
+
+    this.currentTestPattern = 0;
 
     this.populateBoard();
   }
@@ -17,13 +21,29 @@ export class BoardManager {
       this.panelsAllowedToPlaySound.length < this.maxPanelsAllowedToPlaySound
     ) {
       this.panelsAllowedToPlaySound.push(panelIndex);
+      return;
+    }
+
+    if (!this.panelsWaitingForSound.includes(panelIndex)) {
+      this.panelsWaitingForSound.push(panelIndex);
     }
   }
 
   handleRequestToStopPlayingSound(panelIndex) {
+    if (this.panelsWaitingForSound.includes(panelIndex)) {
+      this.panelsWaitingForSound.splice(
+        this.panelsWaitingForSound.indexOf(panelIndex, 1)
+      );
+      return;
+    }
+
     const indexToRemove = this.panelsAllowedToPlaySound.indexOf(panelIndex);
     if (indexToRemove !== -1) {
       this.panelsAllowedToPlaySound.splice(indexToRemove, 1);
+
+      if (this.panelsWaitingForSound.length > 0) {
+        this.panelsAllowedToPlaySound.push(this.panelsWaitingForSound.pop());
+      }
     }
   }
 
@@ -77,8 +97,28 @@ export class BoardManager {
 
   //TODO: Remove these test methods once they are no longer needed
   flipAllPanels() {
-    this.panels.forEach((panel) => {
-      panel.flip();
+    // this.currentTestPattern += 1;
+
+    // if (this.currentTestPattern > 3) {
+    //   this.currentTestPattern = 1;
+    // }
+
+    // let testPattern;
+    // switch (this.currentTestPattern) {
+    //   case 1:
+    //     testPattern = testPattern1;
+    //     break;
+    //   case 2:
+    //     testPattern = testPattern2;
+    //     break;
+    //   default:
+    //     testPattern = testPattern3;
+    //     break;
+    // }
+
+    testPattern2.forEach((character, currentPanelIndex) => {
+      const targetIndex = panelCharacters.indexOf(character);
+      this.panels[currentPanelIndex].flip(targetIndex);
     });
   }
 

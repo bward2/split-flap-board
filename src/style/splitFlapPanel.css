@@ -4,6 +4,8 @@
   height: var(--split-flap-panel-container-height);
   width: var(--split-flap-panel-container-width);
   overflow: hidden;
+  /* TODO: Dynamic margin */
+  margin: 0.2vh;
 }
 
 .split-flap-panel {
