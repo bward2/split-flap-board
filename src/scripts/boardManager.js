@@ -1,5 +1,6 @@
-import { boardColumns, boardRows } from './constants.js';
+import { boardColumns, boardRows, panelCharacters } from './constants.js';
 import { PanelManager } from './panelManager.js';
+import { testPattern1, testPattern2 } from './testPatterns.js';
 
 export class BoardManager {
   constructor(panelSize, theme) {
@@ -77,8 +78,9 @@ export class BoardManager {
 
   //TODO: Remove these test methods once they are no longer needed
   flipAllPanels() {
-    this.panels.forEach((panel) => {
-      panel.flip();
+    testPattern1.forEach((character, currentPanelIndex) => {
+      const targetIndex = panelCharacters.indexOf(character);
+      this.panels[currentPanelIndex].flip(targetIndex);
     });
   }
 

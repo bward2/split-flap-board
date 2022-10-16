@@ -10,78 +10,19 @@ export const framesPerFlipAnimation = 20;
 export const boardRows = 6;
 export const boardColumns = 22;
 
-export const panelCharacters = [
-  // Blank Space
-  ' ',
-  // Alphabet
-  'A',
-  'B',
-  'C',
-  'D',
-  'E',
-  'F',
-  'G',
-  'H',
-  'I',
-  'J',
-  'K',
-  'L',
-  'M',
-  'N',
-  'O',
-  'P',
-  'Q',
-  'R',
-  'S',
-  'T',
-  'U',
-  'V',
-  'W',
-  'X',
-  'Y',
-  'Z',
-  // Symbols
-  '!',
-  '@',
-  '#',
-  '$',
-  '&',
-  '(',
-  ')',
-  '-',
-  '+',
-  '=',
-  ';',
-  ':',
-  "'",
-  '"',
-  '%',
-  ',',
-  '.',
-  '?',
-  '°',
-  '/',
-  // Numbers
-  '1',
-  '2',
-  '3',
-  '4',
-  '5',
-  '6',
-  '7',
-  '8',
-  '9',
-  '0',
-  // Colors
-  '⬛',
-  '⬜',
-  '🟥',
-  '🟧',
-  '🟨',
-  '🟩',
-  '🟦',
-  '🟪',
-];
+export const panelCharacters = Array.from(
+  `` +
+    // Blank space
+    ` ` +
+    // Letters
+    `ABCDEFGHIJKLMNOPQRSTUVWXYZ` +
+    // Symbols
+    `!@#$&()-+=;:'"%,.?°/` +
+    // Numbers
+    `1234567890` +
+    // Colors
+    `⬛⬜🟥🟧🟨🟩🟦🟪`
+);
 
 export const sounds = {
   FLIP: 'flip',

@@ -47,15 +47,15 @@ export class PanelManager {
     this.animationTarget.src = `./src/assets/images/${newTheme}ThemeSpritesheet.png`;
   }
 
-  flip() {
-    this.targetCharacterIndex = this.advanceIndex(this.targetCharacterIndex);
+  flip(newTargetCharacterIndex) {
+    this.targetCharacterIndex = newTargetCharacterIndex;
   }
 
   reset() {
     this.targetCharacterIndex = 0;
 
-    this.startRequestingToPlaySound(this.panelIndex);
-    this.animating = true;
+    // this.startRequestingToPlaySound(this.panelIndex);
+    // this.animating = true;
   }
 
   determineFrameToDisplay() {
