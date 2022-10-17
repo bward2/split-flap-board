@@ -88,26 +88,26 @@ export class BoardManager {
 
   //TODO: Remove these test methods once they are no longer needed
   flipAllPanels() {
-    // this.currentTestPattern += 1;
+    this.currentTestPattern += 1;
 
-    // if (this.currentTestPattern > 3) {
-    //   this.currentTestPattern = 1;
-    // }
+    if (this.currentTestPattern > 3) {
+      this.currentTestPattern = 1;
+    }
 
-    // let testPattern;
-    // switch (this.currentTestPattern) {
-    //   case 1:
-    //     testPattern = testPattern1;
-    //     break;
-    //   case 2:
-    //     testPattern = testPattern2;
-    //     break;
-    //   default:
-    //     testPattern = testPattern3;
-    //     break;
-    // }
+    let testPattern;
+    switch (this.currentTestPattern) {
+      case 1:
+        testPattern = testPattern1;
+        break;
+      case 2:
+        testPattern = testPattern2;
+        break;
+      default:
+        testPattern = testPattern3;
+        break;
+    }
 
-    testPattern2.forEach((character, currentPanelIndex) => {
+    testPattern.forEach((character, currentPanelIndex) => {
       const targetIndex = panelCharacters.indexOf(character);
       this.panels[currentPanelIndex].flip(targetIndex);
     });
