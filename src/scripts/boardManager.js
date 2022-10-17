@@ -7,8 +7,7 @@ export class BoardManager {
     this.panels = [];
     this.panelSize = panelSize;
     this.theme = theme;
-    this.panelsAllowedToPlaySound = [];
-    this.panelsWaitingForSound = [];
+    this.panelsRequestingSound = [];
     this.maxPanelsAllowedToPlaySound = 10;
 
     this.currentTestPattern = 0;
@@ -17,38 +16,30 @@ export class BoardManager {
   }
 
   handleRequestToStartPlayingSound(panelIndex) {
-    if (
-      this.panelsAllowedToPlaySound.length < this.maxPanelsAllowedToPlaySound
-    ) {
-      this.panelsAllowedToPlaySound.push(panelIndex);
+    if (this.panelsRequestingSound.includes(panelIndex)) {
       return;
     }
 
-    if (!this.panelsWaitingForSound.includes(panelIndex)) {
-      this.panelsWaitingForSound.push(panelIndex);
-    }
+    this.panelsRequestingSound.push(panelIndex);
   }
 
   handleRequestToStopPlayingSound(panelIndex) {
-    if (this.panelsWaitingForSound.includes(panelIndex)) {
-      this.panelsWaitingForSound.splice(
-        this.panelsWaitingForSound.indexOf(panelIndex, 1)
-      );
+    if (!this.panelsRequestingSound.includes(panelIndex)) {
       return;
     }
 
-    const indexToRemove = this.panelsAllowedToPlaySound.indexOf(panelIndex);
-    if (indexToRemove !== -1) {
-      this.panelsAllowedToPlaySound.splice(indexToRemove, 1);
-
-      if (this.panelsWaitingForSound.length > 0) {
-        this.panelsAllowedToPlaySound.push(this.panelsWaitingForSound.pop());
-      }
-    }
+    this.panelsRequestingSound.splice(
+      this.panelsRequestingSound.indexOf(panelIndex),
+      1
+    );
   }
 
   getPanelsAllowedToPlaySound() {
-    return this.panelsAllowedToPlaySound;
+    const finalPanelIndex = Math.min(
+      this.maxPanelsAllowedToPlaySound,
+      this.panelsRequestingSound.length
+    );
+    return this.panelsRequestingSound.slice(0, finalPanelIndex);
   }
 
   populateBoard() {
