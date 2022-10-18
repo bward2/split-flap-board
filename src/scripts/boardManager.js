@@ -8,7 +8,7 @@ export class BoardManager {
     this.panelSize = panelSize;
     this.theme = theme;
     this.panelsRequestingSound = [];
-    this.maxPanelsAllowedToPlaySound = 10;
+    this.maxPanelsAllowedToPlaySound = 50;
 
     this.currentTestPattern = 0;
 
