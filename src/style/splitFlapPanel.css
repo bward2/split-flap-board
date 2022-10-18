@@ -6,6 +6,8 @@
   overflow: hidden;
   /* TODO: Dynamic margin */
   margin: 0.2vh;
+  box-sizing: border-box;
+  border: 1px solid var(--panel-border-color);
 }
 
 .split-flap-panel {

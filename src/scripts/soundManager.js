@@ -30,8 +30,7 @@ export class SoundManager {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  playSound(name, numberOfPanelsRequestingSound) {
-    Howler.volume(1 / numberOfPanelsRequestingSound);
+  playSound(name) {
     const random = this.getRandomInt(0, this.variationsPerSound - 1);
     const targetCollection =
       name === sounds.FLIP ? this.flipSounds : this.flapSounds;

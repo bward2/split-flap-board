@@ -1,15 +1,14 @@
 import { boardColumns, boardRows, panelCharacters } from './constants.js';
 import { PanelManager } from './panelManager.js';
-import { testPattern1, testPattern2, testPattern3 } from './testPatterns.js';
+import { testPatterns } from './testPatterns.js';
 
 export class BoardManager {
   constructor(panelSize, theme) {
     this.panels = [];
     this.panelSize = panelSize;
     this.theme = theme;
-    this.panelsAllowedToPlaySound = [];
-    this.panelsWaitingForSound = [];
-    this.maxPanelsAllowedToPlaySound = 10;
+    this.panelsRequestingSound = [];
+    this.maxPanelsAllowedToPlaySound = 50;
 
     this.currentTestPattern = 0;
 
@@ -17,38 +16,30 @@ export class BoardManager {
   }
 
   handleRequestToStartPlayingSound(panelIndex) {
-    if (
-      this.panelsAllowedToPlaySound.length < this.maxPanelsAllowedToPlaySound
-    ) {
-      this.panelsAllowedToPlaySound.push(panelIndex);
+    if (this.panelsRequestingSound.includes(panelIndex)) {
       return;
     }
 
-    if (!this.panelsWaitingForSound.includes(panelIndex)) {
-      this.panelsWaitingForSound.push(panelIndex);
-    }
+    this.panelsRequestingSound.push(panelIndex);
   }
 
   handleRequestToStopPlayingSound(panelIndex) {
-    if (this.panelsWaitingForSound.includes(panelIndex)) {
-      this.panelsWaitingForSound.splice(
-        this.panelsWaitingForSound.indexOf(panelIndex, 1)
-      );
+    if (!this.panelsRequestingSound.includes(panelIndex)) {
       return;
     }
 
-    const indexToRemove = this.panelsAllowedToPlaySound.indexOf(panelIndex);
-    if (indexToRemove !== -1) {
-      this.panelsAllowedToPlaySound.splice(indexToRemove, 1);
-
-      if (this.panelsWaitingForSound.length > 0) {
-        this.panelsAllowedToPlaySound.push(this.panelsWaitingForSound.pop());
-      }
-    }
+    this.panelsRequestingSound.splice(
+      this.panelsRequestingSound.indexOf(panelIndex),
+      1
+    );
   }
 
   getPanelsAllowedToPlaySound() {
-    return this.panelsAllowedToPlaySound;
+    const finalPanelIndex = Math.min(
+      this.maxPanelsAllowedToPlaySound,
+      this.panelsRequestingSound.length
+    );
+    return this.panelsRequestingSound.slice(0, finalPanelIndex);
   }
 
   populateBoard() {
@@ -97,29 +88,23 @@ export class BoardManager {
 
   //TODO: Remove these test methods once they are no longer needed
   flipAllPanels() {
-    // this.currentTestPattern += 1;
+    this.currentTestPattern += 1;
 
-    // if (this.currentTestPattern > 3) {
-    //   this.currentTestPattern = 1;
-    // }
+    if (this.currentTestPattern >= testPatterns.length) {
+      this.currentTestPattern = 0;
+    }
 
-    // let testPattern;
-    // switch (this.currentTestPattern) {
-    //   case 1:
-    //     testPattern = testPattern1;
-    //     break;
-    //   case 2:
-    //     testPattern = testPattern2;
-    //     break;
-    //   default:
-    //     testPattern = testPattern3;
-    //     break;
-    // }
+    testPatterns[this.currentTestPattern].forEach(
+      (character, currentPanelIndex) => {
+        let targetIndex = panelCharacters.indexOf(character);
 
-    testPattern2.forEach((character, currentPanelIndex) => {
-      const targetIndex = panelCharacters.indexOf(character);
-      this.panels[currentPanelIndex].flip(targetIndex);
-    });
+        if (targetIndex === -1) {
+          targetIndex = 0;
+        }
+
+        this.panels[currentPanelIndex].flip(targetIndex);
+      }
+    );
   }
 
   resetAllPanels() {
