@@ -30,6 +30,16 @@ const testPattern3 = Array.from(
 
 const testPattern4 = Array.from(
   `` +
+    `"WHERE THERE ARE NO   ` +
+    ` OXEN, THE MANGER IS  ` +
+    ` CLEAN, BUT ABUNDANT  ` +
+    ` CROPS COME BY THE    ` +
+    ` STRENGTH OF THE OX." ` +
+    `    -PROVERBS 14:4    `
+);
+
+const testPattern5 = Array.from(
+  `` +
     `                      ` +
     ` SPLIT FLAP!  🟥 🟥     ` +
     `             🟥🟥🟥🟥🟥    ` +
@@ -43,4 +53,5 @@ export const testPatterns = [
   testPattern2,
   testPattern3,
   testPattern4,
+  testPattern5,
 ];
