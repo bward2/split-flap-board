@@ -1,4 +1,4 @@
-export const testPattern1 = Array.from(
+const testPattern1 = Array.from(
   `` +
     `⬛⬜🟥🟧🟨🟩🟦🟪⬛⬜🟥🟧🟨🟩🟦🟪⬛⬜🟥🟧🟨🟩` +
     `🟩⬛⬜🟥🟧🟨🟩🟦🟪⬛⬜🟥🟧🟨🟩🟦🟪⬛⬜🟥🟧🟨` +
@@ -8,7 +8,7 @@ export const testPattern1 = Array.from(
     `⬜🟥🟧🟨🟩⬛⬜🟥🟧🟨🟩🟦🟪⬛⬜🟥🟧🟨🟩🟦🟪⬛`
 );
 
-export const testPattern2 = Array.from(
+const testPattern2 = Array.from(
   `` +
     `                      ` +
     `     HELLO WORLD!     ` +
@@ -18,12 +18,14 @@ export const testPattern2 = Array.from(
     `                      `
 );
 
-export const testPattern3 = Array.from(
+const testPattern3 = Array.from(
   `` +
-    ` ABCDEFGHIJKLMNOPQRSTU` +
-    `VWXYZ!@#$&()-+=;:'"%,.` +
-    `?°/1234567890⬛⬜🟥🟧🟨🟩🟦🟪 ` +
+    `ABCDEFGHIJKLMNOPQRSTUV` +
+    `WXYZ!@#$&()-+=;:'"%,.?` +
+    `°/1234567890⬛⬜🟥🟧🟨🟩🟦🟪  ` +
     `                      ` +
-    `                      ` +
-    `                      `
+    `132 PANELS            ` +
+    `64 CHARACTERS / PANEL `
 );
+
+export const testPatterns = [testPattern1, testPattern2, testPattern3];

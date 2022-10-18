@@ -1,6 +1,6 @@
 import { boardColumns, boardRows, panelCharacters } from './constants.js';
 import { PanelManager } from './panelManager.js';
-import { testPattern1, testPattern2, testPattern3 } from './testPatterns.js';
+import { testPatterns } from './testPatterns.js';
 
 export class BoardManager {
   constructor(panelSize, theme) {
@@ -90,27 +90,16 @@ export class BoardManager {
   flipAllPanels() {
     this.currentTestPattern += 1;
 
-    if (this.currentTestPattern > 3) {
-      this.currentTestPattern = 1;
+    if (this.currentTestPattern >= testPatterns.length) {
+      this.currentTestPattern = 0;
     }
 
-    let testPattern;
-    switch (this.currentTestPattern) {
-      case 1:
-        testPattern = testPattern1;
-        break;
-      case 2:
-        testPattern = testPattern2;
-        break;
-      default:
-        testPattern = testPattern3;
-        break;
-    }
-
-    testPattern.forEach((character, currentPanelIndex) => {
-      const targetIndex = panelCharacters.indexOf(character);
-      this.panels[currentPanelIndex].flip(targetIndex);
-    });
+    testPatterns[this.currentTestPattern].forEach(
+      (character, currentPanelIndex) => {
+        const targetIndex = panelCharacters.indexOf(character);
+        this.panels[currentPanelIndex].flip(targetIndex);
+      }
+    );
   }
 
   resetAllPanels() {
