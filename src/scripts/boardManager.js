@@ -96,7 +96,12 @@ export class BoardManager {
 
     testPatterns[this.currentTestPattern].forEach(
       (character, currentPanelIndex) => {
-        const targetIndex = panelCharacters.indexOf(character);
+        let targetIndex = panelCharacters.indexOf(character);
+
+        if (targetIndex === -1) {
+          targetIndex = 0;
+        }
+
         this.panels[currentPanelIndex].flip(targetIndex);
       }
     );

@@ -28,4 +28,19 @@ const testPattern3 = Array.from(
     `64 CHARACTERS / PANEL `
 );
 
-export const testPatterns = [testPattern1, testPattern2, testPattern3];
+const testPattern4 = Array.from(
+  `` +
+    `                      ` +
+    ` SPLIT FLAP!  🟥 🟥     ` +
+    `             🟥🟥🟥🟥🟥    ` +
+    `    MADE WITH 🟥🟥🟥     ` +
+    `               🟥      ` +
+    `       BY BRENT WARD  `
+);
+
+export const testPatterns = [
+  testPattern1,
+  testPattern2,
+  testPattern3,
+  testPattern4,
+];
