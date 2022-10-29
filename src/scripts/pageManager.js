@@ -1,4 +1,5 @@
 import {
+  boardColumns,
   events,
   testButtonFlip,
   testButtonReset,
@@ -70,7 +71,12 @@ class PageManager {
   }
 
   calculatePanelSize() {
-    return ((window.innerWidth * 0.9) / 22) * 0.85;
+    const marginSize = 0.004;
+    const boardWidthPercentage = 0.95;
+    return (
+      (window.innerWidth / boardColumns - window.innerWidth * marginSize) *
+      boardWidthPercentage
+    );
   }
 
   setPanelSize(newPanelSize) {

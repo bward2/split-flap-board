@@ -4,8 +4,7 @@
   height: var(--split-flap-panel-container-height);
   width: var(--split-flap-panel-container-width);
   overflow: hidden;
-  /* TODO: Dynamic margin */
-  margin: 0.2vh;
+  margin: 0.2vw;
   box-sizing: border-box;
   border: 1px solid var(--panel-border-color);
 }
