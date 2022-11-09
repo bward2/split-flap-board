@@ -10,10 +10,6 @@
 html[data-theme='dark'] {
   --background-color: #1e1e1e;
 
-  --board-color: #1e1e1e;
-  --panel-color: #42393a;
-  --panel-bounce-color: #544b4c;
-
   --text-color-primary: rgba(255, 255, 255, 1);
   --text-color-secondary: rgba(255, 255, 255, 0.7);
   --text-color-disabled: rgba(255, 255, 255, 0.5);
@@ -21,10 +17,6 @@ html[data-theme='dark'] {
 
 html[data-theme='light'] {
   --background-color: #e9e9e9;
-
-  --board-color: #e9e9e9;
-  --panel-color: #f3f3f5;
-  --panel-bounce-color: #e0e0e0;
 
   --text-color-primary: rgba(0, 0, 0, 0.87);
   --text-color-secondary: rgba(0, 0, 0, 0.6);
