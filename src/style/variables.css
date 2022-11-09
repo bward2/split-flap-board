@@ -8,9 +8,9 @@
 }
 
 html[data-theme='dark'] {
-  --background-color: #3f3433;
+  --background-color: #1e1e1e;
 
-  --board-color: #3f3433;
+  --board-color: #1e1e1e;
   --panel-color: #42393a;
   --panel-bounce-color: #544b4c;
 
