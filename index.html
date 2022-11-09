@@ -6,6 +6,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no"
     />
 
+    <link rel="stylesheet" href="src/style/keyboard.css" />
     <link rel="stylesheet" href="src/style/pageLayout.css" />
     <link rel="stylesheet" href="src/style/splitFlapBoard.css" />
     <link rel="stylesheet" href="src/style/splitFlapPanel.css" />
@@ -22,10 +23,6 @@
   </head>
 
   <body id="body">
-    <div class="container">
-      <div id="split-flap-board" class="split-flap-board"></div>
-    </div>
-
     <div class="theme-switch-wrapper">
       <label class="theme-switch" for="theme-switch">
         <input type="checkbox" id="theme-switch" />
@@ -35,9 +32,28 @@
 
     <div id="fps-display" class="fps-display"></div>
 
-    <div class="test-button-container">
+    <div class="container">
+      <div id="split-flap-board" class="split-flap-board"></div>
+
+      <div class="keyboard-container">
+        <div class="keyboard-row">
+          <button>Q</button>
+          <button>W</button>
+          <button>E</button>
+          <button>R</button>
+          <button>T</button>
+          <button>Y</button>
+          <button>U</button>
+          <button>I</button>
+          <button>O</button>
+          <button>P</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="test-button-container">
       <button class="test-button" id="test-button-flip">FLIP</button>
       <button class="test-button" id="test-button-reset">RESET</button>
-    </div>
+    </div> -->
   </body>
 </html>
