@@ -1,6 +1,7 @@
 import {
   boardColumns,
   events,
+  keyboardContainer,
   testButtonFlip,
   testButtonReset,
   themeSwitch,
@@ -42,18 +43,26 @@ class PageManager {
   }
 
   registerOnClickHandlers() {
+    for (const keyboardRow of keyboardContainer.children) {
+      for (const key of keyboardRow.children) {
+        key.addEventListener('click', (event) => {
+          console.log(event.target.dataset.key);
+        });
+      }
+    }
+
     themeSwitch.onclick = () => {
       this.theme = this.themeManager.toggleTheme();
       this.boardManager.setTheme(this.theme);
     };
 
-    testButtonFlip.onclick = () => {
-      this.boardManager.flipAllPanels();
-    };
+    // testButtonFlip.onclick = () => {
+    //   this.boardManager.flipAllPanels();
+    // };
 
-    testButtonReset.onclick = () => {
-      this.boardManager.resetAllPanels();
-    };
+    // testButtonReset.onclick = () => {
+    //   this.boardManager.resetAllPanels();
+    // };
   }
 
   handleResize() {
