@@ -2,6 +2,7 @@ import {
   boardColumns,
   events,
   keyboardContainer,
+  showKeyboardButton,
   testButtonFlip,
   testButtonReset,
   themeSwitch,
@@ -43,6 +44,11 @@ class PageManager {
   }
 
   registerOnClickHandlers() {
+    showKeyboardButton.onclick = () => {
+      showKeyboardButton.style.visibility = 'hidden';
+      keyboardContainer.style.visibility = 'visible';
+    };
+
     for (const keyboardRow of keyboardContainer.children) {
       for (const key of keyboardRow.children) {
         key.addEventListener('click', (event) => {

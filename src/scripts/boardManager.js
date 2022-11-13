@@ -50,6 +50,9 @@ export class BoardManager {
       newBoardRow.classList.add('split-flap-row');
 
       for (let columnIndex = 0; columnIndex < boardColumns; columnIndex += 1) {
+        let panelOuterContainer = document.createElement('div');
+        panelOuterContainer.classList.add('split-flap-panel-outer-container');
+
         const panel = new PanelManager(
           this.panelSize,
           this.theme,
@@ -58,7 +61,9 @@ export class BoardManager {
           this.handleRequestToStopPlayingSound.bind(this)
         );
         this.panels.push(panel);
-        newBoardRow.appendChild(panel.getContainer());
+
+        panelOuterContainer.appendChild(panel.getContainer());
+        newBoardRow.appendChild(panelOuterContainer);
         currentPanelIndex += 1;
       }
 

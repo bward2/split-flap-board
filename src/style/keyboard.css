@@ -2,6 +2,7 @@
   background-color: red;
   width: 100%;
   max-width: 500px;
+  visibility: hidden;
 }
 
 .keyboard-row {
