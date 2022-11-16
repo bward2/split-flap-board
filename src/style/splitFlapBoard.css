@@ -1,5 +1,3 @@
-@import url('variables.css');
-
 .split-flap-board {
   display: flex;
   flex-direction: column;
