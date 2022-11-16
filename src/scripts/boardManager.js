@@ -9,6 +9,7 @@ export class BoardManager {
     this.theme = theme;
     this.panelsRequestingSound = [];
     this.maxPanelsAllowedToPlaySound = 50;
+    this.liveTypingPanelIndex = null;
 
     this.currentTestPattern = 0;
 
@@ -89,6 +90,11 @@ export class BoardManager {
     this.panels.forEach((panel) => {
       panel.setPanelSize(this.panelSize);
     });
+  }
+
+  setLiveTypingPanelIndex(newIndex) {
+    const targetContainer = this.panels[newIndex].getOuterContainer();
+    targetContainer.classList.add('live-typing-outline');
   }
 
   //TODO: Remove these test methods once they are no longer needed

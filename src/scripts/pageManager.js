@@ -11,10 +11,12 @@ import { AnimationEngine } from './animationEngine.js';
 import { ThemeManager } from './themeManager.js';
 import { BoardManager } from './boardManager.js';
 import { SoundManager } from './soundManager.js';
+import { InputManager } from './inputManager.js';
 
 class PageManager {
   constructor() {
     this.maxFps = 360;
+    this.liveTypingPanelIndex = null;
 
     this.soundManager = new SoundManager();
 
@@ -24,6 +26,10 @@ class PageManager {
     this.setPanelSize(this.calculatePanelSize());
 
     this.boardManager = new BoardManager(this.panelSize, this.theme);
+
+    this.inputManager = new InputManager(
+      this.handleUpdateLiveTypingPanelIndex.bind(this)
+    );
 
     this.animationEngine = new AnimationEngine(
       this.maxFps,
@@ -47,6 +53,8 @@ class PageManager {
     showKeyboardButton.onclick = () => {
       showKeyboardButton.style.visibility = 'hidden';
       keyboardContainer.style.visibility = 'visible';
+
+      this.inputManager.toggleLiveTyping();
     };
 
     for (const keyboardRow of keyboardContainer.children) {
@@ -83,6 +91,11 @@ class PageManager {
     }
 
     this.soundManager.playSound(sound);
+  }
+
+  handleUpdateLiveTypingPanelIndex(newIndex) {
+    this.liveTypingPanelIndex = newIndex;
+    this.boardManager.setLiveTypingPanelIndex(newIndex);
   }
 
   calculatePanelSize() {
