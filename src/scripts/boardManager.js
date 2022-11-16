@@ -93,8 +93,16 @@ export class BoardManager {
   }
 
   setLiveTypingPanelIndex(newIndex) {
-    const targetContainer = this.panels[newIndex].getOuterContainer();
-    targetContainer.classList.add('live-typing-outline');
+    if (this.liveTypingPanelIndex !== null) {
+      this.panels[this.liveTypingPanelIndex].flip(newIndex);
+      const oldTargetContainer =
+        this.panels[this.liveTypingPanelIndex].getOuterContainer();
+      oldTargetContainer.classList.remove('live-typing-outline');
+    }
+
+    this.liveTypingPanelIndex = newIndex;
+    const newTargetContainer = this.panels[newIndex].getOuterContainer();
+    newTargetContainer.classList.add('live-typing-outline');
   }
 
   //TODO: Remove these test methods once they are no longer needed

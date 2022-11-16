@@ -16,7 +16,6 @@ import { InputManager } from './inputManager.js';
 class PageManager {
   constructor() {
     this.maxFps = 360;
-    this.liveTypingPanelIndex = null;
 
     this.soundManager = new SoundManager();
 
@@ -57,14 +56,6 @@ class PageManager {
       this.inputManager.toggleLiveTyping();
     };
 
-    for (const keyboardRow of keyboardContainer.children) {
-      for (const key of keyboardRow.children) {
-        key.addEventListener('click', (event) => {
-          console.log(event.target.dataset.key);
-        });
-      }
-    }
-
     themeSwitch.onclick = () => {
       this.theme = this.themeManager.toggleTheme();
       this.boardManager.setTheme(this.theme);
@@ -94,7 +85,6 @@ class PageManager {
   }
 
   handleUpdateLiveTypingPanelIndex(newIndex) {
-    this.liveTypingPanelIndex = newIndex;
     this.boardManager.setLiveTypingPanelIndex(newIndex);
   }
 
