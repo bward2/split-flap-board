@@ -10,14 +10,15 @@ export class BoardManager {
     this.theme = theme;
     this.panelsRequestingSound = [];
     this.maxPanelsAllowedToPlaySound = 50;
-    this.liveTypingPanelIndex = null;
+    this.highlightedPanelIndex = 0;
 
     this.currentTestPattern = 0;
 
     this.populateBoard();
 
     this.inputManager = new InputManager(
-      this.setLiveTypingPanelIndex.bind(this)
+      this.setHighlightedPanel.bind(this),
+      this.flipSinglePanel.bind(this)
     );
   }
 
@@ -97,17 +98,21 @@ export class BoardManager {
     });
   }
 
-  setLiveTypingPanelIndex(newIndex) {
-    if (this.liveTypingPanelIndex !== null) {
-      this.panels[this.liveTypingPanelIndex].flip(newIndex);
+  setHighlightedPanel(newHighlightedPanelIndex) {
+    if (this.highlightedPanelIndex !== null) {
       const oldTargetContainer =
-        this.panels[this.liveTypingPanelIndex].getOuterContainer();
+        this.panels[this.highlightedPanelIndex].getOuterContainer();
       oldTargetContainer.classList.remove('live-typing-outline');
     }
 
-    this.liveTypingPanelIndex = newIndex;
-    const newTargetContainer = this.panels[newIndex].getOuterContainer();
+    this.highlightedPanelIndex = newHighlightedPanelIndex;
+    const newTargetContainer =
+      this.panels[this.highlightedPanelIndex].getOuterContainer();
     newTargetContainer.classList.add('live-typing-outline');
+  }
+
+  flipSinglePanel(targetCharacterIndex) {
+    this.panels[this.highlightedPanelIndex].flip(targetCharacterIndex);
   }
 
   //TODO: Remove these test methods once they are no longer needed

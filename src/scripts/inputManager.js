@@ -1,9 +1,16 @@
-import { keyboardContainer, showKeyboardButton } from './constants.js';
+import {
+  boardColumns,
+  boardRows,
+  keyboardContainer,
+  panelCharacters,
+  showKeyboardButton,
+} from './constants.js';
 
 export class InputManager {
-  constructor(updateLiveTypingPanelIndex) {
+  constructor(setHighlightedPanel, flipSinglePanel) {
+    this.setHighlightedPanel = setHighlightedPanel;
+    this.flipSinglePanel = flipSinglePanel;
     this.liveTypingPanelIndex = null;
-    this.updateLiveTypingPanelIndex = updateLiveTypingPanelIndex;
     this.liveTypingActive = false;
 
     showKeyboardButton.onclick = () => {
@@ -15,11 +22,7 @@ export class InputManager {
 
     for (const keyboardRow of keyboardContainer.children) {
       for (const key of keyboardRow.children) {
-        key.addEventListener('click', (event) => {
-          console.log(event.target.dataset.key);
-          this.liveTypingPanelIndex += 1;
-          this.updateLiveTypingPanelIndex(this.liveTypingPanelIndex);
-        });
+        key.addEventListener('click', this.handleKeyInput.bind(this));
       }
     }
   }
@@ -29,10 +32,23 @@ export class InputManager {
 
     if (this.liveTypingActive) {
       this.liveTypingPanelIndex = 0;
-      this.updateLiveTypingPanelIndex(0);
+      this.setHighlightedPanel(0);
     } else {
       this.liveTypingPanelIndex = null;
-      this.updateLiveTypingPanelIndex(null);
+      this.setHighlightedPanel(null);
     }
+  }
+
+  handleKeyInput(event) {
+    const targetCharacterIndex = panelCharacters.indexOf(
+      event.target.dataset.key
+    );
+    this.flipSinglePanel(targetCharacterIndex);
+
+    if (this.liveTypingPanelIndex < boardColumns * boardRows - 1) {
+      this.liveTypingPanelIndex += 1;
+    }
+
+    this.setHighlightedPanel(this.liveTypingPanelIndex);
   }
 }
