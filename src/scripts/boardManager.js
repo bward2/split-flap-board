@@ -1,6 +1,7 @@
 import { boardColumns, boardRows, panelCharacters } from './constants.js';
 import { PanelManager } from './panelManager.js';
 import { testPatterns } from './testPatterns.js';
+import { InputManager } from './inputManager.js';
 
 export class BoardManager {
   constructor(panelSize, theme) {
@@ -14,6 +15,10 @@ export class BoardManager {
     this.currentTestPattern = 0;
 
     this.populateBoard();
+
+    this.inputManager = new InputManager(
+      this.setLiveTypingPanelIndex.bind(this)
+    );
   }
 
   handleRequestToStartPlayingSound(panelIndex) {

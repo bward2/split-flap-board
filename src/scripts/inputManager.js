@@ -1,10 +1,17 @@
-import { keyboardContainer } from './constants.js';
+import { keyboardContainer, showKeyboardButton } from './constants.js';
 
 export class InputManager {
   constructor(updateLiveTypingPanelIndex) {
     this.liveTypingPanelIndex = null;
     this.updateLiveTypingPanelIndex = updateLiveTypingPanelIndex;
     this.liveTypingActive = false;
+
+    showKeyboardButton.onclick = () => {
+      showKeyboardButton.style.visibility = 'hidden';
+      keyboardContainer.style.visibility = 'visible';
+
+      this.toggleLiveTyping();
+    };
 
     for (const keyboardRow of keyboardContainer.children) {
       for (const key of keyboardRow.children) {
