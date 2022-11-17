@@ -1,5 +1,4 @@
 .keyboard-container {
-  background-color: red;
   width: 100%;
   max-width: 500px;
   visibility: hidden;
@@ -17,8 +16,8 @@
   height: 58px;
   border-radius: 4px;
   cursor: pointer;
-  /* background-color: var(--key-bg);
-  color: var(--key-text-color); */
+  background-color: var(--panel-background-color);
+  color: var(--text-color-primary);
   flex: 1;
   display: flex;
   justify-content: center;
