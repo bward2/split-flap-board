@@ -35,6 +35,10 @@ export class PanelManager {
     this.container.appendChild(this.animationTarget);
   }
 
+  getOuterContainer() {
+    return this.container.parentElement;
+  }
+
   getContainer() {
     return this.container;
   }

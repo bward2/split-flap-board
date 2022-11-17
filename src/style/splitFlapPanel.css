@@ -1,10 +1,17 @@
-@import url('variables.css');
+.split-flap-panel-outer-container {
+  border-radius: 4px;
+  border: 1px solid transparent;
+  margin: calc(0.2vw - 1px);
+}
+
+.live-typing-outline {
+  border: 1px solid var(--highlight-color);
+}
 
 .split-flap-panel-container {
   height: var(--split-flap-panel-container-height);
   width: var(--split-flap-panel-container-width);
   overflow: hidden;
-  margin: 0.2vw;
   box-sizing: border-box;
   border: 1px solid var(--panel-border-color);
 }
