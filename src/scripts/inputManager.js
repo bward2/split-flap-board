@@ -40,6 +40,21 @@ export class InputManager {
   }
 
   handleKeyInput(event) {
+    if (event.target.dataset.key === undefined) {
+      return;
+    }
+
+    if (event.target.dataset.key === 'BACKSPACE') {
+      this.flipSinglePanel(0);
+
+      if (this.liveTypingPanelIndex > 0) {
+        this.liveTypingPanelIndex -= 1;
+        this.setHighlightedPanel(this.liveTypingPanelIndex);
+      }
+
+      return;
+    }
+
     const targetCharacterIndex = panelCharacters.indexOf(
       event.target.dataset.key
     );
@@ -47,8 +62,7 @@ export class InputManager {
 
     if (this.liveTypingPanelIndex < boardColumns * boardRows - 1) {
       this.liveTypingPanelIndex += 1;
+      this.setHighlightedPanel(this.liveTypingPanelIndex);
     }
-
-    this.setHighlightedPanel(this.liveTypingPanelIndex);
   }
 }
