@@ -22,7 +22,7 @@ export class InputManager {
 
     for (const keyboardRow of keyboardContainer.children) {
       for (const key of keyboardRow.children) {
-        key.addEventListener('click', this.handleKeyInput.bind(this));
+        key.addEventListener('click', this.handleInput.bind(this));
       }
     }
   }
@@ -39,25 +39,32 @@ export class InputManager {
     }
   }
 
-  handleKeyInput(event) {
-    if (event.target.dataset.key === undefined) {
+  handleInput(event) {
+    const key = event.target.dataset.key;
+
+    if (key === undefined) {
       return;
     }
 
-    if (event.target.dataset.key === 'BACKSPACE') {
-      this.flipSinglePanel(0);
-
-      if (this.liveTypingPanelIndex > 0) {
-        this.liveTypingPanelIndex -= 1;
-        this.setHighlightedPanel(this.liveTypingPanelIndex);
-      }
-
+    if (key === 'BACKSPACE') {
+      this.handleBackspace();
       return;
     }
 
-    const targetCharacterIndex = panelCharacters.indexOf(
-      event.target.dataset.key
-    );
+    this.handleKey(key);
+  }
+
+  handleBackspace() {
+    this.flipSinglePanel(0);
+
+    if (this.liveTypingPanelIndex > 0) {
+      this.liveTypingPanelIndex -= 1;
+      this.setHighlightedPanel(this.liveTypingPanelIndex);
+    }
+  }
+
+  handleKey(key) {
+    const targetCharacterIndex = panelCharacters.indexOf(key);
     this.flipSinglePanel(targetCharacterIndex);
 
     if (this.liveTypingPanelIndex < boardColumns * boardRows - 1) {
