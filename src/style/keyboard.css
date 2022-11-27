@@ -35,3 +35,37 @@
 .keyboard-row > button:last-of-type {
   margin: 0;
 }
+
+.keyboard-row > .black {
+  background-color: var(--black);
+  border: 1px solid var(--text-color-disabled);
+}
+
+.keyboard-row > .white {
+  background-color: var(--white);
+  border: 1px solid var(--text-color-disabled);
+}
+
+.keyboard-row > .red {
+  background-color: var(--red);
+}
+
+.keyboard-row > .orange {
+  background-color: var(--orange);
+}
+
+.keyboard-row > .yellow {
+  background-color: var(--yellow);
+}
+
+.keyboard-row > .green {
+  background-color: var(--green);
+}
+
+.keyboard-row > .blue {
+  background-color: var(--blue);
+}
+
+.keyboard-row > .purple {
+  background-color: var(--purple);
+}
