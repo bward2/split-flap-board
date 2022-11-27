@@ -1,8 +1,16 @@
 export const splitFlapBoard = document.getElementById('split-flap-board');
+
 export const showKeyboardButton = document.getElementById(
   'show-keyboard-button'
 );
 export const keyboardContainer = document.getElementById('keyboard-container');
+export const keyboardAlphabetKeysContainer = document.getElementById(
+  'alphabet-keys-container'
+);
+export const keyboardNumberAndSymbolKeysContainer = document.getElementById(
+  'number-and-symbol-keys-container'
+);
+export const toggleKeysButton = document.getElementById('toggle-keys-button');
 
 export const themeSwitch = document.getElementById('theme-switch');
 export const testButtonFlip = document.getElementById('test-button-flip');
@@ -40,4 +48,9 @@ export const themes = {
 
 export const events = {
   REQUEST_PLAY_SOUND: 'REQUEST_PLAY_SOUND',
+};
+
+export const toggleKeysButtonTexts = {
+  ALPHABET: 'ABC',
+  NUMBERS_AND_SYMBOLS: '?123',
 };

@@ -1,9 +1,13 @@
 import {
   boardColumns,
   boardRows,
+  keyboardAlphabetKeysContainer,
   keyboardContainer,
+  keyboardNumberAndSymbolKeysContainer,
   panelCharacters,
   showKeyboardButton,
+  toggleKeysButton,
+  toggleKeysButtonTexts,
 } from './constants.js';
 
 export class InputManager {
@@ -15,8 +19,8 @@ export class InputManager {
     this.liveTypingActive = false;
 
     showKeyboardButton.onclick = () => {
-      showKeyboardButton.style.visibility = 'hidden';
-      keyboardContainer.style.visibility = 'visible';
+      showKeyboardButton.style.display = 'none';
+      keyboardContainer.style.display = 'block';
 
       this.toggleLiveTyping();
     };
@@ -89,7 +93,17 @@ export class InputManager {
   }
 
   handleToggleKeys() {
-    console.log('Cool');
+    if (
+      toggleKeysButton.innerText === toggleKeysButtonTexts.NUMBERS_AND_SYMBOLS
+    ) {
+      toggleKeysButton.innerText = toggleKeysButtonTexts.ALPHABET;
+      keyboardAlphabetKeysContainer.style.display = 'none';
+      keyboardNumberAndSymbolKeysContainer.style.display = 'block';
+    } else {
+      toggleKeysButton.innerText = toggleKeysButtonTexts.NUMBERS_AND_SYMBOLS;
+      keyboardNumberAndSymbolKeysContainer.style.display = 'none';
+      keyboardAlphabetKeysContainer.style.display = 'block';
+    }
   }
 
   handleReset() {

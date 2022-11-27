@@ -1,7 +1,7 @@
 .keyboard-container {
   width: 100%;
   max-width: 500px;
-  visibility: hidden;
+  display: none;
 }
 
 .keyboard-row {
