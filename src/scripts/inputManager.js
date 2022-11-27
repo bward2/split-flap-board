@@ -7,9 +7,10 @@ import {
 } from './constants.js';
 
 export class InputManager {
-  constructor(setHighlightedPanel, flipSinglePanel) {
+  constructor(setHighlightedPanel, flipSinglePanel, resetAllPanels) {
     this.setHighlightedPanel = setHighlightedPanel;
     this.flipSinglePanel = flipSinglePanel;
+    this.resetAllPanels = resetAllPanels;
     this.liveTypingPanelIndex = null;
     this.liveTypingActive = false;
 
@@ -56,6 +57,16 @@ export class InputManager {
       return;
     }
 
+    if (key === 'TOGGLE-KEYS') {
+      this.handleToggleKeys();
+      return;
+    }
+
+    if (key === 'RESET') {
+      this.handleReset();
+      return;
+    }
+
     this.handleKey(key);
   }
 
@@ -75,6 +86,14 @@ export class InputManager {
       this.liveTypingPanelIndex += 1;
       this.setHighlightedPanel(this.liveTypingPanelIndex);
     }
+  }
+
+  handleToggleKeys() {
+    console.log('Cool');
+  }
+
+  handleReset() {
+    this.resetAllPanels();
   }
 
   handleKey(key) {
