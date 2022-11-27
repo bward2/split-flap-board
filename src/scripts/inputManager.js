@@ -51,6 +51,11 @@ export class InputManager {
       return;
     }
 
+    if (key === 'SPACE') {
+      this.handleSpace();
+      return;
+    }
+
     this.handleKey(key);
   }
 
@@ -59,6 +64,15 @@ export class InputManager {
 
     if (this.liveTypingPanelIndex > 0) {
       this.liveTypingPanelIndex -= 1;
+      this.setHighlightedPanel(this.liveTypingPanelIndex);
+    }
+  }
+
+  handleSpace() {
+    this.flipSinglePanel(0);
+
+    if (this.liveTypingPanelIndex < boardColumns * boardRows - 1) {
+      this.liveTypingPanelIndex += 1;
       this.setHighlightedPanel(this.liveTypingPanelIndex);
     }
   }
