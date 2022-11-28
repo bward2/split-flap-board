@@ -5,8 +5,12 @@ import {
   keyboardContainer,
   keyboardNumberAndSymbolKeysContainer,
   panelCharacters,
+  secondaryKeyboardBottomRow,
+  secondaryKeyboardMiddleRow,
   showKeyboardButton,
-  toggleKeysButton,
+  tertiaryKeyboardMiddleRow,
+  tertiaryKeyboardBottomRow,
+  toggleKeysButtonPrimary,
   toggleKeysButtonTexts,
 } from './constants.js';
 
@@ -47,31 +51,30 @@ export class InputManager {
   handleInput(event) {
     const key = event.target.dataset.key;
 
-    if (key === undefined) {
-      return;
+    switch (key) {
+      case undefined:
+        return;
+      case 'BACKSPACE':
+        this.handleBackspace();
+        return;
+      case 'SPACE':
+        this.handleSpace();
+        return;
+      case 'TOGGLE-KEYS-PRIMARY':
+        this.handlePrimaryToggleKey();
+        return;
+      case 'TOGGLE-KEYS-SECONDARY':
+        this.handleSecondaryToggleKey();
+        return;
+      case 'TOGGLE-KEYS-TERTIARY':
+        this.handleTertiaryToggleKey();
+        return;
+      case 'RESET':
+        this.handleReset();
+        return;
+      default:
+        this.handleKey(key);
     }
-
-    if (key === 'BACKSPACE') {
-      this.handleBackspace();
-      return;
-    }
-
-    if (key === 'SPACE') {
-      this.handleSpace();
-      return;
-    }
-
-    if (key === 'TOGGLE-KEYS') {
-      this.handleToggleKeys();
-      return;
-    }
-
-    if (key === 'RESET') {
-      this.handleReset();
-      return;
-    }
-
-    this.handleKey(key);
   }
 
   handleBackspace() {
@@ -92,18 +95,36 @@ export class InputManager {
     }
   }
 
-  handleToggleKeys() {
+  handlePrimaryToggleKey() {
     if (
-      toggleKeysButton.innerText === toggleKeysButtonTexts.NUMBERS_AND_SYMBOLS
+      toggleKeysButtonPrimary.innerText ===
+      toggleKeysButtonTexts.NUMBERS_AND_SYMBOLS
     ) {
-      toggleKeysButton.innerText = toggleKeysButtonTexts.ALPHABET;
+      toggleKeysButtonPrimary.innerText = toggleKeysButtonTexts.ALPHABET;
       keyboardAlphabetKeysContainer.style.display = 'none';
       keyboardNumberAndSymbolKeysContainer.style.display = 'block';
     } else {
-      toggleKeysButton.innerText = toggleKeysButtonTexts.NUMBERS_AND_SYMBOLS;
+      toggleKeysButtonPrimary.innerText =
+        toggleKeysButtonTexts.NUMBERS_AND_SYMBOLS;
       keyboardNumberAndSymbolKeysContainer.style.display = 'none';
       keyboardAlphabetKeysContainer.style.display = 'block';
     }
+  }
+
+  handleSecondaryToggleKey() {
+    secondaryKeyboardMiddleRow.style.display = 'none';
+    secondaryKeyboardBottomRow.style.display = 'none';
+
+    tertiaryKeyboardMiddleRow.style.display = 'flex';
+    tertiaryKeyboardBottomRow.style.display = 'flex';
+  }
+
+  handleTertiaryToggleKey() {
+    tertiaryKeyboardMiddleRow.style.display = 'none';
+    tertiaryKeyboardBottomRow.style.display = 'none';
+
+    secondaryKeyboardMiddleRow.style.display = 'flex';
+    secondaryKeyboardBottomRow.style.display = 'flex';
   }
 
   handleReset() {

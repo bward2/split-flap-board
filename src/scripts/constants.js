@@ -10,7 +10,24 @@ export const keyboardAlphabetKeysContainer = document.getElementById(
 export const keyboardNumberAndSymbolKeysContainer = document.getElementById(
   'number-and-symbol-keys-container'
 );
-export const toggleKeysButton = document.getElementById('toggle-keys-button');
+export const toggleKeysButtonPrimary = document.getElementById(
+  'toggle-keys-button-primary'
+);
+export const toggleKeysButtonSecondary = document.getElementById(
+  'toggle-keys-button-secondary'
+);
+export const secondaryKeyboardMiddleRow = document.getElementById(
+  'secondary-keyboard-middle-row'
+);
+export const secondaryKeyboardBottomRow = document.getElementById(
+  'secondary-keyboard-bottom-row'
+);
+export const tertiaryKeyboardMiddleRow = document.getElementById(
+  'tertiary-keyboard-middle-row'
+);
+export const tertiaryKeyboardBottomRow = document.getElementById(
+  'tertiary-keyboard-bottom-row'
+);
 
 export const themeSwitch = document.getElementById('theme-switch');
 export const testButtonFlip = document.getElementById('test-button-flip');
