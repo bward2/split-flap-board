@@ -18,7 +18,8 @@ export class BoardManager {
 
     this.inputManager = new InputManager(
       this.setHighlightedPanel.bind(this),
-      this.flipSinglePanel.bind(this)
+      this.flipSinglePanel.bind(this),
+      this.resetAllPanels.bind(this)
     );
   }
 

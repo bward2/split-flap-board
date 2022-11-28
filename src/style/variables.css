@@ -5,6 +5,15 @@
   );
   --split-flap-panel-width: calc(var(--split-flap-panel-container-width) * 20);
   --panel-border-color: rgba(0, 0, 0, 0.1);
+
+  --black: #252525;
+  --white: #f3f3f5;
+  --red: #dc2b25;
+  --orange: #f17922;
+  --yellow: #fdb71d;
+  --green: #0d9a48;
+  --blue: #2082c5;
+  --purple: #722e8d;
 }
 
 html[data-theme='dark'] {

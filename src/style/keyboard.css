@@ -1,17 +1,42 @@
 .keyboard-container {
   width: 100%;
   max-width: 500px;
-  visibility: hidden;
+  display: none;
 }
 
 .keyboard-row {
   display: flex;
   justify-content: center;
-  margin-bottom: 8px;
+  margin: 0 8px 8px;
+}
+
+.keyboard-row > .backspace-key {
+  flex: 1.5;
+}
+
+.keyboard-row > .space-key {
+  flex: 3;
+}
+
+.keyboard-row > .toggle-keys-button-secondary {
+  flex: 1.5;
+}
+
+.keyboard-row > .spacer-half {
+  flex: 0.5;
+}
+
+.keyboard-row > .spacer-one {
+  flex: 1;
+  margin-right: 6px;
+}
+
+.keyboard-row > .spacer-one-and-a-half {
+  flex: 1.5;
+  margin-right: 6px;
 }
 
 .keyboard-row > button {
-  font-weight: bold;
   border: 0;
   padding: 0;
   margin: 0 6px 0 0;
@@ -20,7 +45,7 @@
   cursor: pointer;
   background-color: var(--panel-background-color);
   color: var(--text-color-primary);
-  width: 32px;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,4 +55,38 @@
 
 .keyboard-row > button:last-of-type {
   margin: 0;
+}
+
+.keyboard-row > .black {
+  background-color: var(--black);
+  border: 1px solid var(--text-color-disabled);
+}
+
+.keyboard-row > .white {
+  background-color: var(--white);
+  border: 1px solid var(--text-color-disabled);
+}
+
+.keyboard-row > .red {
+  background-color: var(--red);
+}
+
+.keyboard-row > .orange {
+  background-color: var(--orange);
+}
+
+.keyboard-row > .yellow {
+  background-color: var(--yellow);
+}
+
+.keyboard-row > .green {
+  background-color: var(--green);
+}
+
+.keyboard-row > .blue {
+  background-color: var(--blue);
+}
+
+.keyboard-row > .purple {
+  background-color: var(--purple);
 }
