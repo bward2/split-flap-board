@@ -10,8 +10,21 @@
   margin: 0 8px 8px;
 }
 
-.keyboard-row > .spacer {
+.keyboard-row > .backspace-key {
+  flex: 1.5;
+}
+
+.keyboard-row > .space-key {
+  flex: 4;
+}
+
+.keyboard-row > .spacer-half {
   flex: 0.5;
+}
+
+.keyboard-row > .spacer-one-and-a-half {
+  flex: 1.5;
+  margin-right: 8px;
 }
 
 .keyboard-row > button {
