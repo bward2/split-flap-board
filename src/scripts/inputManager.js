@@ -34,6 +34,8 @@ export class InputManager {
         key.addEventListener('click', this.handleInput.bind(this));
       }
     }
+
+    document.addEventListener('keydown', this.handleKeyboard.bind(this));
   }
 
   toggleLiveTyping() {
@@ -48,7 +50,86 @@ export class InputManager {
     }
   }
 
+  handleKeyboard(event) {
+    if (!this.liveTypingActive) {
+      return;
+    }
+
+    const key = `${event.key}`.toUpperCase();
+
+    switch (key) {
+      case 'BACKSPACE':
+        this.handleBackspace();
+        return;
+      case ' ':
+        this.handleSpace();
+        return;
+      case 'ARROWUP':
+      case 'ARROWDOWN':
+      case 'ARROWLEFT':
+      case 'ARROWRIGHT':
+        this.handleArrowKey(key);
+        return;
+      case 'ENTER':
+        this.handleEnterKey();
+        return;
+      default:
+        if (panelCharacters.includes(key)) {
+          this.handleKey(key);
+        }
+    }
+  }
+
+  handleArrowKey(key) {
+    let amountToChange;
+
+    switch (key) {
+      case 'ARROWUP':
+        amountToChange = -boardColumns;
+        break;
+      case 'ARROWDOWN':
+        amountToChange = boardColumns;
+        break;
+      case 'ARROWLEFT':
+        amountToChange = -1;
+        break;
+      case 'ARROWRIGHT':
+        amountToChange = 1;
+        break;
+    }
+
+    const newLiveTypingPanelIndex = this.liveTypingPanelIndex + amountToChange;
+
+    if (!this.indexIsInBounds(newLiveTypingPanelIndex)) {
+      return;
+    }
+
+    this.liveTypingPanelIndex = newLiveTypingPanelIndex;
+    this.setHighlightedPanel(this.liveTypingPanelIndex);
+  }
+
+  handleEnterKey() {
+    const newLiveTypingPanelIndex =
+      Math.floor(this.liveTypingPanelIndex / boardColumns) * boardColumns +
+      boardColumns;
+
+    if (!this.indexIsInBounds(newLiveTypingPanelIndex)) {
+      return;
+    }
+
+    this.liveTypingPanelIndex = newLiveTypingPanelIndex;
+    this.setHighlightedPanel(this.liveTypingPanelIndex);
+  }
+
+  indexIsInBounds(index) {
+    return index > -1 && index < boardColumns * boardRows;
+  }
+
   handleInput(event) {
+    if (!this.liveTypingActive) {
+      return;
+    }
+
     const key = event.target.dataset.key;
 
     switch (key) {
