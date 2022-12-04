@@ -70,6 +70,9 @@ export class InputManager {
       case 'ARROWRIGHT':
         this.handleArrowKey(key);
         return;
+      case 'ENTER':
+        this.handleEnterKey();
+        return;
       default:
         if (panelCharacters.includes(key)) {
           this.handleKey(key);
@@ -100,6 +103,20 @@ export class InputManager {
     if (!this.indexIsInBounds(newLiveTypingPanelIndex)) {
       return;
     }
+
+    this.liveTypingPanelIndex = newLiveTypingPanelIndex;
+    this.setHighlightedPanel(this.liveTypingPanelIndex);
+  }
+
+  handleEnterKey() {
+    const newLiveTypingPanelIndex =
+      Math.floor(this.liveTypingPanelIndex / boardColumns) * boardColumns +
+      boardColumns;
+
+    if (!this.indexIsInBounds(newLiveTypingPanelIndex)) {
+      return;
+    }
+
     this.liveTypingPanelIndex = newLiveTypingPanelIndex;
     this.setHighlightedPanel(this.liveTypingPanelIndex);
   }
