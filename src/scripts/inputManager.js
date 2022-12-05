@@ -91,10 +91,14 @@ export class InputManager {
         amountToChange = boardColumns;
         break;
       case 'ARROWLEFT':
-        amountToChange = -1;
+        amountToChange =
+          this.liveTypingPanelIndex === 0 ? boardColumns * boardRows - 1 : -1;
         break;
       case 'ARROWRIGHT':
-        amountToChange = 1;
+        amountToChange =
+          this.liveTypingPanelIndex === boardColumns * boardRows - 1
+            ? -(boardColumns * boardRows - 1)
+            : 1;
         break;
     }
 
@@ -159,12 +163,14 @@ export class InputManager {
   }
 
   handleBackspace() {
-    this.flipSinglePanel(0);
-
     if (this.liveTypingPanelIndex > 0) {
       this.liveTypingPanelIndex -= 1;
-      this.setHighlightedPanel(this.liveTypingPanelIndex);
+    } else {
+      this.liveTypingPanelIndex = boardColumns * boardRows - 1;
     }
+
+    this.setHighlightedPanel(this.liveTypingPanelIndex);
+    this.flipSinglePanel(0);
   }
 
   handleSpace() {
@@ -172,8 +178,11 @@ export class InputManager {
 
     if (this.liveTypingPanelIndex < boardColumns * boardRows - 1) {
       this.liveTypingPanelIndex += 1;
-      this.setHighlightedPanel(this.liveTypingPanelIndex);
+    } else {
+      this.liveTypingPanelIndex = 0;
     }
+
+    this.setHighlightedPanel(this.liveTypingPanelIndex);
   }
 
   handlePrimaryToggleKey() {
@@ -218,7 +227,10 @@ export class InputManager {
 
     if (this.liveTypingPanelIndex < boardColumns * boardRows - 1) {
       this.liveTypingPanelIndex += 1;
-      this.setHighlightedPanel(this.liveTypingPanelIndex);
+    } else {
+      this.liveTypingPanelIndex = 0;
     }
+
+    this.setHighlightedPanel(this.liveTypingPanelIndex);
   }
 }
