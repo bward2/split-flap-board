@@ -3,6 +3,9 @@ export const splitFlapBoard = document.getElementById('split-flap-board');
 export const showKeyboardButton = document.getElementById(
   'show-keyboard-button'
 );
+export const hideKeyboardButton = document.getElementById(
+  'hide-keyboard-button'
+);
 export const keyboardContainer = document.getElementById('keyboard-container');
 export const keyboardAlphabetKeysContainer = document.getElementById(
   'alphabet-keys-container'
@@ -31,7 +34,6 @@ export const tertiaryKeyboardBottomRow = document.getElementById(
 
 export const themeSwitch = document.getElementById('theme-switch');
 export const testButtonFlip = document.getElementById('test-button-flip');
-export const testButtonReset = document.getElementById('test-button-reset');
 
 export const flipAnimationDurationInMilliseconds = 75;
 export const framesPerFlipAnimation = 20;

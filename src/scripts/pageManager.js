@@ -1,10 +1,7 @@
 import {
   boardColumns,
   events,
-  keyboardContainer,
-  showKeyboardButton,
   testButtonFlip,
-  testButtonReset,
   themeSwitch,
 } from './constants.js';
 import { AnimationEngine } from './animationEngine.js';
@@ -49,13 +46,9 @@ class PageManager {
       this.boardManager.setTheme(this.theme);
     };
 
-    // testButtonFlip.onclick = () => {
-    //   this.boardManager.flipAllPanels();
-    // };
-
-    // testButtonReset.onclick = () => {
-    //   this.boardManager.resetAllPanels();
-    // };
+    testButtonFlip.onclick = () => {
+      this.boardManager.flipAllPanels();
+    };
   }
 
   handleResize() {
