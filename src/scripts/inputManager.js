@@ -12,6 +12,7 @@ import {
   tertiaryKeyboardBottomRow,
   toggleKeysButtonPrimary,
   toggleKeysButtonTexts,
+  hideKeyboardButton,
 } from './constants.js';
 
 export class InputManager {
@@ -24,7 +25,16 @@ export class InputManager {
 
     showKeyboardButton.onclick = () => {
       showKeyboardButton.style.display = 'none';
+      hideKeyboardButton.style.display = 'block';
       keyboardContainer.style.display = 'block';
+
+      this.toggleLiveTyping();
+    };
+
+    hideKeyboardButton.onclick = () => {
+      showKeyboardButton.style.display = 'block';
+      hideKeyboardButton.style.display = 'none';
+      keyboardContainer.style.display = 'none';
 
       this.toggleLiveTyping();
     };

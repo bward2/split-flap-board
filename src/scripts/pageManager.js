@@ -1,10 +1,7 @@
 import {
   boardColumns,
   events,
-  keyboardContainer,
-  showKeyboardButton,
   testButtonFlip,
-  testButtonReset,
   themeSwitch,
 } from './constants.js';
 import { AnimationEngine } from './animationEngine.js';
@@ -51,10 +48,6 @@ class PageManager {
 
     testButtonFlip.onclick = () => {
       this.boardManager.flipAllPanels();
-    };
-
-    testButtonReset.onclick = () => {
-      this.boardManager.resetAllPanels();
     };
   }
 
