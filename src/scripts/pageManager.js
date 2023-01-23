@@ -49,13 +49,13 @@ class PageManager {
       this.boardManager.setTheme(this.theme);
     };
 
-    // testButtonFlip.onclick = () => {
-    //   this.boardManager.flipAllPanels();
-    // };
+    testButtonFlip.onclick = () => {
+      this.boardManager.flipAllPanels();
+    };
 
-    // testButtonReset.onclick = () => {
-    //   this.boardManager.resetAllPanels();
-    // };
+    testButtonReset.onclick = () => {
+      this.boardManager.resetAllPanels();
+    };
   }
 
   handleResize() {
