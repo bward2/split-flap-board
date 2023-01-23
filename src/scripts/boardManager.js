@@ -106,6 +106,10 @@ export class BoardManager {
       oldTargetContainer.classList.remove('live-typing-outline');
     }
 
+    if (newHighlightedPanelIndex === null) {
+      return;
+    }
+
     this.highlightedPanelIndex = newHighlightedPanelIndex;
     const newTargetContainer =
       this.panels[this.highlightedPanelIndex].getOuterContainer();
